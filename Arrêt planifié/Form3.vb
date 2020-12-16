@@ -7,8 +7,13 @@ Public Class Form3
         language()
         ThemeEngine(Form1.theme_value)
         Changelog()
-        DevMode()
+
+        If Form1.dev_mode = True Then
+            CheckBox1.Visible = True
+            LinkLabel1.Visible = True
+        End If
     End Sub
+
     Sub language()
         If Form1.langue = "1" Then
             Me.Text = "Mise à jour disponible"
@@ -26,6 +31,7 @@ Public Class Form3
             Button2.Text = "Cancel"
         End If
     End Sub
+
     Sub ThemeEngine(ByVal themecode As String)
         'Mode sombre
         If themecode = "dark" Then
@@ -95,6 +101,7 @@ Public Class Form3
             'Ne rien faire
         End If
     End Sub
+
     Sub Changelog()
         Try
             Dim Changelog As New WebClient
@@ -113,23 +120,7 @@ Public Class Form3
         End Try
 
     End Sub
-    Sub DevMode()
-        Try
-            Dim devmodeopenfile As New OpenFileDialog
-            Dim devmodelabel As New Label
-            devmodeopenfile.FileName = "DevMode.ini"
-            Dim DM As New StreamReader(devmodeopenfile.FileName)
-            devmodelabel.Text = DM.ReadLine
-            If devmodelabel.Text = "1" Then
-                CheckBox1.Visible = True
-                LinkLabel1.Visible = True
-            Else
 
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
     Sub DownloadButton()
         'Telechargement via navigateur
         Try
@@ -142,13 +133,13 @@ Public Class Form3
         End Try
 
     End Sub
+
     Sub Download_Button()
         Form8.ShowDialog()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
-
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

@@ -48,10 +48,9 @@ Partial Class Form1
         Me.WindowsFormsSelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CommandPrompyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestTéléchargementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.ReloadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -96,7 +95,7 @@ Partial Class Form1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.VersionNumberToolStripMenuItem, Me.ThèmeToolStripMenuItem, Me.LangueToolStripMenuItem, Me.WindowsFormsSelectionToolStripMenuItem, Me.CommandPrompyToolStripMenuItem, Me.TestTéléchargementToolStripMenuItem, Me.ReloadToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(222, 230)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(222, 208)
         '
         'DevModeToolStripMenuItem
         '
@@ -212,6 +211,12 @@ Partial Class Form1
         Me.TestTéléchargementToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.TestTéléchargementToolStripMenuItem.Text = "Test téléchargement"
         '
+        'ReloadToolStripMenuItem
+        '
+        Me.ReloadToolStripMenuItem.Name = "ReloadToolStripMenuItem"
+        Me.ReloadToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ReloadToolStripMenuItem.Text = "Reload"
+        '
         'Button3
         '
         Me.Button3.Location = New System.Drawing.Point(12, 96)
@@ -220,16 +225,6 @@ Partial Class Form1
         Me.Button3.TabIndex = 6
         Me.Button3.Text = "Button3"
         Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(216, 9)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(13, 13)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "0"
-        Me.Label4.Visible = False
         '
         'Button4
         '
@@ -240,19 +235,12 @@ Partial Class Form1
         Me.Button4.Text = "Button4"
         Me.Button4.UseVisualStyleBackColor = True
         '
-        'ReloadToolStripMenuItem
-        '
-        Me.ReloadToolStripMenuItem.Name = "ReloadToolStripMenuItem"
-        Me.ReloadToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.ReloadToolStripMenuItem.Text = "Reload"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(290, 128)
         Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Label1)
@@ -263,7 +251,7 @@ Partial Class Form1
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Arrêt planifié"
+        Me.Text = "Planned shutdown"
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -283,7 +271,6 @@ Partial Class Form1
     Friend WithEvents CommandPrompyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TestTéléchargementToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button3 As Button
-    Friend WithEvents Label4 As Label
     Friend WithEvents Button4 As Button
     Friend WithEvents ThèmeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AfficherLaValeurDuThèmeToolStripMenuItem As ToolStripMenuItem

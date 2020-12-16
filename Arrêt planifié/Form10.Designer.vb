@@ -122,7 +122,7 @@ Partial Class Form10
         '
         'PictureBox3
         '
-        Me.PictureBox3.Image = Global.Arrêt_planifié.My.Resources.Resources.twitter
+        Me.PictureBox3.Image = Global.Planned_shutdown.My.Resources.Resources.twitter
         Me.PictureBox3.Location = New System.Drawing.Point(12, 148)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(30, 30)
@@ -132,7 +132,7 @@ Partial Class Form10
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Global.Arrêt_planifié.My.Resources.Resources.github
+        Me.PictureBox2.Image = Global.Planned_shutdown.My.Resources.Resources.github
         Me.PictureBox2.Location = New System.Drawing.Point(12, 112)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(30, 30)

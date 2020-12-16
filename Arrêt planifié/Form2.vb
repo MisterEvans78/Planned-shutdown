@@ -1,27 +1,11 @@
 ﻿Imports System.IO
 
 Public Class Form2
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button1.Click
-        Try
-            Dim devmodeopenfile As New OpenFileDialog
-            Dim devmodelabel As New Label
-            devmodeopenfile.FileName = "DevMode.ini"
-            Dim DM As New StreamReader(devmodeopenfile.FileName)
-            devmodelabel.Text = DM.ReadLine
-            If devmodelabel.Text = "1" Then
-                DevModeForm2()
-            Else
-                If TextBox1.Text = "" Then
-                    If Form1.langue = 1 Then
-                        MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
-                    Else
-                        MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")
-                    End If
-                Else
-                    btn1cmd()
-                End If
-            End If
-        Catch ex As Exception
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If Form1.dev_mode = True Then
+            DevModeForm2()
+        Else
             If TextBox1.Text = "" Then
                 If Form1.langue = 1 Then
                     MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
@@ -31,8 +15,9 @@ Public Class Form2
             Else
                 btn1cmd()
             End If
-        End Try
+        End If
     End Sub
+
     Sub language()
         If Form1.langue = "1" Then
             Me.Text = "Arrêt planifié"
@@ -57,6 +42,7 @@ Public Class Form2
             End
         End If
     End Sub
+
     Sub btn1cmd()
         Dim btn1 As New Process
         Dim Valeur As String = TextBox1.Text
@@ -87,8 +73,8 @@ Public Class Form2
         RadioButton2.Checked = False
         RadioButton3.Checked = False
         ThemeEngine(Form1.theme_value)
-        DevMode()
     End Sub
+
     Sub ThemeEngine(ByVal themecode As String)
         'Mode sombre
         If themecode = "dark" Then
@@ -151,17 +137,7 @@ Public Class Form2
 
         Label2.ForeColor = Color.Red
     End Sub
-    Sub DevMode()
-        Try
-            Dim devmodeopenfile As New OpenFileDialog
-            Dim devmodelabel As New Label
-            devmodeopenfile.FileName = "DevMode.ini"
-            Dim DM As New StreamReader(devmodeopenfile.FileName)
-            devmodelabel.Text = DM.ReadLine
-        Catch ex As Exception
 
-        End Try
-    End Sub
     Sub DevModeForm2()
         Dim btn1devmode As New Process
         Dim ValeurDM As String = TextBox1.Text

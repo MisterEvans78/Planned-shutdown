@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Vérifiez les valeurs des attributs de l'assembly
 
-<Assembly: AssemblyTitle("Arrêt planifié / Planned shutdown")>
+<Assembly: AssemblyTitle("Planned shutdown")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("MisterEvans78")>
-<Assembly: AssemblyProduct("Arrêt planifié / Planned shutdown")>
+<Assembly: AssemblyProduct("Planned shutdown")>
 <Assembly: AssemblyCopyright("Copyright © 2018-2020 MisterEvans78")>
 <Assembly: AssemblyTrademark("")>
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' en utilisant '*', comme indiqué ci-dessous :
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.9.0.0")>
-<Assembly: AssemblyFileVersion("1.9.0.0")>
+<Assembly: AssemblyVersion("1.9.1.0")>
+<Assembly: AssemblyFileVersion("1.9.1.0")>

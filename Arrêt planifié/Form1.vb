@@ -2,9 +2,10 @@
 Imports System.IO
 
 Public Class Form1
-    Public Version As String = "1.9.0"
+    Public Version As String = "1.9.1"
     Public theme_value As String
     Public langue As String
+    Public dev_mode As Boolean = False
     'Modifier également le numéro de version dans Informations de l'assembly !
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -14,10 +15,10 @@ Public Class Form1
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Try
             If langue = "1" Then
-                btn2cmd()
+                btn2fr()
                 'Fenetre annuler arrêt + DevMode
             ElseIf langue = "2" Then
-                btn2cmdEnglish()
+                btn2en()
                 'Fenetre annuler arrêt + DevMode
             End If
         Catch ex As Exception
@@ -25,34 +26,13 @@ Public Class Form1
             End
         End Try
     End Sub
-    Sub btn2cmd()
-        Try
-            Dim devmodeopenfile As New OpenFileDialog
-            Dim devmodelabel As New Label
-            devmodeopenfile.FileName = "DevMode.ini"
-            Dim DM As New StreamReader(devmodeopenfile.FileName)
-            devmodelabel.Text = DM.ReadLine
-            If devmodelabel.Text = "1" Then
 
-                DevModeBtn2()
-
-            Else
-                Dim CancelBox As New MsgBoxResult
-                CancelBox = MsgBox("Voulez-vous annuler l'arrêt planifié ?", vbYesNo + vbQuestion)
-                If CancelBox = vbYes Then
-                    Dim btn2 As New Process
-                    btn2.StartInfo.FileName = "cmd.exe"
-                    btn2.StartInfo.Arguments = "/c shutdown -a"
-                    btn2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-                    btn2.Start()
-                ElseIf CancelBox = vbNo Then
-
-                End If
-            End If
-
-        Catch ex As Exception
+    Sub btn2fr()
+        If dev_mode = True Then
+            DevModeBtn2()
+        Else
             Dim CancelBox As New MsgBoxResult
-            CancelBox = MsgBox("Voulez-vous annuler l'arrêt planifié ?", vbYesNo + vbQuestion)
+            CancelBox = MsgBox("Voulez-vous annuler l'arrêt planifié ?", vbYesNo + vbQuestion, "Arrêt planifié")
             If CancelBox = vbYes Then
                 Dim btn2 As New Process
                 btn2.StartInfo.FileName = "cmd.exe"
@@ -62,38 +42,15 @@ Public Class Form1
             ElseIf CancelBox = vbNo Then
 
             End If
-
-        End Try
-
+        End If
     End Sub
-    Sub btn2cmdEnglish()
-        Try
-            Dim devmodeopenfile As New OpenFileDialog
-            Dim devmodelabel As New Label
-            devmodeopenfile.FileName = "DevMode.ini"
-            Dim DM As New StreamReader(devmodeopenfile.FileName)
-            devmodelabel.Text = DM.ReadLine
-            If devmodelabel.Text = "1" Then
 
-                DevModeBtn2()
-
-            Else
-                Dim CancelBox As New MsgBoxResult
-                CancelBox = MsgBox("Do you want to cancel the planned shutdown?", vbYesNo + vbQuestion, "Planned shutdown")
-                If CancelBox = vbYes Then
-                    Dim btn2 As New Process
-                    btn2.StartInfo.FileName = "cmd.exe"
-                    btn2.StartInfo.Arguments = "/c shutdown -a"
-                    btn2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-                    btn2.Start()
-                ElseIf CancelBox = vbNo Then
-
-                End If
-            End If
-
-        Catch ex As Exception
+    Sub btn2en()
+        If dev_mode = True Then
+            DevModeBtn2()
+        Else
             Dim CancelBox As New MsgBoxResult
-            CancelBox = MsgBox("Do you want to cancel the planned shutdown?", vbYesNo + vbQuestion, "Planned shutdown")
+            CancelBox = MsgBox("Do you want to cancel the planned shutdown?", vbYesNo + vbQuestion)
             If CancelBox = vbYes Then
                 Dim btn2 As New Process
                 btn2.StartInfo.FileName = "cmd.exe"
@@ -103,8 +60,9 @@ Public Class Form1
             ElseIf CancelBox = vbNo Then
 
             End If
-        End Try
+        End If
     End Sub
+
     Sub DevModeBtn2()
         Dim CancelBox As New MsgBoxResult
         CancelBox = MsgBox("Voulez-vous annuler l'arrêt planifié ? (DEVMODE)", vbYesNo + vbQuestion)
@@ -117,6 +75,7 @@ Public Class Form1
 
         End If
     End Sub
+
     Sub ChkUpdt()
         'Verifie MAJ au démarrage
         Try
@@ -134,7 +93,8 @@ Public Class Form1
         End Try
 
     End Sub
-    Sub ChkUpdtButton()
+
+    Sub ChkUpdtButtonFrench()
         'Verifie MAJ manuellement
         Try
             Dim Updt As New WebClient
@@ -158,6 +118,7 @@ Public Class Form1
         'ChkUpdt()
         DevMode()
     End Sub
+
     Sub language()
         Try
             Dim langopenfile As New OpenFileDialog
@@ -203,12 +164,13 @@ Public Class Form1
                 Directory.CreateDirectory(AppDataFolder)
             End If
             Dim langsave As New StreamWriter(langsavefile.FileName)
-            langsave.Write(Label4.Text)
+            langsave.Write("0")
             langsave.Close()
             Form4.Show()
             Me.Close()
         End Try
     End Sub
+
     Sub Theme()
         Try
             Dim themeopenfile As New OpenFileDialog
@@ -240,6 +202,7 @@ Public Class Form1
         ThemeEngine(theme_value)
 
     End Sub
+
     Sub ThemeEngine(ByVal themecode As String)
         'Mode sombre
         If themecode = "dark" Then
@@ -286,37 +249,36 @@ Public Class Form1
             'Ne rien faire
         End If
     End Sub
+
     Sub DevMode()
         Try
             Dim devmodeopenfile As New OpenFileDialog
-            Dim devmodelabel As New Label
+            Dim devmodevalue As String
+
             devmodeopenfile.FileName = "DevMode.ini"
             Dim DM As New StreamReader(devmodeopenfile.FileName)
-            devmodelabel.Text = DM.ReadLine
-            If devmodelabel.Text = "1" Then
+            devmodevalue = DM.ReadLine
 
-                DevModeForm1()
-
-            Else
-
+            If devmodevalue = "1" Then
+                dev_mode = True 'Active le mode developpeur
+                Me.ContextMenuStrip = ContextMenuStrip1
             End If
+
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Sub DevModeForm1()
-        Me.ContextMenuStrip = ContextMenuStrip1
-    End Sub
-
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         If langue = "1" Then
-            ChkUpdtButton()
+            ChkUpdtButtonFrench()
         ElseIf langue = "2" Then
             ChkUpdtButtonEnglish()
         End If
     End Sub
+
     Sub ChkUpdtButtonEnglish()
+        'Verifie MAJ manuellement
         Try
             Dim Updt As New WebClient
             Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=0")

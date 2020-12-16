@@ -127,7 +127,7 @@ Partial Class Form2
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Arrêt planifié"
+        Me.Text = "Planned shutdown"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

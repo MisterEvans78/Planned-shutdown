@@ -21,7 +21,7 @@ Public Class Form8
     Private Sub Download_DownloadProgressChanged(sender As Object, e As DownloadProgressChangedEventArgs) Handles Download.DownloadProgressChanged
         ProgressBar1.Value = e.ProgressPercentage
         If ProgressBar1.Value = 100 Then
-            System.Threading.Thread.Sleep(200)
+            System.Threading.Thread.Sleep(500)
             Process.Start(SaveFileDialog1.FileName)
             End
         End If

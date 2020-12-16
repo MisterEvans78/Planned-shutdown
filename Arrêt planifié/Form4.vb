@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Public Class Form4
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim langsavefiledialog As New SaveFileDialog
         Dim AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
@@ -30,6 +31,7 @@ Public Class Form4
             langwriter.Close()
         End If
     End Sub
+
     Sub Theme()
         Dim themesavefiledialog As New SaveFileDialog
         Dim AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
@@ -107,6 +109,7 @@ Public Class Form4
             CheckBox1.Checked = False
         End If
     End Sub
+
     Sub ThemeEngine(ByVal themecode As String)
         'Mode sombre
         If themecode = "dark" Then
