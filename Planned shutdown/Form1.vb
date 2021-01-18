@@ -1,4 +1,4 @@
-﻿Imports System.Net
+Imports System.Net
 Imports System.IO
 
 Public Class Form1
@@ -80,16 +80,16 @@ Public Class Form1
         'Verifie MAJ au démarrage
         Try
             Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=0")
+            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
             If Version = LastUpdt Then
 
-            ElseIf LastUpdt = "0" Then
+            'ElseIf LastUpdt = "0" Then
 
             Else
                 LinkLabel1.Text = "Mise à jour disponible"
             End If
         Catch ex As Exception
-
+            Console.WriteLine($"Une erreur est survenue lors de la recherche de MAJ: {ex.Message}")
         End Try
 
     End Sub
@@ -98,7 +98,7 @@ Public Class Form1
         'Verifie MAJ manuellement
         Try
             Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=0")
+            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
             If Version = LastUpdt Then
                 MsgBox("Le logiciel est à jour !", vbInformation, "Mise à jour")
             ElseIf LastUpdt = "0" Then
@@ -281,7 +281,7 @@ Public Class Form1
         'Verifie MAJ manuellement
         Try
             Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=0")
+            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
             If Version = LastUpdt Then
                 MsgBox("The software is updated !", vbInformation, "Update Checker")
             ElseIf LastUpdt = "0" Then
