@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class MainMenu
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -23,7 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainMenu))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -35,6 +35,7 @@ Partial Class Form1
         Me.VersionNumberToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.ChangelogFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -77,9 +78,9 @@ Partial Class Form1
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.VersionNumberToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.VersionNumberToolStripMenuItem, Me.ChangelogFormToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 76)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 120)
         '
         'DevModeToolStripMenuItem
         '
@@ -123,6 +124,12 @@ Partial Class Form1
         Me.Button4.Text = "aboutpage_btn"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'ChangelogFormToolStripMenuItem
+        '
+        Me.ChangelogFormToolStripMenuItem.Name = "ChangelogFormToolStripMenuItem"
+        Me.ChangelogFormToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.ChangelogFormToolStripMenuItem.Text = "Changelog form"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -157,4 +164,5 @@ Partial Class Form1
     Friend WithEvents VersionNumberToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents ChangelogFormToolStripMenuItem As ToolStripMenuItem
 End Class

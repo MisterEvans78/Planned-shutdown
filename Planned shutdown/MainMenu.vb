@@ -1,25 +1,34 @@
 ﻿Imports System.Net
 Imports System.IO
 
-Public Class Form1
-    Public Version As String = "1.9.2"
+Public Class MainMenu
+    Public Version As String = "1.9.3"
     Public theme_value As String
     Public langue As String
     Public dev_mode As Boolean = False
+    Public AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
+    Public LanguageFile As String = "lang.ini"
+    Public ThemeFile As String = "theme.ini"
     'Modifier également le numéro de version dans Informations de l'assembly !
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Form2.ShowDialog()
+        ShutdownTime.ShowDialog()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Try
+            Dim CancelBox As New MsgBoxResult
             If langue = "1" Then
-                btn2fr()
-                'Fenetre annuler arrêt + DevMode
-            ElseIf langue = "2" Then
-                btn2en()
-                'Fenetre annuler arrêt + DevMode
+                CancelBox = MsgBox("Voulez-vous annuler l'arrêt planifié ?", vbYesNo + vbQuestion, "Arrêt planifié")
+            Else
+                CancelBox = MsgBox("Do you want to cancel the planned shutdown?", vbYesNo + vbQuestion)
+            End If
+            If CancelBox = vbYes Then
+                Dim btn2 As New Process
+                btn2.StartInfo.FileName = "cmd.exe"
+                btn2.StartInfo.Arguments = "/c shutdown -a"
+                btn2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+                btn2.Start()
             End If
         Catch ex As Exception
             MsgBox("An error occurred! The program is going to stop!", vbCritical)
@@ -27,60 +36,11 @@ Public Class Form1
         End Try
     End Sub
 
-    Sub btn2fr()
-        If dev_mode = True Then
-            DevModeBtn2()
-        Else
-            Dim CancelBox As New MsgBoxResult
-            CancelBox = MsgBox("Voulez-vous annuler l'arrêt planifié ?", vbYesNo + vbQuestion, "Arrêt planifié")
-            If CancelBox = vbYes Then
-                Dim btn2 As New Process
-                btn2.StartInfo.FileName = "cmd.exe"
-                btn2.StartInfo.Arguments = "/c shutdown -a"
-                btn2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-                btn2.Start()
-            ElseIf CancelBox = vbNo Then
-
-            End If
-        End If
-    End Sub
-
-    Sub btn2en()
-        If dev_mode = True Then
-            DevModeBtn2()
-        Else
-            Dim CancelBox As New MsgBoxResult
-            CancelBox = MsgBox("Do you want to cancel the planned shutdown?", vbYesNo + vbQuestion)
-            If CancelBox = vbYes Then
-                Dim btn2 As New Process
-                btn2.StartInfo.FileName = "cmd.exe"
-                btn2.StartInfo.Arguments = "/c shutdown -a"
-                btn2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-                btn2.Start()
-            ElseIf CancelBox = vbNo Then
-
-            End If
-        End If
-    End Sub
-
-    Sub DevModeBtn2()
-        Dim CancelBox As New MsgBoxResult
-        CancelBox = MsgBox("Voulez-vous annuler l'arrêt planifié ? (DEVMODE)", vbYesNo + vbQuestion)
-        If CancelBox = vbYes Then
-            Dim btn2 As New Process
-            btn2.StartInfo.FileName = "cmd.exe"
-            btn2.StartInfo.Arguments = "/c shutdown -a & pause"
-            btn2.Start()
-        ElseIf CancelBox = vbNo Then
-
-        End If
-    End Sub
-
     Sub ChkUpdt()
         'Verifie MAJ au démarrage
         Try
             Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=0")
+            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
             If Version = LastUpdt Then
 
             ElseIf LastUpdt = "0" Then
@@ -94,38 +54,23 @@ Public Class Form1
 
     End Sub
 
-    Sub ChkUpdtButtonFrench()
-        'Verifie MAJ manuellement
-        Try
-            Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=0")
-            If Version = LastUpdt Then
-                MsgBox("Le logiciel est à jour !", vbInformation, "Mise à jour")
-            ElseIf LastUpdt = "0" Then
-                MsgBox("Le service n'est actuellement pas disponible !", vbExclamation, "Mise à jour")
-            Else
-                Me.Show()
-                Form3.ShowDialog()
-            End If
-        Catch ex As Exception
-            MsgBox("Impossible de se connecter au serveur", vbCritical, "Mise à jour")
-        End Try
-    End Sub
-
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        language()
         Theme()
+        language()
+
+        'Retirer le commentaire a la ligne ci-dessous pour que le logiciel vérifie la présence de mise à jour au démarrage
         'ChkUpdt()
+
         DevMode()
     End Sub
 
     Sub language()
         Try
             Dim langopenfile As New OpenFileDialog
-            Dim AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
-            langopenfile.FileName = AppDataFolder & "lang.ini"
+            langopenfile.FileName = AppDataFolder & LanguageFile
             Dim lang As New StreamReader(langopenfile.FileName)
             langue = lang.ReadLine
+            lang.Close()
             If langue = "1" Then
                 Me.Text = "Arrêt planifié"
                 Label1.Text = "Que voulez-vous faire ?"
@@ -134,7 +79,7 @@ Public Class Form1
                 LinkLabel1.Text = "Vérifier mises à jours"
                 Button3.Text = "Options"
                 Button4.Text = "À propos"
-                lang.Close()
+
             ElseIf langue = "2" Then
                 Me.Text = "Planned shutdown"
                 Label1.Text = "What do you want to do?"
@@ -143,14 +88,11 @@ Public Class Form1
                 LinkLabel1.Text = "Check updates"
                 Button3.Text = "Options"
                 Button4.Text = "About"
-                lang.Close()
             ElseIf langue = "0" Then
-                lang.Close()
-                Form4.Show()
+                Options.Show()
                 Me.Close()
             ElseIf langue = "" Then
-                lang.Close()
-                Form4.Show()
+                Options.Show()
                 Me.Close()
             Else
                 MsgBox("lang.ini : Incorrect value", vbCritical)
@@ -158,15 +100,14 @@ Public Class Form1
             End If
         Catch ex As Exception
             Dim langsavefile As New SaveFileDialog
-            Dim AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
-            langsavefile.FileName = AppDataFolder & "lang.ini"
+            langsavefile.FileName = AppDataFolder & LanguageFile
             If Not Directory.Exists(AppDataFolder) Then
                 Directory.CreateDirectory(AppDataFolder)
             End If
             Dim langsave As New StreamWriter(langsavefile.FileName)
             langsave.Write("0")
             langsave.Close()
-            Form4.Show()
+            Options.Show()
             Me.Close()
         End Try
     End Sub
@@ -174,8 +115,7 @@ Public Class Form1
     Sub Theme()
         Try
             Dim themeopenfile As New OpenFileDialog
-            Dim AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
-            themeopenfile.FileName = AppDataFolder & "theme.ini"
+            themeopenfile.FileName = AppDataFolder & ThemeFile
             Dim theme As New StreamReader(themeopenfile.FileName)
             theme_value = theme.ReadLine
             theme.Close()
@@ -183,7 +123,7 @@ Public Class Form1
                 'Ne rien faire
             Else
                 Dim themesavefiledialog As New SaveFileDialog
-                themesavefiledialog.FileName = AppDataFolder & "theme.ini"
+                themesavefiledialog.FileName = AppDataFolder & ThemeFile
                 Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
                 themewriter.Write("light")
                 themewriter.Close()
@@ -191,8 +131,7 @@ Public Class Form1
             End If
         Catch ex As Exception
             Dim themesavefiledialog As New SaveFileDialog
-            Dim AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
-            themesavefiledialog.FileName = AppDataFolder & "theme.ini"
+            themesavefiledialog.FileName = AppDataFolder & ThemeFile
             Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
             themewriter.Write("light")
             themewriter.Close()
@@ -245,8 +184,6 @@ Public Class Form1
             For Each lien As LinkLabel In Me.Controls.OfType(Of LinkLabel)
                 lien.LinkColor = SystemColors.ControlLightLight
             Next
-        Else
-            'Ne rien faire
         End If
     End Sub
 
@@ -270,45 +207,61 @@ Public Class Form1
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        If langue = "1" Then
-            ChkUpdtButtonFrench()
-        ElseIf langue = "2" Then
-            ChkUpdtButtonEnglish()
-        End If
-    End Sub
-
-    Sub ChkUpdtButtonEnglish()
         'Verifie MAJ manuellement
-        Try
-            Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=0")
-            If Version = LastUpdt Then
-                MsgBox("The software is updated !", vbInformation, "Update Checker")
-            ElseIf LastUpdt = "0" Then
-                MsgBox("The service is currently not available!", vbExclamation, "Update Checker")
-            Else
-                Me.Show()
-                Form3.ShowDialog()
-            End If
-        Catch ex As Exception
-            MsgBox("The software cannot connect to the server!", vbCritical, "Update Checker")
-        End Try
+        If langue = "1" Then
+            LinkLabel1.Text = "Veuillez patienter..."
+            Try
+                Dim Updt As New WebClient
+                Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
+                If Version = LastUpdt Then
+                    MsgBox("Le logiciel est à jour !", vbInformation, "Mise à jour")
+                ElseIf LastUpdt = "0" Then
+                    MsgBox("Le service n'est actuellement pas disponible !", vbExclamation, "Mise à jour")
+                Else
+                    Me.Show()
+                    UpdateDialog.ShowDialog()
+                End If
+            Catch ex As Exception
+                MsgBox("Impossible de se connecter au serveur", vbCritical, "Mise à jour")
+            End Try
+        Else
+            LinkLabel1.Text = "Please wait..."
+            Try
+                Dim Updt As New WebClient
+                Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
+                If Version = LastUpdt Then
+                    MsgBox("The software is updated !", vbInformation, "Update Checker")
+                ElseIf LastUpdt = "0" Then
+                    MsgBox("The service is currently not available!", vbExclamation, "Update Checker")
+                Else
+                    Me.Show()
+                    UpdateDialog.ShowDialog()
+                End If
+            Catch ex As Exception
+                MsgBox("The software cannot connect to the server!", vbCritical, "Update Checker")
+            End Try
+        End If
+        language() 'Pour reafficher le texte "Verifier les mises à jours"
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Form4.Show()
+        Options.Show()
         Me.Close()
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Form7.ShowDialog()
+        About.ShowDialog()
     End Sub
 
     Private Sub OpenUpdateWindowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenUpdateWindowToolStripMenuItem.Click
-        Form3.ShowDialog()
+        UpdateDialog.ShowDialog()
     End Sub
 
     Private Sub VersionNumberToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VersionNumberToolStripMenuItem.Click
         MsgBox(Version)
+    End Sub
+
+    Private Sub ChangelogFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangelogFormToolStripMenuItem.Click
+        ChangelogDialog.ShowDialog()
     End Sub
 End Class

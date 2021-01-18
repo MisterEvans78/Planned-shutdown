@@ -1,18 +1,17 @@
 ﻿Imports System.IO
 
-Public Class Form7
+Public Class About
     Dim easteregg1 As Integer
     Dim easteregg2 As Integer
     Private Sub Form10_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeEngine(MainMenu.theme_value)
         language()
-        ThemeEngine(Form1.theme_value)
-
 
         If Label7.Text <> "42" Then
-            Label7.Text = "Version " + Form1.Version
+            Label7.Text = "Version " + MainMenu.Version
         End If
 
-        If Form1.theme_value = "dark" Or Form1.theme_value = "dark_b" Then
+        If MainMenu.theme_value = "dark" Or MainMenu.theme_value = "dark_b" Then
             PictureBox2.Image = My.Resources.github_light
         End If
 
@@ -20,12 +19,12 @@ Public Class Form7
         easteregg2 = 0
     End Sub
     Sub language()
-        If Form1.langue = "1" Then
+        If MainMenu.langue = "1" Then
             Me.Text = "À propos du logiciel"
             Label2.Text = "Arrêt planifié"
             Label6.Text = "Développé par MisterEvans78"
             Button1.Text = "OK"
-        ElseIf Form1.langue = "2" Then
+        ElseIf MainMenu.langue = "2" Then
             Me.Text = "About"
             Label2.Text = "Planned shutdown"
             Label6.Text = "Developed by MisterEvans78"
@@ -77,8 +76,6 @@ Public Class Form7
             For Each lien As LinkLabel In Me.Controls.OfType(Of LinkLabel)
                 lien.LinkColor = SystemColors.ControlLightLight
             Next
-        Else
-            'Ne rien faire
         End If
     End Sub
 

@@ -1,25 +1,21 @@
 ﻿Imports System.IO
 
-Public Class Form2
+Public Class ShutdownTime
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If Form1.dev_mode = True Then
-            DevModeForm2()
-        Else
-            If TextBox1.Text = "" Then
-                If Form1.langue = 1 Then
-                    MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
-                Else
-                    MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")
-                End If
+        If TextBox1.Text = "" Then
+            If MainMenu.langue = 1 Then
+                MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
             Else
-                btn1cmd()
+                MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")
             End If
+        Else
+            btn1cmd()
         End If
     End Sub
 
     Sub language()
-        If Form1.langue = "1" Then
+        If MainMenu.langue = "1" Then
             Me.Text = "Arrêt planifié"
             Label1.Text = "Veuillez entrer un temps :"
             Button1.Text = "OK"
@@ -28,7 +24,7 @@ Public Class Form2
             RadioButton2.Text = "minute(s)"
             RadioButton3.Text = "heure(s)"
             Label2.Text = "Veuillez n'entrer que des chiffres !"
-        ElseIf Form1.langue = "2" Then
+        ElseIf MainMenu.langue = "2" Then
             Me.Text = "Planned shutdown"
             Label1.Text = "Please enter a time :"
             Button1.Text = "OK"
@@ -65,6 +61,7 @@ Public Class Form2
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeEngine(MainMenu.theme_value)
         TextBox1.Text = ""
         Label2.Visible = False
         AcceptButton = Button1
@@ -72,7 +69,6 @@ Public Class Form2
         RadioButton1.Checked = True
         RadioButton2.Checked = False
         RadioButton3.Checked = False
-        ThemeEngine(Form1.theme_value)
     End Sub
 
     Sub ThemeEngine(ByVal themecode As String)
@@ -130,28 +126,9 @@ Public Class Form2
             For Each radiobouton As RadioButton In Me.Controls.OfType(Of RadioButton)
                 radiobouton.ForeColor = SystemColors.ControlLightLight
             Next
-
-        Else
-            'Ne rien faire
         End If
 
         Label2.ForeColor = Color.Red
-    End Sub
-
-    Sub DevModeForm2()
-        Dim btn1devmode As New Process
-        Dim ValeurDM As String = TextBox1.Text
-        If RadioButton1.Checked = True Then
-            ValeurDM = TextBox1.Text
-        ElseIf RadioButton2.Checked = True Then
-            ValeurDM = TextBox1.Text * 60
-        ElseIf RadioButton3.Checked = True Then
-            ValeurDM = TextBox1.Text * 3600
-        End If
-        btn1devmode.StartInfo.FileName = "cmd.exe"
-        btn1devmode.StartInfo.Arguments = "/c shutdown -s -t " & ValeurDM & " & pause"
-        btn1devmode.Start()
-        Me.Close()
     End Sub
 
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress

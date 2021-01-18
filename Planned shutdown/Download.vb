@@ -1,11 +1,11 @@
 ﻿Imports System.Net
 
-Public Class Form6
+Public Class Download
     Dim WithEvents Download As WebClient
     Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Download = New WebClient
-            Dim DLink As String = Download.DownloadString("https://dl.dropboxusercontent.com/s/nwp685bkejkwhhc/shutdown_app_url_download.ini?dl=0")
+            Dim DLink As String = Download.DownloadString("https://dl.dropboxusercontent.com/s/nwp685bkejkwhhc/shutdown_app_url_download.ini?dl=1")
             If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
                 Download.DownloadFileAsync(New Uri(DLink), (SaveFileDialog1.FileName))
             Else

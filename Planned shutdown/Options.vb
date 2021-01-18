@@ -1,10 +1,10 @@
 ﻿Imports System.IO
-Public Class Form4
+Public Class Options
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim langsavefiledialog As New SaveFileDialog
-        Dim AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
-        langsavefiledialog.FileName = AppDataFolder & "lang.ini"
+        Dim AppDataFolder As String = MainMenu.AppDataFolder
+        langsavefiledialog.FileName = AppDataFolder & MainMenu.LanguageFile
         Dim langwriter As New StreamWriter(langsavefiledialog.FileName)
         If ComboBox1.Text = "Français" Then
             Try
@@ -34,8 +34,8 @@ Public Class Form4
 
     Sub Theme()
         Dim themesavefiledialog As New SaveFileDialog
-        Dim AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
-        themesavefiledialog.FileName = AppDataFolder & "theme.ini"
+        Dim AppDataFolder As String = MainMenu.AppDataFolder
+        themesavefiledialog.FileName = AppDataFolder & MainMenu.ThemeFile
         Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
         If RadioButton1.Checked Then
             Try
@@ -67,29 +67,28 @@ Public Class Form4
     End Sub
 
     Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeEngine(MainMenu.theme_value)
         If RadioButton2.Checked = True Then
             CheckBox1.Visible = True
         End If
 
-        ThemeEngine(Form1.theme_value)
-
-        If Form1.langue = "1" Then
+        If MainMenu.langue = "1" Then
             ComboBox1.Text = "Français"
             Label2.Text = "Thème :"
             Label4.Text = "Langue :"
             RadioButton1.Text = "Clair"
             RadioButton2.Text = "Sombre"
             CheckBox1.Text = "Thème noir"
-        ElseIf Form1.langue = "2" Then
+        ElseIf MainMenu.langue = "2" Then
             ComboBox1.Text = "English"
         Else
 
         End If
 
-        If Form1.theme_value = "dark" Then
+        If MainMenu.theme_value = "dark" Then
             RadioButton1.Checked = False
             RadioButton2.Checked = True
-        ElseIf Form1.theme_value = "dark_b" Then
+        ElseIf MainMenu.theme_value = "dark_b" Then
             RadioButton1.Checked = False
             RadioButton2.Checked = True
             CheckBox1.Checked = True
@@ -176,9 +175,6 @@ Public Class Form4
                 combo_box.BackColor = SystemColors.ControlText
                 combo_box.ForeColor = SystemColors.ControlLightLight
             Next
-
-        Else
-            'Ne rien faire
         End If
     End Sub
 End Class
