@@ -3,13 +3,6 @@ C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\bin\Debug\Planned 
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\bin\Debug\Planned shutdown.pdb
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\bin\Debug\Planned shutdown.xml
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned shutdown.vbprojAssemblyReference.cache
-C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Form1.resources
-C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Form7.resources
-C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Form2.resources
-C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Form3.resources
-C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Form4.resources
-C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Form5.resources
-C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Form6.resources
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Resources.resources
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned shutdown.vbproj.GenerateResource.cache
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned shutdown.vbproj.CoreCompileInputs.cache
@@ -34,3 +27,10 @@ C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned 
 \\GRILLE-PAIN\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Download.resources
 \\GRILLE-PAIN\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.ChangelogDialog.resources
 \\GRILLE-PAIN\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.MainMenu.resources
+C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Main.resources
+C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.About.resources
+C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.ShutdownTime.resources
+C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.UpdateDialog.resources
+C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Options.resources
+C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.ChangelogDialog.resources
+C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Download.resources

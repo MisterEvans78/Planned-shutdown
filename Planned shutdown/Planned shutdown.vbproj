@@ -91,11 +91,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainMenu.vb">
+    <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainMenu.Designer.vb">
-      <DependentUpon>MainMenu.vb</DependentUpon>
+    <Compile Include="Main.Designer.vb">
+      <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="About.Designer.vb">
@@ -152,8 +152,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainMenu.resx">
-      <DependentUpon>MainMenu.vb</DependentUpon>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.vb</DependentUpon>

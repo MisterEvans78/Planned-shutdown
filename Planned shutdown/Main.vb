@@ -1,8 +1,8 @@
 ﻿Imports System.Net
 Imports System.IO
 
-Public Class MainMenu
-    Public Version As String = "1.9.3"
+Public Class Main
+    Public Version As String = "1.9.4"
     Public theme_value As String
     Public langue As String
     Public dev_mode As Boolean = False
@@ -132,6 +132,9 @@ Public Class MainMenu
         Catch ex As Exception
             Dim themesavefiledialog As New SaveFileDialog
             themesavefiledialog.FileName = AppDataFolder & ThemeFile
+            If Not Directory.Exists(AppDataFolder) Then
+                Directory.CreateDirectory(AppDataFolder)
+            End If
             Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
             themewriter.Write("light")
             themewriter.Close()

@@ -4,7 +4,7 @@ Public Class ShutdownTime
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text = "" Then
-            If MainMenu.langue = 1 Then
+            If Main.langue = 1 Then
                 MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
             Else
                 MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")
@@ -15,7 +15,7 @@ Public Class ShutdownTime
     End Sub
 
     Sub language()
-        If MainMenu.langue = "1" Then
+        If Main.langue = "1" Then
             Me.Text = "Arrêt planifié"
             Label1.Text = "Veuillez entrer un temps :"
             Button1.Text = "OK"
@@ -24,7 +24,7 @@ Public Class ShutdownTime
             RadioButton2.Text = "minute(s)"
             RadioButton3.Text = "heure(s)"
             Label2.Text = "Veuillez n'entrer que des chiffres !"
-        ElseIf MainMenu.langue = "2" Then
+        ElseIf Main.langue = "2" Then
             Me.Text = "Planned shutdown"
             Label1.Text = "Please enter a time :"
             Button1.Text = "OK"
@@ -61,7 +61,7 @@ Public Class ShutdownTime
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeEngine(MainMenu.theme_value)
+        ThemeEngine(Main.theme_value)
         TextBox1.Text = ""
         Label2.Visible = False
         AcceptButton = Button1

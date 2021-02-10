@@ -4,14 +4,14 @@ Public Class About
     Dim easteregg1 As Integer
     Dim easteregg2 As Integer
     Private Sub Form10_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeEngine(MainMenu.theme_value)
+        ThemeEngine(Main.theme_value)
         language()
 
         If Label7.Text <> "42" Then
-            Label7.Text = "Version " + MainMenu.Version
+            Label7.Text = "Version " + Main.Version
         End If
 
-        If MainMenu.theme_value = "dark" Or MainMenu.theme_value = "dark_b" Then
+        If Main.theme_value = "dark" Or Main.theme_value = "dark_b" Then
             PictureBox2.Image = My.Resources.github_light
         End If
 
@@ -19,12 +19,12 @@ Public Class About
         easteregg2 = 0
     End Sub
     Sub language()
-        If MainMenu.langue = "1" Then
+        If Main.langue = "1" Then
             Me.Text = "À propos du logiciel"
             Label2.Text = "Arrêt planifié"
             Label6.Text = "Développé par MisterEvans78"
             Button1.Text = "OK"
-        ElseIf MainMenu.langue = "2" Then
+        ElseIf Main.langue = "2" Then
             Me.Text = "About"
             Label2.Text = "Planned shutdown"
             Label6.Text = "Developed by MisterEvans78"

@@ -3,8 +3,8 @@ Public Class Options
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim langsavefiledialog As New SaveFileDialog
-        Dim AppDataFolder As String = MainMenu.AppDataFolder
-        langsavefiledialog.FileName = AppDataFolder & MainMenu.LanguageFile
+        Dim AppDataFolder As String = Main.AppDataFolder
+        langsavefiledialog.FileName = AppDataFolder & Main.LanguageFile
         Dim langwriter As New StreamWriter(langsavefiledialog.FileName)
         If ComboBox1.Text = "Français" Then
             Try
@@ -34,8 +34,8 @@ Public Class Options
 
     Sub Theme()
         Dim themesavefiledialog As New SaveFileDialog
-        Dim AppDataFolder As String = MainMenu.AppDataFolder
-        themesavefiledialog.FileName = AppDataFolder & MainMenu.ThemeFile
+        Dim AppDataFolder As String = Main.AppDataFolder
+        themesavefiledialog.FileName = AppDataFolder & Main.ThemeFile
         Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
         If RadioButton1.Checked Then
             Try
@@ -67,28 +67,28 @@ Public Class Options
     End Sub
 
     Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeEngine(MainMenu.theme_value)
+        ThemeEngine(Main.theme_value)
         If RadioButton2.Checked = True Then
             CheckBox1.Visible = True
         End If
 
-        If MainMenu.langue = "1" Then
+        If Main.langue = "1" Then
             ComboBox1.Text = "Français"
             Label2.Text = "Thème :"
             Label4.Text = "Langue :"
             RadioButton1.Text = "Clair"
             RadioButton2.Text = "Sombre"
             CheckBox1.Text = "Thème noir"
-        ElseIf MainMenu.langue = "2" Then
+        ElseIf Main.langue = "2" Then
             ComboBox1.Text = "English"
         Else
 
         End If
 
-        If MainMenu.theme_value = "dark" Then
+        If Main.theme_value = "dark" Then
             RadioButton1.Checked = False
             RadioButton2.Checked = True
-        ElseIf MainMenu.theme_value = "dark_b" Then
+        ElseIf Main.theme_value = "dark_b" Then
             RadioButton1.Checked = False
             RadioButton2.Checked = True
             CheckBox1.Checked = True

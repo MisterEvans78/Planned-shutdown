@@ -4,25 +4,25 @@ Imports System.IO
 Public Class UpdateDialog
 
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeEngine(MainMenu.theme_value)
+        ThemeEngine(Main.theme_value)
         language()
         Changelog()
 
-        If MainMenu.dev_mode = True Then
+        If Main.dev_mode = True Then
             CheckBox1.Visible = True
             LinkLabel1.Visible = True
         End If
     End Sub
 
     Sub language()
-        If MainMenu.langue = "1" Then
+        If Main.langue = "1" Then
             Me.Text = "Mise à jour disponible"
             Label1.Text = "Nouvelle mise à jour disponible !"
             Label2.Text = "Une nouvelle version du logiciel est disponible"
             Label5.Text = "Notes de version"
             Button1.Text = "Télécharger"
             Button2.Text = "Annuler"
-        ElseIf MainMenu.langue = "2" Then
+        ElseIf Main.langue = "2" Then
             Me.Text = "Update available"
             Label1.Text = "New update available!"
             Label2.Text = "A new update of the software is available"
@@ -105,7 +105,7 @@ Public Class UpdateDialog
             Dim UpdtForm3 As New WebClient
             Dim LastUpdtForm3 As String = UpdtForm3.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
             Label4.Text = LastUpdtForm3
-            If MainMenu.langue = "1" Then
+            If Main.langue = "1" Then
                 Dim UpdateChangelogFR As String = Changelog.DownloadString("https://dl.dropboxusercontent.com/s/i3anwikfs747cqf/shutdown_app_changelog_french.txt?dl=1")
                 RichTextBox1.Text = UpdateChangelogFR
             Else

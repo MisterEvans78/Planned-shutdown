@@ -2,7 +2,7 @@
 
 Public Class ChangelogDialog
     Private Sub Form5_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeEngine(MainMenu.theme_value)
+        ThemeEngine(Main.theme_value)
         ChangelogForm5()
     End Sub
     Sub ChangelogForm5()
