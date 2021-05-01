@@ -53,6 +53,78 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property time_textbox() As String
+            Get
+                Return CType(Me("time_textbox"),String)
+            End Get
+            Set
+                Me("time_textbox") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property shutdown_radio() As Boolean
+            Get
+                Return CType(Me("shutdown_radio"),Boolean)
+            End Get
+            Set
+                Me("shutdown_radio") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property reboot_radio() As Boolean
+            Get
+                Return CType(Me("reboot_radio"),Boolean)
+            End Get
+            Set
+                Me("reboot_radio") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property second_radio() As Boolean
+            Get
+                Return CType(Me("second_radio"),Boolean)
+            End Get
+            Set
+                Me("second_radio") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property minute_radio() As Boolean
+            Get
+                Return CType(Me("minute_radio"),Boolean)
+            End Get
+            Set
+                Me("minute_radio") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property hour_radio() As Boolean
+            Get
+                Return CType(Me("hour_radio"),Boolean)
+            End Get
+            Set
+                Me("hour_radio") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

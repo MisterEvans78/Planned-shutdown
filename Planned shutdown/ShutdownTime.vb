@@ -80,11 +80,6 @@ Public Class ShutdownTime
         Label2.Visible = False
         AcceptButton = Button1
         language()
-        RadioButton1.Checked = True
-        RadioButton2.Checked = False
-        RadioButton3.Checked = False
-        RadioButton4.Checked = True
-        RadioButton5.Checked = False
     End Sub
 
     Sub ThemeEngine(ByVal themecode As String)
@@ -143,5 +138,25 @@ Public Class ShutdownTime
         Else
             Label2.Hide()
         End If
+    End Sub
+
+    Private Sub RadioButton4_Click(sender As Object, e As EventArgs) Handles RadioButton4.Click
+        RadioButton4.Checked = True
+    End Sub
+
+    Private Sub RadioButton5_Click(sender As Object, e As EventArgs) Handles RadioButton5.Click
+        RadioButton5.Checked = True
+    End Sub
+
+    Private Sub RadioButton1_Click(sender As Object, e As EventArgs) Handles RadioButton1.Click
+        RadioButton1.Checked = True
+    End Sub
+
+    Private Sub RadioButton2_Click(sender As Object, e As EventArgs) Handles RadioButton2.Click
+        RadioButton2.Checked = True
+    End Sub
+
+    Private Sub RadioButton3_Click(sender As Object, e As EventArgs) Handles RadioButton3.Click
+        RadioButton3.Checked = True
     End Sub
 End Class
