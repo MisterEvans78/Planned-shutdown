@@ -33,9 +33,9 @@ Partial Class Main
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenUpdateWindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VersionNumberToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangelogFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.ChangelogFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -60,7 +60,7 @@ Partial Class Main
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(11, 9)
+        Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(47, 13)
         Me.Label1.TabIndex = 2
@@ -68,19 +68,20 @@ Partial Class Main
         '
         'LinkLabel1
         '
-        Me.LinkLabel1.Location = New System.Drawing.Point(170, 101)
+        Me.LinkLabel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LinkLabel1.Location = New System.Drawing.Point(166, 102)
         Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(108, 13)
+        Me.LinkLabel1.Size = New System.Drawing.Size(112, 13)
         Me.LinkLabel1.TabIndex = 4
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "chkupdate_button"
-        Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.VersionNumberToolStripMenuItem, Me.ChangelogFormToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 120)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 98)
         '
         'DevModeToolStripMenuItem
         '
@@ -106,6 +107,12 @@ Partial Class Main
         Me.VersionNumberToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
         Me.VersionNumberToolStripMenuItem.Text = "Show version number"
         '
+        'ChangelogFormToolStripMenuItem
+        '
+        Me.ChangelogFormToolStripMenuItem.Name = "ChangelogFormToolStripMenuItem"
+        Me.ChangelogFormToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.ChangelogFormToolStripMenuItem.Text = "Changelog form"
+        '
         'Button3
         '
         Me.Button3.Location = New System.Drawing.Point(12, 96)
@@ -124,13 +131,7 @@ Partial Class Main
         Me.Button4.Text = "aboutpage_btn"
         Me.Button4.UseVisualStyleBackColor = True
         '
-        'ChangelogFormToolStripMenuItem
-        '
-        Me.ChangelogFormToolStripMenuItem.Name = "ChangelogFormToolStripMenuItem"
-        Me.ChangelogFormToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.ChangelogFormToolStripMenuItem.Text = "Changelog form"
-        '
-        'Form1
+        'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -144,7 +145,7 @@ Partial Class Main
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.Name = "Form1"
+        Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Planned shutdown"
         Me.ContextMenuStrip1.ResumeLayout(False)

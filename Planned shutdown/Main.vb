@@ -2,14 +2,15 @@
 Imports System.IO
 
 Public Class Main
-    Public Version As String = "1.9.4"
+    'Modifier également le numéro de version dans Informations de l'assembly !
+    Public Version As String = "1.10.0"
+    Public VersionType As String = "beta"
     Public theme_value As String
     Public langue As String
     Public dev_mode As Boolean = False
     Public AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
     Public LanguageFile As String = "lang.ini"
     Public ThemeFile As String = "theme.ini"
-    'Modifier également le numéro de version dans Informations de l'assembly !
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ShutdownTime.ShowDialog()
@@ -58,8 +59,10 @@ Public Class Main
         Theme()
         language()
 
-        'Retirer le commentaire a la ligne ci-dessous pour que le logiciel vérifie la présence de mise à jour au démarrage
-        'ChkUpdt()
+        'Retirer le commentaire aux lignes ci-dessous pour que le logiciel vérifie la présence de mise à jour au démarrage
+        'If VersionType = "stable" Then
+        '   ChkUpdt()
+        'End If
 
         DevMode()
     End Sub
@@ -211,40 +214,45 @@ Public Class Main
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         'Verifie MAJ manuellement
-        If langue = "1" Then
-            LinkLabel1.Text = "Veuillez patienter..."
-            Try
-                Dim Updt As New WebClient
-                Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
-                If Version = LastUpdt Then
-                    MsgBox("Le logiciel est à jour !", vbInformation, "Mise à jour")
-                ElseIf LastUpdt = "0" Then
-                    MsgBox("Le service n'est actuellement pas disponible !", vbExclamation, "Mise à jour")
-                Else
-                    Me.Show()
-                    UpdateDialog.ShowDialog()
-                End If
-            Catch ex As Exception
-                MsgBox("Impossible de se connecter au serveur", vbCritical, "Mise à jour")
-            End Try
+        If VersionType = "stable" Then
+            If langue = "1" Then
+                LinkLabel1.Text = "Veuillez patienter..."
+                Try
+                    Dim Updt As New WebClient
+                    Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
+                    If Version = LastUpdt Then
+                        MsgBox("Le logiciel est à jour !", vbInformation, "Mise à jour")
+                    ElseIf LastUpdt = "0" Then
+                        MsgBox("Le service n'est actuellement pas disponible !", vbExclamation, "Mise à jour")
+                    Else
+                        Me.Show()
+                        UpdateDialog.ShowDialog()
+                    End If
+                Catch ex As Exception
+                    MsgBox("Impossible de se connecter au serveur", vbCritical, "Mise à jour")
+                End Try
+            Else
+                LinkLabel1.Text = "Please wait..."
+                Try
+                    Dim Updt As New WebClient
+                    Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
+                    If Version = LastUpdt Then
+                        MsgBox("The software is updated !", vbInformation, "Update Checker")
+                    ElseIf LastUpdt = "0" Then
+                        MsgBox("The service is currently not available!", vbExclamation, "Update Checker")
+                    Else
+                        Me.Show()
+                        UpdateDialog.ShowDialog()
+                    End If
+                Catch ex As Exception
+                    MsgBox("The software cannot connect to the server!", vbCritical, "Update Checker")
+                End Try
+            End If
+            language() 'Pour reafficher le texte "Verifier les mises à jours"
         Else
-            LinkLabel1.Text = "Please wait..."
-            Try
-                Dim Updt As New WebClient
-                Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
-                If Version = LastUpdt Then
-                    MsgBox("The software is updated !", vbInformation, "Update Checker")
-                ElseIf LastUpdt = "0" Then
-                    MsgBox("The service is currently not available!", vbExclamation, "Update Checker")
-                Else
-                    Me.Show()
-                    UpdateDialog.ShowDialog()
-                End If
-            Catch ex As Exception
-                MsgBox("The software cannot connect to the server!", vbCritical, "Update Checker")
-            End Try
+            MsgBox("Only available in stable version.", vbExclamation)
         End If
-        language() 'Pour reafficher le texte "Verifier les mises à jours"
+
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
