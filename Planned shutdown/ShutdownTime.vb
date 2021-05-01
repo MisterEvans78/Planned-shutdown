@@ -17,7 +17,7 @@ Public Class ShutdownTime
     Sub language()
         If Main.langue = "1" Then
             Me.Text = "Arrêt planifié"
-            GroupBox1.Text = "Entrez un temps"
+            GroupBox1.Text = "Saisir un délai"
             Button1.Text = "OK"
             Button2.Text = "Annuler"
             RadioButton1.Text = "seconde(s)"
@@ -29,7 +29,7 @@ Public Class ShutdownTime
             RadioButton5.Text = "Redémarrer"
         ElseIf Main.langue = "2" Then
             Me.Text = "Planned shutdown"
-            GroupBox1.Text = "Input time"
+            GroupBox1.Text = "Input a time"
             Button1.Text = "OK"
             Button2.Text = "Cancel"
             RadioButton1.Text = "second(s)"
