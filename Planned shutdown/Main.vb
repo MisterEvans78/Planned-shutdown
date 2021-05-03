@@ -6,11 +6,13 @@ Public Class Main
     Public Version As String = "1.10.0"
     Public VersionType As String = "beta"
     Public theme_value As String
+    Public auto_update As Boolean = False
     Public langue As String
     Public dev_mode As Boolean = False
     Public AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
     Public LanguageFile As String = "lang.ini"
     Public ThemeFile As String = "theme.ini"
+    Public UpdateFile As String = "update.ini"
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ShutdownTime.ShowDialog()
@@ -47,7 +49,12 @@ Public Class Main
             ElseIf LastUpdt = "0" Then
 
             Else
-                LinkLabel1.Text = "Mise à jour disponible"
+                If langue = "1" Then
+                    LinkLabel1.Text = "Mise à jour disponible"
+                Else
+                    LinkLabel1.Text = "Update available"
+                End If
+
             End If
         Catch ex As Exception
 
@@ -57,14 +64,38 @@ Public Class Main
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme()
+        AutoUpdate()
         language()
 
-        'Retirer le commentaire aux lignes ci-dessous pour que le logiciel vérifie la présence de mise à jour au démarrage
-        'If VersionType = "stable" Then
-        '   ChkUpdt()
-        'End If
+        If VersionType = "stable" Then
+            If auto_update = True Then
+                ChkUpdt()
+            End If
+        End If
 
         DevMode()
+    End Sub
+    Sub AutoUpdate()
+        Try
+            Dim update_setting As String
+            Dim updateopenfile As New OpenFileDialog
+            updateopenfile.FileName = AppDataFolder & UpdateFile
+            Dim update As New StreamReader(updateopenfile.FileName)
+            update_setting = update.ReadLine
+            update.Close()
+            If update_setting = "true" Then
+                auto_update = True
+            End If
+        Catch ex As Exception
+            Dim updatesavefiledialog As New SaveFileDialog
+            updatesavefiledialog.FileName = AppDataFolder & UpdateFile
+            If Not Directory.Exists(AppDataFolder) Then
+                Directory.CreateDirectory(AppDataFolder)
+            End If
+            Dim updatewriter As New StreamWriter(updatesavefiledialog.FileName)
+            updatewriter.Write("false")
+            updatewriter.Close()
+        End Try
     End Sub
 
     Sub language()

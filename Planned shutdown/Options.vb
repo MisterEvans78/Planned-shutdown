@@ -10,6 +10,7 @@ Public Class Options
             Try
                 langwriter.Write("1")
                 langwriter.Close()
+                AutoUpdate()
                 Theme()
             Catch ex As Exception
                 MsgBox("An error occurred! The program is going to stop!", vbCritical)
@@ -20,6 +21,7 @@ Public Class Options
             Try
                 langwriter.Write("2")
                 langwriter.Close()
+                AutoUpdate()
                 Theme()
             Catch ex As Exception
                 MsgBox("An error occurred! The program is going to stop!", vbCritical, "Planned shutdown")
@@ -29,6 +31,29 @@ Public Class Options
         ElseIf ComboBox1.Text = "" Then
             MsgBox("Please choose a language", vbExclamation, "Select language")
             langwriter.Close()
+        End If
+    End Sub
+    Sub AutoUpdate()
+        Dim updatesavefiledialog As New SaveFileDialog
+        Dim AppDataFolder As String = Main.AppDataFolder
+        updatesavefiledialog.FileName = AppDataFolder & Main.UpdateFile
+        Dim updatewriter As New StreamWriter(updatesavefiledialog.FileName)
+        If CheckBox2.Checked = True Then
+            Try
+                updatewriter.Write("true")
+                updatewriter.Close()
+            Catch ex As Exception
+                MsgBox("An error occurred! The program is going to stop!", vbCritical, "Planned shutdown")
+                End
+            End Try
+        Else
+            Try
+                updatewriter.Write("false")
+                updatewriter.Close()
+            Catch ex As Exception
+                MsgBox("An error occurred! The program is going to stop!", vbCritical, "Planned shutdown")
+                End
+            End Try
         End If
     End Sub
 
@@ -79,6 +104,7 @@ Public Class Options
             RadioButton1.Text = "Clair"
             RadioButton2.Text = "Sombre"
             CheckBox1.Text = "Thème noir"
+            CheckBox2.Text = "Vérifier mises à jours au démarrage"
         ElseIf Main.langue = "2" Then
             ComboBox1.Text = "English"
         Else
@@ -95,6 +121,12 @@ Public Class Options
         Else
             RadioButton1.Checked = True
             RadioButton2.Checked = False
+        End If
+
+        If Main.auto_update = True Then
+            CheckBox2.Checked = True
+        Else
+            CheckBox2.Checked = False
         End If
 
         AcceptButton = Button1

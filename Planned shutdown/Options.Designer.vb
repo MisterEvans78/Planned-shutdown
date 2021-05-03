@@ -29,6 +29,7 @@ Partial Class Options
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'ComboBox1
@@ -43,7 +44,7 @@ Partial Class Options
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 141)
+        Me.Button1.Location = New System.Drawing.Point(12, 171)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(211, 29)
         Me.Button1.TabIndex = 1
@@ -102,11 +103,22 @@ Partial Class Options
         Me.CheckBox1.UseVisualStyleBackColor = True
         Me.CheckBox1.Visible = False
         '
-        'Form4
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(12, 130)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(140, 17)
+        Me.CheckBox2.TabIndex = 9
+        Me.CheckBox2.Text = "Check update at startup"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'Options
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(235, 182)
+        Me.ClientSize = New System.Drawing.Size(235, 212)
+        Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.RadioButton2)
         Me.Controls.Add(Me.RadioButton1)
@@ -117,7 +129,7 @@ Partial Class Options
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "Form4"
+        Me.Name = "Options"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Options"
@@ -133,4 +145,5 @@ Partial Class Options
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
 End Class
