@@ -4,7 +4,7 @@ Imports System.IO
 Public Class Main
     'Modifier également le numéro de version dans Informations de l'assembly !
     Public Version As String = "1.10.0"
-    Public VersionType As String = "beta"
+    Public VersionType As String = "stable"
     Public theme_value As String
     Public auto_update As Boolean = False
     Public langue As String
