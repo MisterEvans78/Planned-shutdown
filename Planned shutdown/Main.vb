@@ -2,17 +2,21 @@
 Imports System.IO
 
 Public Class Main
-    'Modifier également le numéro de version dans Informations de l'assembly !
-    Public Version As String = "1.10.0"
-    Public VersionType As String = "stable"
-    Public theme_value As String
-    Public auto_update As Boolean = False
-    Public langue As String
-    Public dev_mode As Boolean = False
-    Public AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
-    Public LanguageFile As String = "lang.ini"
-    Public ThemeFile As String = "theme.ini"
-    Public UpdateFile As String = "update.ini"
+
+    Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CheckThemeFile()
+        Theme(Me)
+        AutoUpdate()
+        language()
+
+        If VersionType = "stable" Then
+            If auto_update = True Then
+                ChkUpdt()
+            End If
+        End If
+
+        DevMode()
+    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ShutdownTime.ShowDialog()
@@ -62,42 +66,6 @@ Public Class Main
 
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Theme()
-        AutoUpdate()
-        language()
-
-        If VersionType = "stable" Then
-            If auto_update = True Then
-                ChkUpdt()
-            End If
-        End If
-
-        DevMode()
-    End Sub
-    Sub AutoUpdate()
-        Try
-            Dim update_setting As String
-            Dim updateopenfile As New OpenFileDialog
-            updateopenfile.FileName = AppDataFolder & UpdateFile
-            Dim update As New StreamReader(updateopenfile.FileName)
-            update_setting = update.ReadLine
-            update.Close()
-            If update_setting = "true" Then
-                auto_update = True
-            End If
-        Catch ex As Exception
-            Dim updatesavefiledialog As New SaveFileDialog
-            updatesavefiledialog.FileName = AppDataFolder & UpdateFile
-            If Not Directory.Exists(AppDataFolder) Then
-                Directory.CreateDirectory(AppDataFolder)
-            End If
-            Dim updatewriter As New StreamWriter(updatesavefiledialog.FileName)
-            updatewriter.Write("false")
-            updatewriter.Close()
-        End Try
-    End Sub
-
     Sub language()
         Try
             Dim langopenfile As New OpenFileDialog
@@ -143,103 +111,6 @@ Public Class Main
             langsave.Close()
             Options.Show()
             Me.Close()
-        End Try
-    End Sub
-
-    Sub Theme()
-        Try
-            Dim themeopenfile As New OpenFileDialog
-            themeopenfile.FileName = AppDataFolder & ThemeFile
-            Dim theme As New StreamReader(themeopenfile.FileName)
-            theme_value = theme.ReadLine
-            theme.Close()
-            If theme_value = "light" Or theme_value = "dark" Or theme_value = "dark_b" Then
-                'Ne rien faire
-            Else
-                Dim themesavefiledialog As New SaveFileDialog
-                themesavefiledialog.FileName = AppDataFolder & ThemeFile
-                Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
-                themewriter.Write("light")
-                themewriter.Close()
-                theme_value = "light"
-            End If
-        Catch ex As Exception
-            Dim themesavefiledialog As New SaveFileDialog
-            themesavefiledialog.FileName = AppDataFolder & ThemeFile
-            If Not Directory.Exists(AppDataFolder) Then
-                Directory.CreateDirectory(AppDataFolder)
-            End If
-            Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
-            themewriter.Write("light")
-            themewriter.Close()
-            theme_value = "light"
-        End Try
-
-        ThemeEngine(theme_value)
-
-    End Sub
-
-    Sub ThemeEngine(ByVal themecode As String)
-        'Mode sombre
-        If themecode = "dark" Then
-            Me.BackColor = Color.FromArgb(50, 50, 50)
-
-            'Pour chaque bouton
-            For Each bouton As Button In Me.Controls.OfType(Of Button)
-                bouton.FlatStyle = FlatStyle.Flat
-                bouton.BackColor = Color.FromArgb(50, 50, 50)
-                bouton.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque libellé
-            For Each texte As Label In Me.Controls.OfType(Of Label)
-                texte.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque lien
-            For Each lien As LinkLabel In Me.Controls.OfType(Of LinkLabel)
-                lien.LinkColor = SystemColors.ControlLightLight
-            Next
-
-            'Mode noir
-        ElseIf themecode = "dark_b" Then
-            Me.BackColor = SystemColors.ControlText
-
-            'Pour chaque bouton
-            For Each bouton As Button In Me.Controls.OfType(Of Button)
-                bouton.FlatStyle = FlatStyle.Flat
-                bouton.BackColor = SystemColors.ControlText
-                bouton.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque libellé
-            For Each texte As Label In Me.Controls.OfType(Of Label)
-                texte.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque lien
-            For Each lien As LinkLabel In Me.Controls.OfType(Of LinkLabel)
-                lien.LinkColor = SystemColors.ControlLightLight
-            Next
-        End If
-    End Sub
-
-    Sub DevMode()
-        Try
-            Dim devmodeopenfile As New OpenFileDialog
-            Dim devmodevalue As String
-
-            devmodeopenfile.FileName = "DevMode.ini"
-            Dim DM As New StreamReader(devmodeopenfile.FileName)
-            devmodevalue = DM.ReadLine
-
-            If devmodevalue = "1" Then
-                dev_mode = True 'Active le mode developpeur
-                Me.ContextMenuStrip = ContextMenuStrip1
-            End If
-
-        Catch ex As Exception
-
         End Try
     End Sub
 
@@ -299,11 +170,11 @@ Public Class Main
         UpdateDialog.ShowDialog()
     End Sub
 
-    Private Sub VersionNumberToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VersionNumberToolStripMenuItem.Click
-        MsgBox(Version)
-    End Sub
-
     Private Sub ChangelogFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangelogFormToolStripMenuItem.Click
         ChangelogDialog.ShowDialog()
+    End Sub
+
+    Private Sub ShowAppInfosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowAppInfosToolStripMenuItem.Click
+        ShowAppSettings()
     End Sub
 End Class

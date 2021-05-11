@@ -3,28 +3,30 @@
 Public Class About
     Dim easteregg1 As Integer
     Dim easteregg2 As Integer
-    Private Sub Form10_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeEngine(Main.theme_value)
+
+    Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Theme(Me)
         language()
 
         If Label7.Text <> "42" Then
-            Label7.Text = "Version " + Main.Version
+            Label7.Text = "Version " + Version
         End If
 
-        If Main.theme_value = "dark" Or Main.theme_value = "dark_b" Then
+        If theme_value = "dark" Or theme_value = "dark_b" Then
             PictureBox2.Image = My.Resources.github_light
         End If
 
         easteregg1 = 0
         easteregg2 = 0
     End Sub
+
     Sub language()
-        If Main.langue = "1" Then
+        If langue = "1" Then
             Me.Text = "À propos du logiciel"
             Label2.Text = "Arrêt planifié"
             Label6.Text = "Développé par MisterEvans78"
             Button1.Text = "OK"
-        ElseIf Main.langue = "2" Then
+        ElseIf langue = "2" Then
             Me.Text = "About"
             Label2.Text = "Planned shutdown"
             Label6.Text = "Developed by MisterEvans78"
@@ -32,50 +34,6 @@ Public Class About
         Else
             MsgBox("lang.ini : Incorrect value", vbCritical)
             End
-        End If
-    End Sub
-    Sub ThemeEngine(ByVal themecode As String)
-        'Mode sombre
-        If themecode = "dark" Then
-            Me.BackColor = Color.FromArgb(50, 50, 50)
-
-            'Pour chaque bouton
-            For Each bouton As Button In Me.Controls.OfType(Of Button)
-                bouton.FlatStyle = FlatStyle.Flat
-                bouton.BackColor = Color.FromArgb(50, 50, 50)
-                bouton.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque libellé
-            For Each texte As Label In Me.Controls.OfType(Of Label)
-                texte.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque lien
-            For Each lien As LinkLabel In Me.Controls.OfType(Of LinkLabel)
-                lien.LinkColor = SystemColors.ControlLightLight
-            Next
-
-            'Mode noir
-        ElseIf themecode = "dark_b" Then
-            Me.BackColor = SystemColors.ControlText
-
-            'Pour chaque bouton
-            For Each bouton As Button In Me.Controls.OfType(Of Button)
-                bouton.FlatStyle = FlatStyle.Flat
-                bouton.BackColor = SystemColors.ControlText
-                bouton.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque libellé
-            For Each texte As Label In Me.Controls.OfType(Of Label)
-                texte.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque lien
-            For Each lien As LinkLabel In Me.Controls.OfType(Of LinkLabel)
-                lien.LinkColor = SystemColors.ControlLightLight
-            Next
         End If
     End Sub
 

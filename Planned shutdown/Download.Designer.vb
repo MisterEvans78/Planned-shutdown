@@ -37,7 +37,7 @@ Partial Class Download
         '
         Me.SaveFileDialog1.Filter = "Application|*.exe"
         '
-        'Form8
+        'Download
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -46,7 +46,7 @@ Partial Class Download
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "Form8"
+        Me.Name = "Download"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

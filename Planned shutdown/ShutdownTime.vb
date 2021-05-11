@@ -2,9 +2,16 @@
 
 Public Class ShutdownTime
 
+    Private Sub ShutdownTime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Theme(Me)
+        Label2.Visible = False
+        AcceptButton = Button1
+        language()
+    End Sub
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text = "" Then
-            If Main.langue = 1 Then
+            If langue = 1 Then
                 MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
             Else
                 MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")
@@ -15,7 +22,7 @@ Public Class ShutdownTime
     End Sub
 
     Sub language()
-        If Main.langue = "1" Then
+        If langue = "1" Then
             Me.Text = "Arrêt planifié"
             GroupBox1.Text = "Saisir un délai"
             Button1.Text = "OK"
@@ -27,7 +34,7 @@ Public Class ShutdownTime
             GroupBox2.Text = "Choisir une action"
             RadioButton4.Text = "Arrêter"
             RadioButton5.Text = "Redémarrer"
-        ElseIf Main.langue = "2" Then
+        ElseIf langue = "2" Then
             Me.Text = "Planned shutdown"
             GroupBox1.Text = "Input a time"
             Button1.Text = "OK"
@@ -73,62 +80,6 @@ Public Class ShutdownTime
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
-    End Sub
-
-    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeEngine(Main.theme_value)
-        Label2.Visible = False
-        AcceptButton = Button1
-        language()
-    End Sub
-
-    Sub ThemeEngine(ByVal themecode As String)
-        'Mode sombre
-        If themecode = "dark" Then
-            Me.BackColor = Color.FromArgb(50, 50, 50)
-
-            'Pour chaque bouton
-            For Each bouton As Button In Me.Controls.OfType(Of Button)
-                bouton.FlatStyle = FlatStyle.Flat
-                bouton.BackColor = Color.FromArgb(50, 50, 50)
-                bouton.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque group box
-            For Each groupe As GroupBox In Me.Controls.OfType(Of GroupBox)
-                groupe.ForeColor = SystemColors.ControlLightLight
-
-                'Pour chaque boite de texte dans une group box
-                For Each boitetexte As TextBox In groupe.Controls.OfType(Of TextBox)
-                    boitetexte.BorderStyle = BorderStyle.FixedSingle
-                    boitetexte.BackColor = Color.FromArgb(50, 50, 50)
-                    boitetexte.ForeColor = SystemColors.ControlLightLight
-                Next
-            Next
-
-            'Mode noir
-        ElseIf themecode = "dark_b" Then
-            Me.BackColor = SystemColors.ControlText
-
-            'Pour chaque bouton
-            For Each bouton As Button In Me.Controls.OfType(Of Button)
-                bouton.FlatStyle = FlatStyle.Flat
-                bouton.BackColor = SystemColors.ControlText
-                bouton.ForeColor = SystemColors.ControlLightLight
-            Next
-
-            'Pour chaque group box
-            For Each groupe As GroupBox In Me.Controls.OfType(Of GroupBox)
-                groupe.ForeColor = SystemColors.ControlLightLight
-
-                'Pour chaque boite de texte dans une group box
-                For Each boitetexte As TextBox In groupe.Controls.OfType(Of TextBox)
-                    boitetexte.BorderStyle = BorderStyle.FixedSingle
-                    boitetexte.BackColor = SystemColors.ControlText
-                    boitetexte.ForeColor = SystemColors.ControlLightLight
-                Next
-            Next
-        End If
     End Sub
 
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress

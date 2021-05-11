@@ -91,6 +91,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings.vb" />
+    <Compile Include="Procedures.vb" />
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>

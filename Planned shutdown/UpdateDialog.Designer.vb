@@ -130,7 +130,7 @@ Partial Class UpdateDialog
         Me.LinkLabel1.Text = "Full Changelog"
         Me.LinkLabel1.Visible = False
         '
-        'Form3
+        'UpdateDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -148,7 +148,7 @@ Partial Class UpdateDialog
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "Form3"
+        Me.Name = "UpdateDialog"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

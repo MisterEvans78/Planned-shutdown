@@ -2,7 +2,8 @@
 
 Public Class Download
     Dim WithEvents Download As WebClient
-    Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    Private Sub Download_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Download = New WebClient
             Dim DLink As String = Download.DownloadString("https://dl.dropboxusercontent.com/s/nwp685bkejkwhhc/shutdown_app_url_download.ini?dl=1")
@@ -15,7 +16,6 @@ Public Class Download
             MsgBox("Une erreur s'est produite lors du téléchargement", vbCritical)
             End
         End Try
-
     End Sub
 
     Private Sub Download_DownloadProgressChanged(sender As Object, e As DownloadProgressChangedEventArgs) Handles Download.DownloadProgressChanged

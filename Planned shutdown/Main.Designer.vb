@@ -32,10 +32,10 @@ Partial Class Main
         Me.DevModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenUpdateWindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VersionNumberToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangelogFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.ShowAppInfosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -79,9 +79,9 @@ Partial Class Main
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.VersionNumberToolStripMenuItem, Me.ChangelogFormToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.ChangelogFormToolStripMenuItem, Me.ShowAppInfosToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 98)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 120)
         '
         'DevModeToolStripMenuItem
         '
@@ -100,12 +100,6 @@ Partial Class Main
         Me.OpenUpdateWindowToolStripMenuItem.Name = "OpenUpdateWindowToolStripMenuItem"
         Me.OpenUpdateWindowToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
         Me.OpenUpdateWindowToolStripMenuItem.Text = "Open update form"
-        '
-        'VersionNumberToolStripMenuItem
-        '
-        Me.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem"
-        Me.VersionNumberToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.VersionNumberToolStripMenuItem.Text = "Show version number"
         '
         'ChangelogFormToolStripMenuItem
         '
@@ -130,6 +124,12 @@ Partial Class Main
         Me.Button4.TabIndex = 8
         Me.Button4.Text = "aboutpage_btn"
         Me.Button4.UseVisualStyleBackColor = True
+        '
+        'ShowAppInfosToolStripMenuItem
+        '
+        Me.ShowAppInfosToolStripMenuItem.Name = "ShowAppInfosToolStripMenuItem"
+        Me.ShowAppInfosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowAppInfosToolStripMenuItem.Text = "Show app infos"
         '
         'Main
         '
@@ -162,8 +162,8 @@ Partial Class Main
     Friend WithEvents DevModeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents OpenUpdateWindowToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents VersionNumberToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents ChangelogFormToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShowAppInfosToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -1,10 +1,50 @@
 ﻿Imports System.IO
 Public Class Options
 
+    Private Sub Options_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeEngine(theme_value)
+        If RadioButton2.Checked = True Then
+            CheckBox1.Visible = True
+        End If
+
+        If langue = "1" Then
+            ComboBox1.Text = "Français"
+            Label2.Text = "Thème :"
+            Label4.Text = "Langue :"
+            RadioButton1.Text = "Clair"
+            RadioButton2.Text = "Sombre"
+            CheckBox1.Text = "Thème noir"
+            CheckBox2.Text = "Vérifier mises à jours au démarrage"
+        ElseIf langue = "2" Then
+            ComboBox1.Text = "English"
+        Else
+
+        End If
+
+        If theme_value = "dark" Then
+            RadioButton1.Checked = False
+            RadioButton2.Checked = True
+        ElseIf theme_value = "dark_b" Then
+            RadioButton1.Checked = False
+            RadioButton2.Checked = True
+            CheckBox1.Checked = True
+        Else
+            RadioButton1.Checked = True
+            RadioButton2.Checked = False
+        End If
+
+        If auto_update = True Then
+            CheckBox2.Checked = True
+        Else
+            CheckBox2.Checked = False
+        End If
+
+        AcceptButton = Button1
+    End Sub
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim langsavefiledialog As New SaveFileDialog
-        Dim AppDataFolder As String = Main.AppDataFolder
-        langsavefiledialog.FileName = AppDataFolder & Main.LanguageFile
+        langsavefiledialog.FileName = AppDataFolder & LanguageFile
         Dim langwriter As New StreamWriter(langsavefiledialog.FileName)
         If ComboBox1.Text = "Français" Then
             Try
@@ -35,8 +75,7 @@ Public Class Options
     End Sub
     Sub AutoUpdate()
         Dim updatesavefiledialog As New SaveFileDialog
-        Dim AppDataFolder As String = Main.AppDataFolder
-        updatesavefiledialog.FileName = AppDataFolder & Main.UpdateFile
+        updatesavefiledialog.FileName = AppDataFolder & UpdateFile
         Dim updatewriter As New StreamWriter(updatesavefiledialog.FileName)
         If CheckBox2.Checked = True Then
             Try
@@ -59,8 +98,7 @@ Public Class Options
 
     Sub Theme()
         Dim themesavefiledialog As New SaveFileDialog
-        Dim AppDataFolder As String = Main.AppDataFolder
-        themesavefiledialog.FileName = AppDataFolder & Main.ThemeFile
+        themesavefiledialog.FileName = AppDataFolder & ThemeFile
         Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
         If RadioButton1.Checked Then
             Try
@@ -89,47 +127,6 @@ Public Class Options
             End Try
         Else
         End If
-    End Sub
-
-    Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeEngine(Main.theme_value)
-        If RadioButton2.Checked = True Then
-            CheckBox1.Visible = True
-        End If
-
-        If Main.langue = "1" Then
-            ComboBox1.Text = "Français"
-            Label2.Text = "Thème :"
-            Label4.Text = "Langue :"
-            RadioButton1.Text = "Clair"
-            RadioButton2.Text = "Sombre"
-            CheckBox1.Text = "Thème noir"
-            CheckBox2.Text = "Vérifier mises à jours au démarrage"
-        ElseIf Main.langue = "2" Then
-            ComboBox1.Text = "English"
-        Else
-
-        End If
-
-        If Main.theme_value = "dark" Then
-            RadioButton1.Checked = False
-            RadioButton2.Checked = True
-        ElseIf Main.theme_value = "dark_b" Then
-            RadioButton1.Checked = False
-            RadioButton2.Checked = True
-            CheckBox1.Checked = True
-        Else
-            RadioButton1.Checked = True
-            RadioButton2.Checked = False
-        End If
-
-        If Main.auto_update = True Then
-            CheckBox2.Checked = True
-        Else
-            CheckBox2.Checked = False
-        End If
-
-        AcceptButton = Button1
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged

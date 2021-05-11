@@ -59,7 +59,7 @@ Partial Class ChangelogDialog
         Me.Button1.Text = "Close"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Form5
+        'ChangelogDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -67,7 +67,7 @@ Partial Class ChangelogDialog
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.RichTextBox2)
         Me.Controls.Add(Me.RichTextBox1)
-        Me.Name = "Form5"
+        Me.Name = "ChangelogDialog"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.Text = "Changelog"
