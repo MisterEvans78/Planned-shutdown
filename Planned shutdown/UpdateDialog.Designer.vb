@@ -48,18 +48,18 @@ Partial Class UpdateDialog
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(164, 24)
+        Me.Label1.Size = New System.Drawing.Size(195, 24)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "new_update_label"
+        Me.Label1.Text = "New update available!"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(13, 52)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(89, 13)
+        Me.Label2.Size = New System.Drawing.Size(201, 13)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "new_update_text"
+        Me.Label2.Text = "A new update of the software is available"
         '
         'Label3
         '
@@ -87,7 +87,7 @@ Partial Class UpdateDialog
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(116, 23)
         Me.Button1.TabIndex = 4
-        Me.Button1.Text = "download_button"
+        Me.Button1.Text = "Download"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
@@ -96,7 +96,7 @@ Partial Class UpdateDialog
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(116, 23)
         Me.Button2.TabIndex = 4
-        Me.Button2.Text = "cancel_button"
+        Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Label5
@@ -104,18 +104,18 @@ Partial Class UpdateDialog
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(12, 127)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(85, 13)
+        Me.Label5.Size = New System.Drawing.Size(58, 13)
         Me.Label5.TabIndex = 5
-        Me.Label5.Text = "changelog_label"
+        Me.Label5.Text = "Changelog"
         '
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Location = New System.Drawing.Point(173, 95)
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(107, 17)
+        Me.CheckBox1.Size = New System.Drawing.Size(103, 17)
         Me.CheckBox1.TabIndex = 6
-        Me.CheckBox1.Text = "open_in_browser"
+        Me.CheckBox1.Text = "Open in browser"
         Me.CheckBox1.UseVisualStyleBackColor = True
         Me.CheckBox1.Visible = False
         '
@@ -152,7 +152,7 @@ Partial Class UpdateDialog
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Mise à jour disponible"
+        Me.Text = "Update available"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

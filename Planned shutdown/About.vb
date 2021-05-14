@@ -4,6 +4,15 @@ Public Class About
     Dim easteregg1 As Integer
     Dim easteregg2 As Integer
 
+    Sub language()
+        If langue = "1" Then
+            Me.Text = "À propos du logiciel"
+            Label2.Text = "Arrêt planifié"
+            Label6.Text = "Développé par MisterEvans78"
+            Button1.Text = "OK"
+        End If
+    End Sub
+
     Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
         language()
@@ -18,23 +27,6 @@ Public Class About
 
         easteregg1 = 0
         easteregg2 = 0
-    End Sub
-
-    Sub language()
-        If langue = "1" Then
-            Me.Text = "À propos du logiciel"
-            Label2.Text = "Arrêt planifié"
-            Label6.Text = "Développé par MisterEvans78"
-            Button1.Text = "OK"
-        ElseIf langue = "2" Then
-            Me.Text = "About"
-            Label2.Text = "Planned shutdown"
-            Label6.Text = "Developed by MisterEvans78"
-            Button1.Text = "OK"
-        Else
-            MsgBox("lang.ini : Incorrect value", vbCritical)
-            End
-        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

@@ -2,6 +2,27 @@
 
 Module Procedures
 
+    Sub CheckLanguageFile()
+        Try
+            Dim langopenfile As New OpenFileDialog
+            langopenfile.FileName = AppDataFolder & LanguageFile
+            Dim lang As New StreamReader(langopenfile.FileName)
+            langue = lang.ReadLine
+            lang.Close()
+        Catch ex As Exception
+            Dim langsavefile As New SaveFileDialog
+            langsavefile.FileName = AppDataFolder & LanguageFile
+            If Not Directory.Exists(AppDataFolder) Then
+                Directory.CreateDirectory(AppDataFolder)
+            End If
+            Dim langsave As New StreamWriter(langsavefile.FileName)
+            langsave.Write("0")
+            langsave.Close()
+            Options.Show()
+            Main.Close()
+        End Try
+    End Sub
+
     Sub CheckThemeFile()
         Try
             Dim themeopenfile As New OpenFileDialog

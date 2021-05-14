@@ -3,16 +3,6 @@ Imports System.IO
 
 Public Class UpdateDialog
 
-    Private Sub UpdateDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Theme(Me)
-        language()
-        Changelog()
-
-        If dev_mode = True Then
-            CheckBox1.Visible = True
-            LinkLabel1.Visible = True
-        End If
-    End Sub
     Sub language()
         If langue = "1" Then
             Me.Text = "Mise à jour disponible"
@@ -21,13 +11,6 @@ Public Class UpdateDialog
             Label5.Text = "Notes de version"
             Button1.Text = "Télécharger"
             Button2.Text = "Annuler"
-        ElseIf langue = "2" Then
-            Me.Text = "Update available"
-            Label1.Text = "New update available!"
-            Label2.Text = "A new update of the software is available"
-            Label5.Text = "Changelog"
-            Button1.Text = "Download"
-            Button2.Text = "Cancel"
         End If
     End Sub
 
@@ -63,8 +46,15 @@ Public Class UpdateDialog
 
     End Sub
 
-    Sub Download_Button()
-        Download.ShowDialog()
+    Private Sub UpdateDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Theme(Me)
+        language()
+        Changelog()
+
+        If dev_mode = True Then
+            CheckBox1.Visible = True
+            LinkLabel1.Visible = True
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -75,7 +65,7 @@ Public Class UpdateDialog
         If CheckBox1.Checked Then
             DownloadButton()
         Else
-            Download_Button()
+            Download.ShowDialog()
         End If
     End Sub
 

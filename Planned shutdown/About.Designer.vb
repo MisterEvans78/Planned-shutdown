@@ -43,9 +43,9 @@ Partial Class About
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(93, 12)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(112, 31)
+        Me.Label2.Size = New System.Drawing.Size(237, 31)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "App title"
+        Me.Label2.Text = "Planned shutdown"
         '
         'Label6
         '
@@ -53,9 +53,9 @@ Partial Class About
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(96, 43)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(68, 16)
+        Me.Label6.Size = New System.Drawing.Size(185, 16)
         Me.Label6.TabIndex = 6
-        Me.Label6.Text = "dev name"
+        Me.Label6.Text = "Developed by MisterEvans78"
         '
         'Label7
         '
@@ -73,7 +73,7 @@ Partial Class About
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 8
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "OK"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'LinkLabel1
@@ -149,7 +149,7 @@ Partial Class About
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "A propos"
+        Me.Text = "About"
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

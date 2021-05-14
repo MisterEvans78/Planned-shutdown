@@ -2,25 +2,6 @@
 
 Public Class ShutdownTime
 
-    Private Sub ShutdownTime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Theme(Me)
-        Label2.Visible = False
-        AcceptButton = Button1
-        language()
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If TextBox1.Text = "" Then
-            If langue = 1 Then
-                MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
-            Else
-                MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")
-            End If
-        Else
-            btn1cmd()
-        End If
-    End Sub
-
     Sub language()
         If langue = "1" Then
             Me.Text = "Arrêt planifié"
@@ -34,25 +15,10 @@ Public Class ShutdownTime
             GroupBox2.Text = "Choisir une action"
             RadioButton4.Text = "Arrêter"
             RadioButton5.Text = "Redémarrer"
-        ElseIf langue = "2" Then
-            Me.Text = "Planned shutdown"
-            GroupBox1.Text = "Input a time"
-            Button1.Text = "OK"
-            Button2.Text = "Cancel"
-            RadioButton1.Text = "second(s)"
-            RadioButton2.Text = "minute(s)"
-            RadioButton3.Text = "hour(s)"
-            Label2.Text = "Please enter numbers only!"
-            GroupBox2.Text = "Choose action"
-            RadioButton4.Text = "Shutdown"
-            RadioButton5.Text = "Reboot"
-        Else
-            MsgBox("lang.ini : Incorrect value", vbCritical)
-            End
         End If
     End Sub
 
-    Sub btn1cmd()
+    Sub ShutdownCommand()
         Dim btn1 As New Process
         Dim Valeur As String = TextBox1.Text
         Dim Action As String = "-s"
@@ -76,6 +42,25 @@ Public Class ShutdownTime
         btn1.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
         btn1.Start()
         Me.Close()
+    End Sub
+
+    Private Sub ShutdownTime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Theme(Me)
+        Label2.Visible = False
+        AcceptButton = Button1
+        language()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If TextBox1.Text = "" Then
+            If langue = 1 Then
+                MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
+            Else
+                MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")
+            End If
+        Else
+            ShutdownCommand()
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

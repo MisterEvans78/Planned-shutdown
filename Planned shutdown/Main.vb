@@ -3,7 +3,42 @@ Imports System.IO
 
 Public Class Main
 
+    Sub ChkUpdt()
+        'Verifie MAJ au démarrage
+        Try
+            Dim Updt As New WebClient
+            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
+            If Version <> LastUpdt And LastUpdt <> "0" Then
+                If langue = "1" Then
+                    LinkLabel1.Text = "Mise à jour disponible"
+                Else
+                    LinkLabel1.Text = "Update available"
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Sub language()
+        If langue = "1" Then
+            Me.Text = "Arrêt planifié"
+            Label1.Text = "Que voulez-vous faire ?"
+            Button1.Text = "Planifier l'arrêt de l'ordinateur"
+            Button2.Text = "Annuler l'arrêt de l'ordinateur"
+            LinkLabel1.Text = "Vérifier mises à jours"
+            Button3.Text = "Options"
+            Button4.Text = "À propos"
+        ElseIf langue = "0" Or langue = "" Then
+            Options.Show()
+            Me.Close()
+        Else
+            LinkLabel1.Text = "Check updates"
+        End If
+    End Sub
+
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CheckLanguageFile()
         CheckThemeFile()
         Theme(Me)
         AutoUpdate()
@@ -40,77 +75,6 @@ Public Class Main
         Catch ex As Exception
             MsgBox("An error occurred! The program is going to stop!", vbCritical)
             End
-        End Try
-    End Sub
-
-    Sub ChkUpdt()
-        'Verifie MAJ au démarrage
-        Try
-            Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
-            If Version = LastUpdt Then
-
-            ElseIf LastUpdt = "0" Then
-
-            Else
-                If langue = "1" Then
-                    LinkLabel1.Text = "Mise à jour disponible"
-                Else
-                    LinkLabel1.Text = "Update available"
-                End If
-
-            End If
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
-
-    Sub language()
-        Try
-            Dim langopenfile As New OpenFileDialog
-            langopenfile.FileName = AppDataFolder & LanguageFile
-            Dim lang As New StreamReader(langopenfile.FileName)
-            langue = lang.ReadLine
-            lang.Close()
-            If langue = "1" Then
-                Me.Text = "Arrêt planifié"
-                Label1.Text = "Que voulez-vous faire ?"
-                Button1.Text = "Planifier l'arrêt de l'ordinateur"
-                Button2.Text = "Annuler l'arrêt de l'ordinateur"
-                LinkLabel1.Text = "Vérifier mises à jours"
-                Button3.Text = "Options"
-                Button4.Text = "À propos"
-
-            ElseIf langue = "2" Then
-                Me.Text = "Planned shutdown"
-                Label1.Text = "What do you want to do?"
-                Button1.Text = "Plan the computer shutdown"
-                Button2.Text = "Cancel the computer shutdown"
-                LinkLabel1.Text = "Check updates"
-                Button3.Text = "Options"
-                Button4.Text = "About"
-            ElseIf langue = "0" Then
-                Options.Show()
-                Me.Close()
-            ElseIf langue = "" Then
-                Options.Show()
-                Me.Close()
-            Else
-                MsgBox("lang.ini : Incorrect value", vbCritical)
-                End
-            End If
-        Catch ex As Exception
-            Dim langsavefile As New SaveFileDialog
-            langsavefile.FileName = AppDataFolder & LanguageFile
-            If Not Directory.Exists(AppDataFolder) Then
-                Directory.CreateDirectory(AppDataFolder)
-            End If
-            Dim langsave As New StreamWriter(langsavefile.FileName)
-            langsave.Write("0")
-            langsave.Close()
-            Options.Show()
-            Me.Close()
         End Try
     End Sub
 
@@ -154,12 +118,10 @@ Public Class Main
         Else
             MsgBox("Only available in stable version.", vbExclamation)
         End If
-
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Options.Show()
-        Me.Close()
+        Options.ShowDialog()
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click

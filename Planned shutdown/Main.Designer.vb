@@ -33,9 +33,9 @@ Partial Class Main
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenUpdateWindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangelogFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowAppInfosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.ShowAppInfosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -45,7 +45,7 @@ Partial Class Main
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(266, 29)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "shutdown_button"
+        Me.Button1.Text = "Plan the computer shutdown"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
@@ -54,7 +54,7 @@ Partial Class Main
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(266, 29)
         Me.Button2.TabIndex = 1
-        Me.Button2.Text = "cancel_button"
+        Me.Button2.Text = "Cancel the computer shutdown"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Label1
@@ -62,9 +62,9 @@ Partial Class Main
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(47, 13)
+        Me.Label1.Size = New System.Drawing.Size(127, 13)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "question"
+        Me.Label1.Text = "What do you want to do?"
         '
         'LinkLabel1
         '
@@ -74,38 +74,44 @@ Partial Class Main
         Me.LinkLabel1.Size = New System.Drawing.Size(112, 13)
         Me.LinkLabel1.TabIndex = 4
         Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "chkupdate_button"
+        Me.LinkLabel1.Text = "Check updates"
         Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.ChangelogFormToolStripMenuItem, Me.ShowAppInfosToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 120)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(173, 98)
         '
         'DevModeToolStripMenuItem
         '
         Me.DevModeToolStripMenuItem.Enabled = False
         Me.DevModeToolStripMenuItem.Name = "DevModeToolStripMenuItem"
-        Me.DevModeToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.DevModeToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.DevModeToolStripMenuItem.Text = "DevMode"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(186, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(169, 6)
         '
         'OpenUpdateWindowToolStripMenuItem
         '
         Me.OpenUpdateWindowToolStripMenuItem.Name = "OpenUpdateWindowToolStripMenuItem"
-        Me.OpenUpdateWindowToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.OpenUpdateWindowToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.OpenUpdateWindowToolStripMenuItem.Text = "Open update form"
         '
         'ChangelogFormToolStripMenuItem
         '
         Me.ChangelogFormToolStripMenuItem.Name = "ChangelogFormToolStripMenuItem"
-        Me.ChangelogFormToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.ChangelogFormToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.ChangelogFormToolStripMenuItem.Text = "Changelog form"
+        '
+        'ShowAppInfosToolStripMenuItem
+        '
+        Me.ShowAppInfosToolStripMenuItem.Name = "ShowAppInfosToolStripMenuItem"
+        Me.ShowAppInfosToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.ShowAppInfosToolStripMenuItem.Text = "Show app infos"
         '
         'Button3
         '
@@ -113,7 +119,7 @@ Partial Class Main
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 23)
         Me.Button3.TabIndex = 6
-        Me.Button3.Text = "options_btn"
+        Me.Button3.Text = "Options"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button4
@@ -122,14 +128,8 @@ Partial Class Main
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(75, 23)
         Me.Button4.TabIndex = 8
-        Me.Button4.Text = "aboutpage_btn"
+        Me.Button4.Text = "About"
         Me.Button4.UseVisualStyleBackColor = True
-        '
-        'ShowAppInfosToolStripMenuItem
-        '
-        Me.ShowAppInfosToolStripMenuItem.Name = "ShowAppInfosToolStripMenuItem"
-        Me.ShowAppInfosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ShowAppInfosToolStripMenuItem.Text = "Show app infos"
         '
         'Main
         '
