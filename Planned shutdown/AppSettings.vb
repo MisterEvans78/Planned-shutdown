@@ -13,11 +13,11 @@
 
     Public ReadOnly UpdateFile As String = "update.ini"
 
-    Public ReadOnly default_language = "0"
+    Public ReadOnly default_language As String = "0"
 
-    Public ReadOnly default_theme = "light"
+    Public ReadOnly default_theme As String = "light"
 
-    Public ReadOnly default_update = "false"
+    Public ReadOnly default_update As String = "false"
 
     Public language As String
 
