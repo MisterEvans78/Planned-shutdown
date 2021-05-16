@@ -1,10 +1,9 @@
 ﻿Imports System.Net
-Imports System.IO
 
 Public Class UpdateDialog
 
-    Sub language()
-        If langue = "1" Then
+    Sub CheckLanguage()
+        If language = "1" Then
             Me.Text = "Mise à jour disponible"
             Label1.Text = "Nouvelle mise à jour disponible !"
             Label2.Text = "Une nouvelle version du logiciel est disponible"
@@ -20,7 +19,7 @@ Public Class UpdateDialog
             Dim UpdtForm3 As New WebClient
             Dim LastUpdtForm3 As String = UpdtForm3.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
             Label4.Text = LastUpdtForm3
-            If langue = "1" Then
+            If language = "1" Then
                 Dim UpdateChangelogFR As String = Changelog.DownloadString("https://dl.dropboxusercontent.com/s/i3anwikfs747cqf/shutdown_app_changelog_french.txt?dl=1")
                 RichTextBox1.Text = UpdateChangelogFR
             Else
@@ -48,7 +47,7 @@ Public Class UpdateDialog
 
     Private Sub UpdateDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
-        language()
+        CheckLanguage()
         Changelog()
 
         If dev_mode = True Then

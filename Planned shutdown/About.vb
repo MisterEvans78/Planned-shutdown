@@ -1,11 +1,10 @@
-﻿Imports System.IO
+﻿Public Class About
 
-Public Class About
     Dim easteregg1 As Integer
     Dim easteregg2 As Integer
 
-    Sub language()
-        If langue = "1" Then
+    Sub CheckLanguage()
+        If language = "1" Then
             Me.Text = "À propos du logiciel"
             Label2.Text = "Arrêt planifié"
             Label6.Text = "Développé par MisterEvans78"
@@ -15,7 +14,7 @@ Public Class About
 
     Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
-        language()
+        CheckLanguage()
 
         If Label7.Text <> "42" Then
             Label7.Text = "Version " + Version

@@ -1,5 +1,4 @@
 ﻿Imports System.Net
-Imports System.IO
 
 Public Class Main
 
@@ -9,7 +8,7 @@ Public Class Main
             Dim Updt As New WebClient
             Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
             If Version <> LastUpdt And LastUpdt <> "0" Then
-                If langue = "1" Then
+                If language = "1" Then
                     LinkLabel1.Text = "Mise à jour disponible"
                 Else
                     LinkLabel1.Text = "Update available"
@@ -20,8 +19,8 @@ Public Class Main
         End Try
     End Sub
 
-    Sub language()
-        If langue = "1" Then
+    Sub CheckLanguage()
+        If language = "1" Then
             Me.Text = "Arrêt planifié"
             Label1.Text = "Que voulez-vous faire ?"
             Button1.Text = "Planifier l'arrêt de l'ordinateur"
@@ -29,7 +28,7 @@ Public Class Main
             LinkLabel1.Text = "Vérifier mises à jours"
             Button3.Text = "Options"
             Button4.Text = "À propos"
-        ElseIf langue = "0" Or langue = "" Then
+        ElseIf language = "0" Or language = "" Then
             Options.Show()
             Me.Close()
         Else
@@ -38,11 +37,13 @@ Public Class Main
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CheckLanguageFile()
-        CheckThemeFile()
-        Theme(Me)
         AutoUpdate()
-        language()
+        CheckThemeFile()
+        CheckLanguageFile()
+        DevMode()
+
+        Theme(Me)
+        CheckLanguage()
 
         If VersionType = "stable" Then
             If auto_update = True Then
@@ -50,7 +51,7 @@ Public Class Main
             End If
         End If
 
-        DevMode()
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -60,7 +61,7 @@ Public Class Main
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Try
             Dim CancelBox As New MsgBoxResult
-            If langue = "1" Then
+            If language = "1" Then
                 CancelBox = MsgBox("Voulez-vous annuler l'arrêt planifié ?", vbYesNo + vbQuestion, "Arrêt planifié")
             Else
                 CancelBox = MsgBox("Do you want to cancel the planned shutdown?", vbYesNo + vbQuestion)
@@ -81,7 +82,7 @@ Public Class Main
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         'Verifie MAJ manuellement
         If VersionType = "stable" Then
-            If langue = "1" Then
+            If language = "1" Then
                 LinkLabel1.Text = "Veuillez patienter..."
                 Try
                     Dim Updt As New WebClient
@@ -114,7 +115,7 @@ Public Class Main
                     MsgBox("The software cannot connect to the server!", vbCritical, "Update Checker")
                 End Try
             End If
-            language() 'Pour reafficher le texte "Verifier les mises à jours"
+            CheckLanguage() 'Pour reafficher le texte "Verifier les mises à jours"
         Else
             MsgBox("Only available in stable version.", vbExclamation)
         End If
@@ -138,5 +139,9 @@ Public Class Main
 
     Private Sub ShowAppInfosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowAppInfosToolStripMenuItem.Click
         ShowAppSettings()
+    End Sub
+
+    Private Sub CheckWin10ThemeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckWin10ThemeToolStripMenuItem.Click
+        CheckWin10Theme()
     End Sub
 End Class

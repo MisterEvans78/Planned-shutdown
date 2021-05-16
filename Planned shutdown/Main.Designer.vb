@@ -36,6 +36,7 @@ Partial Class Main
         Me.ShowAppInfosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.CheckWin10ThemeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -79,38 +80,38 @@ Partial Class Main
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.ChangelogFormToolStripMenuItem, Me.ShowAppInfosToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.ChangelogFormToolStripMenuItem, Me.ShowAppInfosToolStripMenuItem, Me.CheckWin10ThemeToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(173, 98)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 142)
         '
         'DevModeToolStripMenuItem
         '
         Me.DevModeToolStripMenuItem.Enabled = False
         Me.DevModeToolStripMenuItem.Name = "DevModeToolStripMenuItem"
-        Me.DevModeToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.DevModeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DevModeToolStripMenuItem.Text = "DevMode"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(169, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
         '
         'OpenUpdateWindowToolStripMenuItem
         '
         Me.OpenUpdateWindowToolStripMenuItem.Name = "OpenUpdateWindowToolStripMenuItem"
-        Me.OpenUpdateWindowToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.OpenUpdateWindowToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.OpenUpdateWindowToolStripMenuItem.Text = "Open update form"
         '
         'ChangelogFormToolStripMenuItem
         '
         Me.ChangelogFormToolStripMenuItem.Name = "ChangelogFormToolStripMenuItem"
-        Me.ChangelogFormToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.ChangelogFormToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ChangelogFormToolStripMenuItem.Text = "Changelog form"
         '
         'ShowAppInfosToolStripMenuItem
         '
         Me.ShowAppInfosToolStripMenuItem.Name = "ShowAppInfosToolStripMenuItem"
-        Me.ShowAppInfosToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.ShowAppInfosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowAppInfosToolStripMenuItem.Text = "Show app infos"
         '
         'Button3
@@ -130,6 +131,12 @@ Partial Class Main
         Me.Button4.TabIndex = 8
         Me.Button4.Text = "About"
         Me.Button4.UseVisualStyleBackColor = True
+        '
+        'CheckWin10ThemeToolStripMenuItem
+        '
+        Me.CheckWin10ThemeToolStripMenuItem.Name = "CheckWin10ThemeToolStripMenuItem"
+        Me.CheckWin10ThemeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CheckWin10ThemeToolStripMenuItem.Text = "Check Win10 theme"
         '
         'Main
         '
@@ -166,4 +173,5 @@ Partial Class Main
     Friend WithEvents Button4 As Button
     Friend WithEvents ChangelogFormToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShowAppInfosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckWin10ThemeToolStripMenuItem As ToolStripMenuItem
 End Class

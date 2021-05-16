@@ -1,6 +1,7 @@
 ﻿Imports System.Net
 
 Public Class Download
+
     Dim WithEvents Download As WebClient
 
     Private Sub Download_Load(sender As Object, e As EventArgs) Handles MyBase.Load

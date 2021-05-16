@@ -1,9 +1,7 @@
-﻿Imports System.IO
+﻿Public Class ShutdownTime
 
-Public Class ShutdownTime
-
-    Sub language()
-        If langue = "1" Then
+    Sub CheckLanguage()
+        If language = "1" Then
             Me.Text = "Arrêt planifié"
             GroupBox1.Text = "Saisir un délai"
             Button1.Text = "OK"
@@ -48,12 +46,12 @@ Public Class ShutdownTime
         Theme(Me)
         Label2.Visible = False
         AcceptButton = Button1
-        language()
+        CheckLanguage()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text = "" Then
-            If langue = 1 Then
+            If language = 1 Then
                 MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
             Else
                 MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")

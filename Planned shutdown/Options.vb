@@ -1,38 +1,33 @@
 ﻿Imports System.IO
+
 Public Class Options
 
-    Sub AutoUpdate()
-        Dim updatesavefiledialog As New SaveFileDialog
-        updatesavefiledialog.FileName = AppDataFolder & UpdateFile
-        Dim updatewriter As New StreamWriter(updatesavefiledialog.FileName)
-        If CheckBox2.Checked = True Then
-            updatewriter.Write("true")
-            updatewriter.Close()
-        Else
-            updatewriter.Write("false")
-            updatewriter.Close()
-        End If
-    End Sub
-
     Sub ThemeWriter()
-        Dim themesavefiledialog As New SaveFileDialog
-        themesavefiledialog.FileName = AppDataFolder & ThemeFile
-        Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
+        Dim theme_savedialog As New SaveFileDialog
+        theme_savedialog.FileName = AppDataFolder & ThemeFile
+        Dim theme_writer As New StreamWriter(theme_savedialog.FileName)
         If RadioButton1.Checked Then
-            themewriter.Write("light")
-            themewriter.Close()
-            Application.Restart()
+            theme_writer.Write("light")
         ElseIf RadioButton2.Checked Then
             If CheckBox1.Checked = True Then
-                themewriter.Write("dark_b")
-                themewriter.Close()
-                Application.Restart()
+                theme_writer.Write("dark_b")
             Else
-                themewriter.Write("dark")
-                themewriter.Close()
-                Application.Restart()
+                theme_writer.Write("dark")
             End If
         End If
+        theme_writer.Close()
+    End Sub
+
+    Sub UpdateWriter()
+        Dim update_savedialog As New SaveFileDialog
+        update_savedialog.FileName = AppDataFolder & UpdateFile
+        Dim update_writer As New StreamWriter(update_savedialog.FileName)
+        If CheckBox2.Checked = True Then
+            update_writer.Write("true")
+        Else
+            update_writer.Write("false")
+        End If
+        update_writer.Close()
     End Sub
 
     Private Sub Options_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -42,7 +37,8 @@ Public Class Options
             CheckBox1.Visible = True
         End If
 
-        If langue = "1" Then
+        'Check language value
+        If language = "1" Then
             ComboBox1.Text = "Français"
             Label2.Text = "Thème :"
             Label4.Text = "Langue :"
@@ -50,10 +46,11 @@ Public Class Options
             RadioButton2.Text = "Sombre"
             CheckBox1.Text = "Thème noir"
             CheckBox2.Text = "Vérifier mises à jours au démarrage"
-        ElseIf langue = "2" Then
+        ElseIf language = "2" Then
             ComboBox1.Text = "English"
         End If
 
+        'Check theme value
         If theme_value = "dark" Then
             RadioButton1.Checked = False
             RadioButton2.Checked = True
@@ -66,6 +63,7 @@ Public Class Options
             RadioButton2.Checked = False
         End If
 
+        'Check update value
         If auto_update = True Then
             CheckBox2.Checked = True
         Else
@@ -77,23 +75,22 @@ Public Class Options
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
-            Dim langsavefiledialog As New SaveFileDialog
-            langsavefiledialog.FileName = AppDataFolder & LanguageFile
-            Dim langwriter As New StreamWriter(langsavefiledialog.FileName)
+            Dim language_savedialog As New SaveFileDialog
+            language_savedialog.FileName = AppDataFolder & LanguageFile
+            Dim language_writer As New StreamWriter(language_savedialog.FileName)
             If ComboBox1.Text = "Français" Then
-                langwriter.Write("1")
-                langwriter.Close()
-                AutoUpdate()
-                ThemeWriter()
+                language_writer.Write("1")
             ElseIf ComboBox1.Text = "English" Then
-                langwriter.Write("2")
-                langwriter.Close()
-                AutoUpdate()
-                ThemeWriter()
+                language_writer.Write("2")
             ElseIf ComboBox1.Text = "" Then
                 MsgBox("Please choose a language", vbExclamation, "Select language")
-                langwriter.Close()
             End If
+            language_writer.Close()
+
+            ThemeWriter()
+            UpdateWriter()
+
+            Application.Restart()
         Catch ex As Exception
             MsgBox("An error occurred! The program is going to stop!", vbCritical)
             End

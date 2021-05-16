@@ -4,20 +4,22 @@ Module Procedures
 
     Sub CheckLanguageFile()
         Try
-            Dim langopenfile As New OpenFileDialog
-            langopenfile.FileName = AppDataFolder & LanguageFile
-            Dim lang As New StreamReader(langopenfile.FileName)
-            langue = lang.ReadLine
-            lang.Close()
+            Dim language_opendialog As New OpenFileDialog
+            language_opendialog.FileName = AppDataFolder & LanguageFile
+            Dim language_reader As New StreamReader(language_opendialog.FileName)
+            language = language_reader.ReadLine
+            language_reader.Close()
         Catch ex As Exception
-            Dim langsavefile As New SaveFileDialog
-            langsavefile.FileName = AppDataFolder & LanguageFile
+            Dim language_savedialog As New SaveFileDialog
+            language_savedialog.FileName = AppDataFolder & LanguageFile
             If Not Directory.Exists(AppDataFolder) Then
                 Directory.CreateDirectory(AppDataFolder)
             End If
-            Dim langsave As New StreamWriter(langsavefile.FileName)
-            langsave.Write("0")
-            langsave.Close()
+            Dim language_writer As New StreamWriter(language_savedialog.FileName)
+            language_writer.Write(default_language)
+            language_writer.Close()
+            language = default_language
+
             Options.Show()
             Main.Close()
         End Try
@@ -25,31 +27,71 @@ Module Procedures
 
     Sub CheckThemeFile()
         Try
-            Dim themeopenfile As New OpenFileDialog
-            themeopenfile.FileName = AppDataFolder & ThemeFile
-            Dim theme As New StreamReader(themeopenfile.FileName)
-            theme_value = theme.ReadLine
-            theme.Close()
-            If theme_value = "light" Or theme_value = "dark" Or theme_value = "dark_b" Then
-                'Ne rien faire
-            Else
-                Dim themesavefiledialog As New SaveFileDialog
-                themesavefiledialog.FileName = AppDataFolder & ThemeFile
-                Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
-                themewriter.Write("light")
-                themewriter.Close()
-                theme_value = "light"
+            Dim theme_opendialog As New OpenFileDialog
+            theme_opendialog.FileName = AppDataFolder & ThemeFile
+            Dim theme_reader As New StreamReader(theme_opendialog.FileName)
+            theme_value = theme_reader.ReadLine
+            theme_reader.Close()
+            If theme_value <> "light" And theme_value <> "dark" And theme_value <> "dark_b" Then
+                Dim theme_savedialog As New SaveFileDialog
+                theme_savedialog.FileName = AppDataFolder & ThemeFile
+                Dim theme_writer As New StreamWriter(theme_savedialog.FileName)
+                theme_writer.Write(default_theme)
+                theme_writer.Close()
+                theme_value = default_theme
             End If
         Catch ex As Exception
-            Dim themesavefiledialog As New SaveFileDialog
-            themesavefiledialog.FileName = AppDataFolder & ThemeFile
+            Dim theme_savedialog As New SaveFileDialog
+            theme_savedialog.FileName = AppDataFolder & ThemeFile
             If Not Directory.Exists(AppDataFolder) Then
                 Directory.CreateDirectory(AppDataFolder)
             End If
-            Dim themewriter As New StreamWriter(themesavefiledialog.FileName)
-            themewriter.Write("light")
-            themewriter.Close()
-            theme_value = "light"
+            Dim theme_writer As New StreamWriter(theme_savedialog.FileName)
+            theme_writer.Write(default_theme)
+            theme_writer.Close()
+            theme_value = default_theme
+        End Try
+    End Sub
+
+    Sub AutoUpdate()
+        Try
+            Dim update_value As String
+            Dim update_opendialog As New OpenFileDialog
+            update_opendialog.FileName = AppDataFolder & UpdateFile
+            Dim update_reader As New StreamReader(update_opendialog.FileName)
+            update_value = update_reader.ReadLine
+            update_reader.Close()
+            If update_value = "true" Then
+                auto_update = True
+            End If
+        Catch ex As Exception
+            Dim update_savedialog As New SaveFileDialog
+            update_savedialog.FileName = AppDataFolder & UpdateFile
+            If Not Directory.Exists(AppDataFolder) Then
+                Directory.CreateDirectory(AppDataFolder)
+            End If
+            Dim update_writer As New StreamWriter(update_savedialog.FileName)
+            update_writer.Write(default_update)
+            update_writer.Close()
+            auto_update = default_update
+        End Try
+    End Sub
+
+    Sub DevMode()
+        Try
+            Dim devmode_value As String
+            Dim devmode_opendialog As New OpenFileDialog
+
+            devmode_opendialog.FileName = "DevMode.ini"
+            Dim devmode_reader As New StreamReader(devmode_opendialog.FileName)
+            devmode_value = devmode_reader.ReadLine
+
+            If devmode_value = "1" Then
+                dev_mode = True 'Active le mode developpeur
+                Main.ContextMenuStrip = Main.ContextMenuStrip1
+            End If
+        Catch ex As Exception
+
         End Try
     End Sub
 
@@ -166,48 +208,6 @@ Module Procedures
         End If
     End Sub
 
-    Sub AutoUpdate()
-        Try
-            Dim update_setting As String
-            Dim updateopenfile As New OpenFileDialog
-            updateopenfile.FileName = AppDataFolder & UpdateFile
-            Dim update As New StreamReader(updateopenfile.FileName)
-            update_setting = update.ReadLine
-            update.Close()
-            If update_setting = "true" Then
-                auto_update = True
-            End If
-        Catch ex As Exception
-            Dim updatesavefiledialog As New SaveFileDialog
-            updatesavefiledialog.FileName = AppDataFolder & UpdateFile
-            If Not Directory.Exists(AppDataFolder) Then
-                Directory.CreateDirectory(AppDataFolder)
-            End If
-            Dim updatewriter As New StreamWriter(updatesavefiledialog.FileName)
-            updatewriter.Write("false")
-            updatewriter.Close()
-        End Try
-    End Sub
-
-    Sub DevMode()
-        Try
-            Dim devmodeopenfile As New OpenFileDialog
-            Dim devmodevalue As String
-
-            devmodeopenfile.FileName = "DevMode.ini"
-            Dim DM As New StreamReader(devmodeopenfile.FileName)
-            devmodevalue = DM.ReadLine
-
-            If devmodevalue = "1" Then
-                dev_mode = True 'Active le mode developpeur
-                Main.ContextMenuStrip = Main.ContextMenuStrip1
-            End If
-
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
     Sub ShowAppSettings()
         MsgBox(
             "Version: " & Version & vbNewLine &
@@ -216,10 +216,23 @@ Module Procedures
             "LanguageFile: " & LanguageFile & vbNewLine &
             "ThemeFile: " & ThemeFile & vbNewLine &
             "UpdateFile: " & UpdateFile & vbNewLine &
+            "default_language: " & default_language & vbNewLine &
+            "default_theme: " & default_theme & vbNewLine &
+            "default_update: " & default_update & vbNewLine &
+            "language: " & language & vbNewLine &
             "theme_value: " & theme_value & vbNewLine &
             "auto_update: " & auto_update & vbNewLine &
-            "language: " & langue & vbNewLine &
             "dev_mode: " & dev_mode
         )
+    End Sub
+
+    Sub CheckWin10Theme()
+        Dim apps_theme = My.Computer.Registry.GetValue(
+            "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", Nothing)
+        If apps_theme = "0" Then
+            MsgBox("Dark (" & apps_theme & ")")
+        Else
+            MsgBox("Light (" & apps_theme & ")")
+        End If
     End Sub
 End Module
