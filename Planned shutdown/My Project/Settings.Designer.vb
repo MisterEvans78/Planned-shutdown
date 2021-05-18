@@ -56,18 +56,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property time_textbox() As String
-            Get
-                Return CType(Me("time_textbox"),String)
-            End Get
-            Set
-                Me("time_textbox") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public Property shutdown_radio() As Boolean
             Get
@@ -92,37 +80,37 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public Property second_radio() As Boolean
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property hours_numeric() As Decimal
             Get
-                Return CType(Me("second_radio"),Boolean)
+                Return CType(Me("hours_numeric"),Decimal)
             End Get
             Set
-                Me("second_radio") = value
+                Me("hours_numeric") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property minute_radio() As Boolean
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property minutes_numeric() As Decimal
             Get
-                Return CType(Me("minute_radio"),Boolean)
+                Return CType(Me("minutes_numeric"),Decimal)
             End Get
             Set
-                Me("minute_radio") = value
+                Me("minutes_numeric") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property hour_radio() As Boolean
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property seconds_numeric() As Decimal
             Get
-                Return CType(Me("hour_radio"),Boolean)
+                Return CType(Me("seconds_numeric"),Decimal)
             End Get
             Set
-                Me("hour_radio") = value
+                Me("seconds_numeric") = value
             End Set
         End Property
     End Class

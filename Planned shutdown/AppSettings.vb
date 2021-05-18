@@ -17,13 +17,13 @@
 
     Public ReadOnly default_theme As String = "light"
 
-    Public ReadOnly default_update As String = "false"
+    Public ReadOnly default_update As Boolean = False
 
     Public language As String
 
     Public theme_value As String
 
-    Public auto_update As Boolean = False
+    Public auto_update As Boolean
 
     Public dev_mode As Boolean = False
 

@@ -71,7 +71,11 @@ Module Procedures
                 Directory.CreateDirectory(AppDataFolder)
             End If
             Dim update_writer As New StreamWriter(update_savedialog.FileName)
-            update_writer.Write(default_update)
+            If default_update = True Then
+                update_writer.Write("true")
+            Else
+                update_writer.Write("false")
+            End If
             update_writer.Close()
             auto_update = default_update
         End Try
@@ -143,11 +147,11 @@ Module Procedures
             'Pour chaque group box
             For Each groupe As GroupBox In form.Controls.OfType(Of GroupBox)
                 groupe.ForeColor = SystemColors.ControlLightLight
-                'Pour chaque boite de texte dans une group box
-                For Each boitetexte As TextBox In groupe.Controls.OfType(Of TextBox)
-                    boitetexte.BorderStyle = BorderStyle.FixedSingle
-                    boitetexte.BackColor = Color.FromArgb(50, 50, 50)
-                    boitetexte.ForeColor = SystemColors.ControlLightLight
+                'Pour chaque boite de nombre dans une group box
+                For Each boitenombre As NumericUpDown In groupe.Controls.OfType(Of NumericUpDown)
+                    boitenombre.BorderStyle = BorderStyle.FixedSingle
+                    boitenombre.BackColor = Color.FromArgb(50, 50, 50)
+                    boitenombre.ForeColor = SystemColors.ControlLightLight
                 Next
             Next
 
@@ -198,11 +202,11 @@ Module Procedures
             'Pour chaque group box
             For Each groupe As GroupBox In form.Controls.OfType(Of GroupBox)
                 groupe.ForeColor = SystemColors.ControlLightLight
-                'Pour chaque boite de texte dans une group box
-                For Each boitetexte As TextBox In groupe.Controls.OfType(Of TextBox)
-                    boitetexte.BorderStyle = BorderStyle.FixedSingle
-                    boitetexte.BackColor = SystemColors.ControlText
-                    boitetexte.ForeColor = SystemColors.ControlLightLight
+                'Pour chaque boite de nombre dans une group box
+                For Each boitenombre As NumericUpDown In groupe.Controls.OfType(Of NumericUpDown)
+                    boitenombre.BorderStyle = BorderStyle.FixedSingle
+                    boitenombre.BackColor = SystemColors.ControlText
+                    boitenombre.ForeColor = SystemColors.ControlLightLight
                 Next
             Next
         End If

@@ -6,32 +6,19 @@
             GroupBox1.Text = "Saisir un délai"
             Button1.Text = "OK"
             Button2.Text = "Annuler"
-            RadioButton1.Text = "seconde(s)"
-            RadioButton2.Text = "minute(s)"
-            RadioButton3.Text = "heure(s)"
-            Label2.Text = "Veuillez n'entrer que des chiffres !"
             GroupBox2.Text = "Choisir une action"
-            RadioButton4.Text = "Arrêter"
-            RadioButton5.Text = "Redémarrer"
+            RadioButton1.Text = "Arrêter"
+            RadioButton2.Text = "Redémarrer"
         End If
     End Sub
 
     Sub ShutdownCommand()
         Dim btn1 As New Process
-        Dim Valeur As String = TextBox1.Text
+        Dim Valeur As Integer = (NumericUpDown1.Value * 3600) + (NumericUpDown2.Value * 60) + (NumericUpDown3.Value)
         Dim Action As String = "-s"
 
-        'Unité de temps
-        If RadioButton1.Checked = True Then
-            Valeur = TextBox1.Text
-        ElseIf RadioButton2.Checked = True Then
-            Valeur = TextBox1.Text * 60
-        ElseIf RadioButton3.Checked = True Then
-            Valeur = TextBox1.Text * 3600
-        End If
-
         'Redémarrer ou arrêter
-        If RadioButton5.Checked Then
+        If RadioButton2.Checked Then
             Action = "-r"
         End If
 
@@ -44,13 +31,12 @@
 
     Private Sub ShutdownTime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
-        Label2.Visible = False
-        AcceptButton = Button1
         CheckLanguage()
+        AcceptButton = Button1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If TextBox1.Text = "" Then
+        If NumericUpDown1.Value = Nothing And NumericUpDown2.Value = Nothing And NumericUpDown3.Value = Nothing Then
             If language = 1 Then
                 MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
             Else
@@ -65,23 +51,6 @@
         Me.Close()
     End Sub
 
-    Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress
-        If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
-            e.Handled = True
-            Label2.Show()
-        Else
-            Label2.Hide()
-        End If
-    End Sub
-
-    Private Sub RadioButton4_Click(sender As Object, e As EventArgs) Handles RadioButton4.Click
-        RadioButton4.Checked = True
-    End Sub
-
-    Private Sub RadioButton5_Click(sender As Object, e As EventArgs) Handles RadioButton5.Click
-        RadioButton5.Checked = True
-    End Sub
-
     Private Sub RadioButton1_Click(sender As Object, e As EventArgs) Handles RadioButton1.Click
         RadioButton1.Checked = True
     End Sub
@@ -90,7 +59,27 @@
         RadioButton2.Checked = True
     End Sub
 
-    Private Sub RadioButton3_Click(sender As Object, e As EventArgs) Handles RadioButton3.Click
-        RadioButton3.Checked = True
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        If NumericUpDown1.Value = 100 Then
+            NumericUpDown1.Value = 0
+        ElseIf NumericUpDown1.Value = -1 Then
+            NumericUpDown1.Value = 99
+        End If
+    End Sub
+
+    Private Sub NumericUpDown2_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
+        If NumericUpDown2.Value = 60 Then
+            NumericUpDown2.Value = 0
+        ElseIf NumericUpDown2.Value = -1 Then
+            NumericUpDown2.Value = 59
+        End If
+    End Sub
+
+    Private Sub NumericUpDown3_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown3.ValueChanged
+        If NumericUpDown3.Value = 60 Then
+            NumericUpDown3.Value = 0
+        ElseIf NumericUpDown3.Value = -1 Then
+            NumericUpDown3.Value = 59
+        End If
     End Sub
 End Class
