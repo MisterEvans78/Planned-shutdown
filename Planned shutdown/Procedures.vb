@@ -63,6 +63,8 @@ Module Procedures
             update_reader.Close()
             If update_value = "true" Then
                 auto_update = True
+            Else
+                auto_update = False
             End If
         Catch ex As Exception
             Dim update_savedialog As New SaveFileDialog
