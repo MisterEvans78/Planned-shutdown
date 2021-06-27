@@ -2,7 +2,6 @@ C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\bin\Debug\Planned 
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\bin\Debug\Planned shutdown.exe
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\bin\Debug\Planned shutdown.pdb
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\bin\Debug\Planned shutdown.xml
-C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned shutdown.vbprojAssemblyReference.cache
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Resources.resources
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned shutdown.vbproj.GenerateResource.cache
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned shutdown.vbproj.CoreCompileInputs.cache
@@ -34,3 +33,4 @@ C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Options.resources
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.ChangelogDialog.resources
 C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned_shutdown.Download.resources
+C:\Users\Evans\source\repos\Planned shutdown\Planned shutdown\obj\Debug\Planned shutdown.vbproj.AssemblyReference.cache

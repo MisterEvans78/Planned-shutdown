@@ -32,7 +32,7 @@ Module Procedures
             Dim theme_reader As New StreamReader(theme_opendialog.FileName)
             theme_value = theme_reader.ReadLine
             theme_reader.Close()
-            If theme_value <> "light" And theme_value <> "dark" And theme_value <> "dark_b" Then
+            If theme_value <> "light" And theme_value <> "dark" And theme_value <> "dark_b" And theme_value <> "system" Then
                 Dim theme_savedialog As New SaveFileDialog
                 theme_savedialog.FileName = AppDataFolder & ThemeFile
                 Dim theme_writer As New StreamWriter(theme_savedialog.FileName)
@@ -102,8 +102,20 @@ Module Procedures
     End Sub
 
     Sub Theme(ByVal form As Form)
+        Dim theme_selected As String
+
+        If theme_value = "system" Then
+            If AppsUseLightTheme = "0" Then
+                theme_selected = "dark"
+            Else
+                theme_selected = "light"
+            End If
+        Else
+            theme_selected = theme_value
+        End If
+
         'Mode sombre
-        If theme_value = "dark" Then
+        If theme_selected = "dark" Then
             form.BackColor = Color.FromArgb(50, 50, 50)
 
             'Pour chaque bouton
@@ -158,7 +170,7 @@ Module Procedures
             Next
 
             'Mode noir
-        ElseIf theme_value = "dark_b" Then
+        ElseIf theme_selected = "dark_b" Then
             form.BackColor = SystemColors.ControlText
 
             'Pour chaque bouton
@@ -228,7 +240,8 @@ Module Procedures
             "language: " & language & vbNewLine &
             "theme_value: " & theme_value & vbNewLine &
             "auto_update: " & auto_update & vbNewLine &
-            "dev_mode: " & dev_mode
+            "dev_mode: " & dev_mode & vbNewLine &
+            "AppsUseLightTheme: " & AppsUseLightTheme
         )
     End Sub
 
