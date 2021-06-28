@@ -87,20 +87,24 @@ Public Class Options
         Try
             Dim language_savedialog As New SaveFileDialog
             language_savedialog.FileName = AppDataFolder & LanguageFile
-            Dim language_writer As New StreamWriter(language_savedialog.FileName)
-            If ComboBox1.Text = "Français" Then
-                language_writer.Write("1")
-            ElseIf ComboBox1.Text = "English" Then
-                language_writer.Write("2")
-            ElseIf ComboBox1.Text = "" Then
+
+            If ComboBox1.Text <> "" Then
+                Dim language_writer As New StreamWriter(language_savedialog.FileName)
+
+                If ComboBox1.Text = "Français" Then 'Choix langue française
+                    language_writer.Write("1")
+                Else 'Choix langue anglaise
+                    language_writer.Write("2")
+                End If
+
+                language_writer.Close()
+
+                ThemeWriter()
+                UpdateWriter()
+                Application.Restart()
+            Else
                 MsgBox("Please choose a language", vbExclamation, "Select language")
             End If
-            language_writer.Close()
-
-            ThemeWriter()
-            UpdateWriter()
-
-            Application.Restart()
         Catch ex As Exception
             MsgBox("An error occurred! The program is going to stop!", vbCritical)
             End
