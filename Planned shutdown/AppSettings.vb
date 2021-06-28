@@ -15,7 +15,7 @@
 
     Public ReadOnly default_language As String = "0"
 
-    Public ReadOnly default_theme As String = "light"
+    Public ReadOnly default_theme As String = "system"
 
     Public ReadOnly default_update As Boolean = False
 
