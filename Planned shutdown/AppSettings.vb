@@ -3,7 +3,7 @@
     'Modifier également le numéro de version dans Informations de l'assembly !
     Public ReadOnly Version As String = "1.11.0"
 
-    Public ReadOnly VersionType As String = "beta"
+    Public ReadOnly VersionType As String = "stable"
 
     Public ReadOnly AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
 
