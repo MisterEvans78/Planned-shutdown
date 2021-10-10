@@ -22,6 +22,10 @@
 
         If theme_value = "dark" Or theme_value = "dark_b" Then
             PictureBox2.Image = My.Resources.github_light
+        ElseIf theme_value = "system" Then
+            If AppsUseLightTheme = 0 Then
+                PictureBox2.Image = My.Resources.github_light
+            End If
         End If
 
         easteregg1 = 0

@@ -27,6 +27,6 @@
 
     Public dev_mode As Boolean = False
 
-    Public AppsUseLightTheme = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", Nothing)
+    Public ReadOnly AppsUseLightTheme = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", Nothing)
 
 End Module
