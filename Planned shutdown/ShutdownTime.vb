@@ -22,6 +22,11 @@
             Action = "-r"
         End If
 
+        'Redémarrage rapide (windows 8 et 10)
+        If CheckBox1.Checked Then
+            Action += " -hybrid"
+        End If
+
         btn1.StartInfo.FileName = "cmd.exe"
         btn1.StartInfo.Arguments = "/c shutdown " & Action & " -t " & Valeur
         btn1.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
@@ -80,6 +85,19 @@
             NumericUpDown3.Value = 0
         ElseIf NumericUpDown3.Value = -1 Then
             NumericUpDown3.Value = 59
+        End If
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+        If RadioButton1.Checked Then
+            CheckBox1.Visible = True
+        End If
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+        If RadioButton2.Checked Then
+            CheckBox1.Visible = False
+            CheckBox1.Checked = False
         End If
     End Sub
 End Class
