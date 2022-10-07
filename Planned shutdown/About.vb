@@ -3,21 +3,19 @@
     Dim easteregg1 As Integer
     Dim easteregg2 As Integer
 
-    Sub CheckLanguage()
-        If language = "1" Then
-            Me.Text = "À propos du logiciel"
-            Label2.Text = "Arrêt planifié"
-            Label6.Text = "Développé par MisterEvans78"
-            Button1.Text = "OK"
-        End If
+    Sub LanguageText()
+        Me.Text = GetLangText("about")
+        Label2.Text = GetLangText("title")
+        Label6.Text = GetLangText("dev_by")
+        Button1.Text = GetLangText("ok")
     End Sub
 
     Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
-        CheckLanguage()
+        LanguageText()
 
         If Label7.Text <> "42" Then
-            Label7.Text = "Version " + Version
+            Label7.Text = GetLangText("version") + " " + Version
         End If
 
         If theme_value = "dark" Or theme_value = "dark_b" Then

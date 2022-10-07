@@ -33,45 +33,63 @@ Public Class Options
     End Sub
 
     Private Sub Options_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Premier lancement de l'application
+        If LangRS Is Nothing Then
+            LangRS = default_LangRS
+        End If
+
         Theme(Me)
 
         If RadioButton3.Checked = True Then
             CheckBox1.Visible = True
         End If
 
+        With ComboBox1.Items
+            .Clear()
+            .Add(GetLangText("lang_english"))
+            .Add(GetLangText("lang_french"))
+            .Add(GetLangText("lang_portuguese"))
+        End With
+
+        Label2.Text = GetLangText("theme_text")
+        Label4.Text = GetLangText("language_text")
+        RadioButton1.Text = GetLangText("theme_system")
+        RadioButton2.Text = GetLangText("theme_light")
+        RadioButton3.Text = GetLangText("theme_dark")
+        CheckBox1.Text = GetLangText("theme_superdark")
+        CheckBox2.Text = GetLangText("update_chkbox")
+        Button1.Text = GetLangText("ok")
+
         'Check language value
-        If language = "1" Then
-            ComboBox1.Text = "Français"
-            Label2.Text = "Thème :"
-            Label4.Text = "Langue :"
-            RadioButton1.Text = "Système"
-            RadioButton2.Text = "Clair"
-            RadioButton3.Text = "Sombre"
-            CheckBox1.Text = "Thème noir"
-            CheckBox2.Text = "Vérifier mises à jours au démarrage"
-        ElseIf language = "2" Then
-            ComboBox1.Text = "English"
-        End If
+        Select Case language
+            Case "fr"
+                ComboBox1.Text = GetLangText("lang_french")
+            Case "pt"
+                ComboBox1.Text = GetLangText("lang_portuguese")
+            Case Else
+                ComboBox1.Text = GetLangText("lang_english")
+        End Select
 
         'Check theme value
-        If theme_value = "dark" Then
-            RadioButton1.Checked = False
-            RadioButton2.Checked = False
-            RadioButton3.Checked = True
-        ElseIf theme_value = "dark_b" Then
-            RadioButton1.Checked = False
-            RadioButton2.Checked = False
-            RadioButton3.Checked = True
-            CheckBox1.Checked = True
-        ElseIf theme_value = "system" Then
-            RadioButton1.Checked = True
-            RadioButton2.Checked = False
-            RadioButton3.Checked = False
-        Else
-            RadioButton1.Checked = False
-            RadioButton2.Checked = True
-            RadioButton3.Checked = False
-        End If
+        Select Case theme_value
+            Case "dark"
+                RadioButton1.Checked = False
+                RadioButton2.Checked = False
+                RadioButton3.Checked = True
+            Case "dark_b"
+                RadioButton1.Checked = False
+                RadioButton2.Checked = False
+                RadioButton3.Checked = True
+                CheckBox1.Checked = True
+            Case "system"
+                RadioButton1.Checked = True
+                RadioButton2.Checked = False
+                RadioButton3.Checked = False
+            Case Else
+                RadioButton1.Checked = False
+                RadioButton2.Checked = True
+                RadioButton3.Checked = False
+        End Select
 
         'Check update value
         If auto_update = True Then
@@ -91,11 +109,14 @@ Public Class Options
             If ComboBox1.Text <> "" Then
                 Dim language_writer As New StreamWriter(language_savedialog.FileName)
 
-                If ComboBox1.Text = "Français" Then 'Choix langue française
-                    language_writer.Write("1")
-                Else 'Choix langue anglaise
-                    language_writer.Write("2")
-                End If
+                Select Case ComboBox1.Text
+                    Case GetLangText("lang_french")
+                        language_writer.Write("fr")
+                    Case GetLangText("lang_portuguese")
+                        language_writer.Write("pt")
+                    Case Else
+                        language_writer.Write("en")
+                End Select
 
                 language_writer.Close()
 

@@ -37,7 +37,6 @@ Partial Class Options
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"English", "Français"})
         Me.ComboBox1.Location = New System.Drawing.Point(12, 25)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(240, 21)

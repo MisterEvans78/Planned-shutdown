@@ -1,15 +1,13 @@
 ﻿Public Class ShutdownTime
 
-    Sub CheckLanguage()
-        If language = "1" Then
-            Me.Text = "Arrêt planifié"
-            GroupBox1.Text = "Saisir un délai"
-            Button1.Text = "OK"
-            Button2.Text = "Annuler"
-            GroupBox2.Text = "Choisir une action"
-            RadioButton1.Text = "Arrêter"
-            RadioButton2.Text = "Redémarrer"
-        End If
+    Sub LanguageText()
+        Me.Text = GetLangText("title")
+        GroupBox1.Text = GetLangText("input_time")
+        Button1.Text = GetLangText("ok")
+        Button2.Text = GetLangText("cancel")
+        GroupBox2.Text = GetLangText("choose_action")
+        RadioButton1.Text = GetLangText("shutdown")
+        RadioButton2.Text = GetLangText("reboot")
     End Sub
 
     Sub ShutdownCommand()
@@ -36,17 +34,13 @@
 
     Private Sub ShutdownTime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
-        CheckLanguage()
+        LanguageText()
         AcceptButton = Button1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If NumericUpDown1.Value = Nothing And NumericUpDown2.Value = Nothing And NumericUpDown3.Value = Nothing Then
-            If language = 1 Then
-                MsgBox("Veuillez entrer un temps !", vbExclamation, "Arrêt planifié")
-            Else
-                MsgBox("Please enter a time!", vbExclamation, "Planned shutdown")
-            End If
+            MsgBox("Please enter a time!", vbExclamation, GetLangText("title"))
         Else
             ShutdownCommand()
         End If

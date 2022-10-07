@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports System.Reflection
+Imports System.Resources
 
 Module Procedures
 
@@ -9,7 +11,7 @@ Module Procedures
             Dim language_reader As New StreamReader(language_opendialog.FileName)
             language = language_reader.ReadLine
             language_reader.Close()
-        Catch ex As Exception
+        Catch
             Dim language_savedialog As New SaveFileDialog
             language_savedialog.FileName = AppDataFolder & LanguageFile
             If Not Directory.Exists(AppDataFolder) Then
@@ -40,7 +42,7 @@ Module Procedures
                 theme_writer.Close()
                 theme_value = default_theme
             End If
-        Catch ex As Exception
+        Catch
             Dim theme_savedialog As New SaveFileDialog
             theme_savedialog.FileName = AppDataFolder & ThemeFile
             If Not Directory.Exists(AppDataFolder) Then
@@ -66,7 +68,7 @@ Module Procedures
             Else
                 auto_update = False
             End If
-        Catch ex As Exception
+        Catch
             Dim update_savedialog As New SaveFileDialog
             update_savedialog.FileName = AppDataFolder & UpdateFile
             If Not Directory.Exists(AppDataFolder) Then
@@ -96,9 +98,13 @@ Module Procedures
                 dev_mode = True 'Active le mode developpeur
                 Main.ContextMenuStrip = Main.ContextMenuStrip1
             End If
-        Catch ex As Exception
+        Catch
 
         End Try
+    End Sub
+
+    Sub LanguageResourceManager()
+        LangRS = New ResourceManager("Planned_shutdown.lang_" + language, Assembly.GetExecutingAssembly())
     End Sub
 
     Sub Theme(ByVal form As Form)
@@ -254,4 +260,15 @@ Module Procedures
             MsgBox("Light (" & apps_theme & ")")
         End If
     End Sub
+
+    Function GetLangText(ByVal name As String) As String
+        Try
+            Dim text As String = LangRS.GetString(name)
+
+            Return If(text Is Nothing, default_LangRS.GetString(name), text)
+        Catch
+            MsgBox("lang_" + language + " resource is missing!", MsgBoxStyle.Critical)
+            End
+        End Try
+    End Function
 End Module

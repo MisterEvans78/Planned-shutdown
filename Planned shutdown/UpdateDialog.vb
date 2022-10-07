@@ -2,15 +2,13 @@
 
 Public Class UpdateDialog
 
-    Sub CheckLanguage()
-        If language = "1" Then
-            Me.Text = "Mise à jour disponible"
-            Label1.Text = "Nouvelle mise à jour disponible !"
-            Label2.Text = "Une nouvelle version du logiciel est disponible"
-            Label5.Text = "Notes de version"
-            Button1.Text = "Télécharger"
-            Button2.Text = "Annuler"
-        End If
+    Sub LanguageText()
+        Me.Text = GetLangText("update_available")
+        Label1.Text = GetLangText("new_update_title")
+        Label2.Text = GetLangText("new_update_text")
+        Label5.Text = GetLangText("changelog")
+        Button1.Text = GetLangText("download")
+        Button2.Text = GetLangText("cancel")
     End Sub
 
     Sub Changelog()
@@ -47,7 +45,7 @@ Public Class UpdateDialog
 
     Private Sub UpdateDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
-        CheckLanguage()
+        LanguageText()
         Changelog()
 
         If dev_mode = True Then
