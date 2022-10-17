@@ -144,6 +144,9 @@
   <data name="download" xml:space="preserve">
     <value>Télécharger</value>
   </data>
+  <data name="enter_time" xml:space="preserve">
+    <value>Veuillez entrer un temps !</value>
+  </data>
   <data name="fast_boot" xml:space="preserve">
     <value>Démarrage rapide</value>
   </data>

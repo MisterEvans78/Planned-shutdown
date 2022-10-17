@@ -1,9 +1,4 @@
-﻿Imports System.Globalization
-Imports System.Net
-Imports System.Reflection
-Imports System.Resources
-Imports System.Threading
-Imports System.Windows
+﻿Imports System.Net
 
 Public Class Main
 

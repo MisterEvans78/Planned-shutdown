@@ -11,7 +11,7 @@
     End Sub
 
     Sub ShutdownCommand()
-        Dim btn1 As New Process
+        Dim ShutdownProcess As New Process
         Dim Valeur As Integer = (NumericUpDown1.Value * 3600) + (NumericUpDown2.Value * 60) + (NumericUpDown3.Value)
         Dim Action As String = "-s"
 
@@ -25,10 +25,10 @@
             Action += " -hybrid"
         End If
 
-        btn1.StartInfo.FileName = "cmd.exe"
-        btn1.StartInfo.Arguments = "/c shutdown " & Action & " -t " & Valeur
-        btn1.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-        btn1.Start()
+        ShutdownProcess.StartInfo.FileName = "cmd.exe"
+        ShutdownProcess.StartInfo.Arguments = "/c shutdown " & Action & " -t " & Valeur
+        ShutdownProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+        ShutdownProcess.Start()
         Me.Close()
     End Sub
 
@@ -40,7 +40,7 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If NumericUpDown1.Value = Nothing And NumericUpDown2.Value = Nothing And NumericUpDown3.Value = Nothing Then
-            MsgBox("Please enter a time!", vbExclamation, GetLangText("title"))
+            MsgBox(GetLangText("enter_time"), vbExclamation, GetLangText("title"))
         Else
             ShutdownCommand()
         End If

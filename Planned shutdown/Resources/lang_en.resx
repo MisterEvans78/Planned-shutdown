@@ -144,6 +144,9 @@
   <data name="download" xml:space="preserve">
     <value>Download</value>
   </data>
+  <data name="enter_time" xml:space="preserve">
+    <value>Please enter a time!</value>
+  </data>
   <data name="fast_boot" xml:space="preserve">
     <value>Fast boot</value>
   </data>

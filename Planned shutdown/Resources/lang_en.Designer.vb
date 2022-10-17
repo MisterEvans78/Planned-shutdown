@@ -146,6 +146,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Recherche une chaîne localisée semblable à Please enter a time!.
+        '''</summary>
+        Friend Shared ReadOnly Property enter_time() As String
+            Get
+                Return ResourceManager.GetString("enter_time", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Recherche une chaîne localisée semblable à Fast boot.
         '''</summary>
         Friend Shared ReadOnly Property fast_boot() As String
