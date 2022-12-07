@@ -4,6 +4,9 @@ Imports System.Resources
 
 Module Procedures
 
+    ''' <summary>
+    ''' Obtenir le réglage de la langue. Ouvre le formulaire des options si aucun réglage trouvé (cas lors du premier démarrage de l'application).
+    ''' </summary>
     Sub CheckLanguageFile()
         Try
             Dim language_opendialog As New OpenFileDialog
@@ -27,6 +30,9 @@ Module Procedures
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Obtenir le réglage du thème. Ouvre le formulaire des options si aucun réglage trouvé (cas lors du premier démarrage de l'application).
+    ''' </summary>
     Sub CheckThemeFile()
         Try
             Dim theme_opendialog As New OpenFileDialog
@@ -55,7 +61,10 @@ Module Procedures
         End Try
     End Sub
 
-    Sub AutoUpdate()
+    ''' <summary>
+    ''' Obtenir le réglage des mises à jour. Ouvre le formulaire des options si aucun réglage trouvé (cas lors du premier démarrage de l'application).
+    ''' </summary>
+    Sub CheckUpdateFile()
         Try
             Dim update_value As String
             Dim update_opendialog As New OpenFileDialog
@@ -85,28 +94,28 @@ Module Procedures
         End Try
     End Sub
 
-    Sub DevMode()
-        Try
-            Dim devmode_value As String
-            Dim devmode_opendialog As New OpenFileDialog
-
-            devmode_opendialog.FileName = "DevMode.ini"
-            Dim devmode_reader As New StreamReader(devmode_opendialog.FileName)
-            devmode_value = devmode_reader.ReadLine
-
-            If devmode_value = "1" Then
-                dev_mode = True 'Active le mode developpeur
-                Main.ContextMenuStrip = Main.ContextMenuStrip1
-            End If
-        Catch
-
-        End Try
-    End Sub
-
     Sub LanguageResourceManager()
         LangRS = New ResourceManager("Planned_shutdown.lang_" + language, Assembly.GetExecutingAssembly())
     End Sub
 
+    Sub CheckSettingsFiles()
+        CheckUpdateFile()
+        CheckThemeFile()
+        CheckLanguageFile()
+    End Sub
+
+    ''' <summary>
+    ''' Procédures à exécuter au démarrage de l'application.
+    ''' </summary>
+    Sub AppStart()
+        CheckSettingsFiles()
+        LanguageResourceManager()
+    End Sub
+
+    ''' <summary>
+    ''' Appliquer le thème au formulaire.
+    ''' </summary>
+    ''' <param name="form">Le formulaire sur lequel on souhaite appliquer le thème.</param>
     Sub Theme(ByVal form As Form)
         Dim theme_selected As String
 
@@ -259,6 +268,19 @@ Module Procedures
         Else
             MsgBox("Light (" & apps_theme & ")")
         End If
+    End Sub
+
+    ''' <summary>
+    ''' Traduire le texte d'un contrôle.
+    ''' </summary>
+    ''' <param name="control">Contrôle à traduire.</param>
+    ''' <param name="name">Nom du texte de traduction, si vide utilise la valeur de control.Text comme nom.</param>
+    Sub TranslateControl(control As Control, Optional name As String = Nothing)
+        If name Is Nothing Then
+            name = control.Text
+        End If
+
+        control.Text = GetLangText(name)
     End Sub
 
     Function GetLangText(ByVal name As String) As String

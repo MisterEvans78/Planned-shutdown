@@ -4,10 +4,10 @@
     Dim easteregg2 As Integer
 
     Sub LanguageText()
-        Me.Text = GetLangText("about")
-        Label2.Text = GetLangText("title")
-        Label6.Text = GetLangText("dev_by")
-        Button1.Text = GetLangText("ok")
+        TranslateControl(Me, "about")
+        TranslateControl(Label2, "title")
+        TranslateControl(Label6, "dev_by")
+        TranslateControl(Button1, "ok")
     End Sub
 
     Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load

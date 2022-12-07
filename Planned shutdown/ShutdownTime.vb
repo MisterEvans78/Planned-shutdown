@@ -1,13 +1,13 @@
 ﻿Public Class ShutdownTime
 
     Sub LanguageText()
-        Me.Text = GetLangText("title")
-        GroupBox1.Text = GetLangText("input_time")
-        Button1.Text = GetLangText("ok")
-        Button2.Text = GetLangText("cancel")
-        GroupBox2.Text = GetLangText("choose_action")
-        RadioButton1.Text = GetLangText("shutdown")
-        RadioButton2.Text = GetLangText("reboot")
+        TranslateControl(Me, "title")
+        TranslateControl(GroupBox1, "input_time")
+        TranslateControl(Button1, "ok")
+        TranslateControl(Button2, "cancel")
+        TranslateControl(GroupBox2, "choose_action")
+        TranslateControl(RadioButton1, "shutdown")
+        TranslateControl(RadioButton2, "reboot")
     End Sub
 
     Sub ShutdownCommand()
@@ -25,10 +25,13 @@
             Action += " -hybrid"
         End If
 
-        ShutdownProcess.StartInfo.FileName = "cmd.exe"
-        ShutdownProcess.StartInfo.Arguments = "/c shutdown " & Action & " -t " & Valeur
-        ShutdownProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-        ShutdownProcess.Start()
+        With ShutdownProcess
+            .StartInfo.FileName = "cmd.exe"
+            .StartInfo.Arguments = "/c shutdown " & Action & " -t " & Valeur
+            .StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+            .Start()
+        End With
+
         Me.Close()
     End Sub
 

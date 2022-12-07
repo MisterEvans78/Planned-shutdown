@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("MisterEvans78")>
 <Assembly: AssemblyProduct("Planned shutdown")>
-<Assembly: AssemblyCopyright("Copyright © 2018-2021 MisterEvans78")>
+<Assembly: AssemblyCopyright("Copyright © 2018-2022 MisterEvans78")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

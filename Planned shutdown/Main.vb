@@ -8,7 +8,7 @@ Public Class Main
             Dim Updt As New WebClient
             Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
             If Version <> LastUpdt And LastUpdt <> "0" Then
-                LinkLabel1.Text = GetLangText("update_available")
+                TranslateControl(LinkLabel1, "update_available")
             End If
         Catch ex As Exception
 
@@ -16,21 +16,21 @@ Public Class Main
     End Sub
 
     Sub LanguageText()
-        Me.Text = GetLangText("title")
-        Label1.Text = GetLangText("main_question")
-        Button1.Text = GetLangText("shutdown_btn")
-        Button2.Text = GetLangText("cancel_shutdown_btn")
-        LinkLabel1.Text = GetLangText("chkupdt_btn")
-        Button3.Text = GetLangText("options")
-        Button4.Text = GetLangText("about")
+        TranslateControl(Me, "title")
+        TranslateControl(Label1, "main_question")
+        TranslateControl(Button1, "shutdown_btn")
+        TranslateControl(Button2, "cancel_shutdown_btn")
+        TranslateControl(LinkLabel1, "chkupdt_btn")
+        TranslateControl(Button3, "options")
+        TranslateControl(Button4, "about")
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AutoUpdate()
-        CheckThemeFile()
-        CheckLanguageFile()
-        LanguageResourceManager()
-        DevMode()
+        AppStart()
+
+        If dev_mode Then
+            Me.ContextMenuStrip = ContextMenuStrip1
+        End If
 
         Theme(Me)
         LanguageText()
@@ -48,14 +48,15 @@ Public Class Main
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Try
-            Dim CancelBox As New MsgBoxResult
-            CancelBox = MsgBox(GetLangText("shutdown_question"), vbYesNo + vbQuestion)
+            Dim CancelBox As MsgBoxResult = MsgBox(GetLangText("shutdown_question"), vbYesNo + vbQuestion)
             If CancelBox = vbYes Then
-                Dim btn2 As New Process
-                btn2.StartInfo.FileName = "cmd.exe"
-                btn2.StartInfo.Arguments = "/c shutdown -a"
-                btn2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-                btn2.Start()
+                Dim CancelShutdown As New Process
+                With CancelShutdown
+                    .StartInfo.FileName = "cmd.exe"
+                    .StartInfo.Arguments = "/c shutdown -a"
+                    .StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+                    .Start()
+                End With
             End If
         Catch ex As Exception
             MsgBox("An error occurred! The program is going to stop!", vbCritical)
@@ -66,7 +67,7 @@ Public Class Main
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         'Verifie MAJ manuellement
         If VersionType = "stable" Then
-            LinkLabel1.Text = GetLangText("please_wait")
+            TranslateControl(LinkLabel1, "please_wait")
             Try
                 Dim Updt As New WebClient
                 Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
@@ -81,7 +82,7 @@ Public Class Main
             Catch ex As Exception
                 MsgBox(GetLangText("cannot_connect"), vbCritical, "Update Checker")
             End Try
-            LinkLabel1.Text = GetLangText("chkupdt_btn") 'Pour reafficher le texte "Verifier les mises à jours"
+            TranslateControl(LinkLabel1, "chkupdt_btn") 'Pour reafficher le texte "Verifier les mises à jours"
         Else
             MsgBox("Only available in stable version.", vbExclamation)
         End If

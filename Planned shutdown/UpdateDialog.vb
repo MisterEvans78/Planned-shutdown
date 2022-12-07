@@ -3,12 +3,12 @@
 Public Class UpdateDialog
 
     Sub LanguageText()
-        Me.Text = GetLangText("update_available")
-        Label1.Text = GetLangText("new_update_title")
-        Label2.Text = GetLangText("new_update_text")
-        Label5.Text = GetLangText("changelog")
-        Button1.Text = GetLangText("download")
-        Button2.Text = GetLangText("cancel")
+        TranslateControl(Me, "update_available")
+        TranslateControl(Label1, "new_update_title")
+        TranslateControl(Label2, "new_update_text")
+        TranslateControl(Label5, "changelog")
+        TranslateControl(Button1, "download")
+        TranslateControl(Button2, "cancel")
     End Sub
 
     Sub Changelog()

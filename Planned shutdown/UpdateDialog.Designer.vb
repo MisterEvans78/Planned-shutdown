@@ -48,18 +48,18 @@ Partial Class UpdateDialog
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(195, 24)
+        Me.Label1.Size = New System.Drawing.Size(151, 24)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "New update available!"
+        Me.Label1.Text = "new_update_title"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(13, 52)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(201, 13)
+        Me.Label2.Size = New System.Drawing.Size(89, 13)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "A new update of the software is available"
+        Me.Label2.Text = "new_update_text"
         '
         'Label3
         '
@@ -87,7 +87,7 @@ Partial Class UpdateDialog
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(116, 23)
         Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Download"
+        Me.Button1.Text = "download"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
@@ -96,7 +96,7 @@ Partial Class UpdateDialog
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(116, 23)
         Me.Button2.TabIndex = 4
-        Me.Button2.Text = "Cancel"
+        Me.Button2.Text = "cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Label5
@@ -104,9 +104,9 @@ Partial Class UpdateDialog
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(12, 127)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(58, 13)
+        Me.Label5.Size = New System.Drawing.Size(57, 13)
         Me.Label5.TabIndex = 5
-        Me.Label5.Text = "Changelog"
+        Me.Label5.Text = "changelog"
         '
         'CheckBox1
         '
@@ -152,7 +152,7 @@ Partial Class UpdateDialog
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Update available"
+        Me.Text = "update_available"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

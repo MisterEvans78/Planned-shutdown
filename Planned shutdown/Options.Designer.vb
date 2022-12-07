@@ -48,7 +48,7 @@ Partial Class Options
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(240, 29)
         Me.Button1.TabIndex = 1
-        Me.Button1.Text = "OK"
+        Me.Button1.Text = "ok"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Label2
@@ -56,27 +56,27 @@ Partial Class Options
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(12, 68)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(46, 13)
+        Me.Label2.Size = New System.Drawing.Size(59, 13)
         Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Theme :"
+        Me.Label2.Text = "theme_text"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(12, 9)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(61, 13)
+        Me.Label4.Size = New System.Drawing.Size(74, 13)
         Me.Label4.TabIndex = 5
-        Me.Label4.Text = "Language :"
+        Me.Label4.Text = "language_text"
         '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Location = New System.Drawing.Point(95, 84)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(48, 17)
+        Me.RadioButton2.Size = New System.Drawing.Size(79, 17)
         Me.RadioButton2.TabIndex = 6
-        Me.RadioButton2.Text = "Light"
+        Me.RadioButton2.Text = "theme_light"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'RadioButton3
@@ -84,10 +84,10 @@ Partial Class Options
         Me.RadioButton3.AutoSize = True
         Me.RadioButton3.Location = New System.Drawing.Point(175, 84)
         Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(48, 17)
+        Me.RadioButton3.Size = New System.Drawing.Size(81, 17)
         Me.RadioButton3.TabIndex = 7
         Me.RadioButton3.TabStop = True
-        Me.RadioButton3.Text = "Dark"
+        Me.RadioButton3.Text = "theme_dark"
         Me.RadioButton3.UseVisualStyleBackColor = True
         '
         'CheckBox1
@@ -95,9 +95,9 @@ Partial Class Options
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Location = New System.Drawing.Point(175, 107)
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(85, 17)
+        Me.CheckBox1.Size = New System.Drawing.Size(108, 17)
         Me.CheckBox1.TabIndex = 8
-        Me.CheckBox1.Text = "Black theme"
+        Me.CheckBox1.Text = "theme_superdark"
         Me.CheckBox1.UseVisualStyleBackColor = True
         Me.CheckBox1.Visible = False
         '
@@ -106,9 +106,9 @@ Partial Class Options
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.Location = New System.Drawing.Point(12, 136)
         Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(140, 17)
+        Me.CheckBox2.Size = New System.Drawing.Size(100, 17)
         Me.CheckBox2.TabIndex = 9
-        Me.CheckBox2.Text = "Check update at startup"
+        Me.CheckBox2.Text = "update_chkbox"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'RadioButton1
@@ -116,9 +116,9 @@ Partial Class Options
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Location = New System.Drawing.Point(15, 84)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(59, 17)
+        Me.RadioButton1.Size = New System.Drawing.Size(92, 17)
         Me.RadioButton1.TabIndex = 10
-        Me.RadioButton1.Text = "System"
+        Me.RadioButton1.Text = "theme_system"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'Options

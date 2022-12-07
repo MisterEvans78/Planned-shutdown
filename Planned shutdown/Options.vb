@@ -44,6 +44,7 @@ Public Class Options
             CheckBox1.Visible = True
         End If
 
+        ' Ajout des langues dans la ComboBox
         With ComboBox1.Items
             .Clear()
             .Add(GetLangText("lang_english"))
@@ -51,14 +52,14 @@ Public Class Options
             .Add(GetLangText("lang_portuguese"))
         End With
 
-        Label2.Text = GetLangText("theme_text")
-        Label4.Text = GetLangText("language_text")
-        RadioButton1.Text = GetLangText("theme_system")
-        RadioButton2.Text = GetLangText("theme_light")
-        RadioButton3.Text = GetLangText("theme_dark")
-        CheckBox1.Text = GetLangText("theme_superdark")
-        CheckBox2.Text = GetLangText("update_chkbox")
-        Button1.Text = GetLangText("ok")
+        TranslateControl(Label2, "theme_text")
+        TranslateControl(Label4, "language_text")
+        TranslateControl(RadioButton1, "theme_system")
+        TranslateControl(RadioButton2, "theme_light")
+        TranslateControl(RadioButton3, "theme_dark")
+        TranslateControl(CheckBox1, "theme_superdark")
+        TranslateControl(CheckBox2, "update_chkbox")
+        TranslateControl(Button1, "ok")
 
         'Check language value
         Select Case language
@@ -109,7 +110,8 @@ Public Class Options
             If ComboBox1.Text <> "" Then
                 Dim language_writer As New StreamWriter(language_savedialog.FileName)
 
-                Select Case ComboBox1.Text
+                ' Enregistrement de la langue choisie
+                Select Case ComboBox1.SelectedItem
                     Case GetLangText("lang_french")
                         language_writer.Write("fr")
                     Case GetLangText("lang_portuguese")

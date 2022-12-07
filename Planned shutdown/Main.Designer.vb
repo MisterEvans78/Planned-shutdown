@@ -34,9 +34,9 @@ Partial Class Main
         Me.OpenUpdateWindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangelogFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowAppInfosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckWin10ThemeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.CheckWin10ThemeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -46,7 +46,7 @@ Partial Class Main
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(266, 29)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Plan the computer shutdown"
+        Me.Button1.Text = "shutdown_btn"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
@@ -55,7 +55,7 @@ Partial Class Main
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(266, 29)
         Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Cancel the computer shutdown"
+        Me.Button2.Text = "cancel_shutdown_btn"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Label1
@@ -63,9 +63,9 @@ Partial Class Main
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(127, 13)
+        Me.Label1.Size = New System.Drawing.Size(75, 13)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "What do you want to do?"
+        Me.Label1.Text = "main_question"
         '
         'LinkLabel1
         '
@@ -75,14 +75,14 @@ Partial Class Main
         Me.LinkLabel1.Size = New System.Drawing.Size(112, 13)
         Me.LinkLabel1.TabIndex = 4
         Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Check updates"
+        Me.LinkLabel1.Text = "chkupdt_btn"
         Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DevModeToolStripMenuItem, Me.ToolStripSeparator1, Me.OpenUpdateWindowToolStripMenuItem, Me.ChangelogFormToolStripMenuItem, Me.ShowAppInfosToolStripMenuItem, Me.CheckWin10ThemeToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 142)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 120)
         '
         'DevModeToolStripMenuItem
         '
@@ -114,13 +114,19 @@ Partial Class Main
         Me.ShowAppInfosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowAppInfosToolStripMenuItem.Text = "Show app infos"
         '
+        'CheckWin10ThemeToolStripMenuItem
+        '
+        Me.CheckWin10ThemeToolStripMenuItem.Name = "CheckWin10ThemeToolStripMenuItem"
+        Me.CheckWin10ThemeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CheckWin10ThemeToolStripMenuItem.Text = "Check Win10 theme"
+        '
         'Button3
         '
         Me.Button3.Location = New System.Drawing.Point(12, 96)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 23)
         Me.Button3.TabIndex = 6
-        Me.Button3.Text = "Options"
+        Me.Button3.Text = "options"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button4
@@ -129,14 +135,8 @@ Partial Class Main
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(75, 23)
         Me.Button4.TabIndex = 8
-        Me.Button4.Text = "About"
+        Me.Button4.Text = "about"
         Me.Button4.UseVisualStyleBackColor = True
-        '
-        'CheckWin10ThemeToolStripMenuItem
-        '
-        Me.CheckWin10ThemeToolStripMenuItem.Name = "CheckWin10ThemeToolStripMenuItem"
-        Me.CheckWin10ThemeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CheckWin10ThemeToolStripMenuItem.Text = "Check Win10 theme"
         '
         'Main
         '
@@ -154,7 +154,7 @@ Partial Class Main
         Me.MaximizeBox = False
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Planned shutdown"
+        Me.Text = "title"
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -48,7 +48,7 @@ Partial Class ShutdownTime
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 2
-        Me.Button1.Text = "OK"
+        Me.Button1.Text = "ok"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
@@ -57,7 +57,7 @@ Partial Class ShutdownTime
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 3
-        Me.Button2.Text = "Cancel"
+        Me.Button2.Text = "cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'GroupBox1
@@ -73,7 +73,7 @@ Partial Class ShutdownTime
         Me.GroupBox1.Size = New System.Drawing.Size(282, 53)
         Me.GroupBox1.TabIndex = 14
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Input a time"
+        Me.GroupBox1.Text = "input_time"
         '
         'Label3
         '
@@ -143,7 +143,7 @@ Partial Class ShutdownTime
         Me.GroupBox2.Size = New System.Drawing.Size(282, 45)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Choose action"
+        Me.GroupBox2.Text = "choose_action"
         '
         'RadioButton1
         '
@@ -152,10 +152,10 @@ Partial Class ShutdownTime
         Me.RadioButton1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.Planned_shutdown.My.MySettings.Default, "shutdown_radio", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(73, 17)
+        Me.RadioButton1.Size = New System.Drawing.Size(71, 17)
         Me.RadioButton1.TabIndex = 13
         Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Shutdown"
+        Me.RadioButton1.Text = "shutdown"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'RadioButton2
@@ -165,9 +165,9 @@ Partial Class ShutdownTime
         Me.RadioButton2.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.Planned_shutdown.My.MySettings.Default, "reboot_radio", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.RadioButton2.Location = New System.Drawing.Point(136, 19)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(60, 17)
+        Me.RadioButton2.Size = New System.Drawing.Size(55, 17)
         Me.RadioButton2.TabIndex = 12
-        Me.RadioButton2.Text = "Reboot"
+        Me.RadioButton2.Text = "reboot"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'CheckBox1
@@ -177,7 +177,7 @@ Partial Class ShutdownTime
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(70, 17)
         Me.CheckBox1.TabIndex = 15
-        Me.CheckBox1.Text = "Fast boot"
+        Me.CheckBox1.Text = "fast_boot"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'ShutdownTime
@@ -197,7 +197,7 @@ Partial Class ShutdownTime
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Planned shutdown"
+        Me.Text = "title"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()

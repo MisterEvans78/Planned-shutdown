@@ -43,9 +43,9 @@ Partial Class About
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(93, 12)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(237, 31)
+        Me.Label2.Size = New System.Drawing.Size(57, 31)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Planned shutdown"
+        Me.Label2.Text = "title"
         '
         'Label6
         '
@@ -53,9 +53,9 @@ Partial Class About
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(96, 43)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(185, 16)
+        Me.Label6.Size = New System.Drawing.Size(52, 16)
         Me.Label6.TabIndex = 6
-        Me.Label6.Text = "Developed by MisterEvans78"
+        Me.Label6.Text = "dev_by"
         '
         'Label7
         '
@@ -63,7 +63,7 @@ Partial Class About
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(96, 59)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(54, 16)
+        Me.Label7.Size = New System.Drawing.Size(53, 16)
         Me.Label7.TabIndex = 7
         Me.Label7.Text = "Version"
         '
@@ -73,7 +73,7 @@ Partial Class About
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 8
-        Me.Button1.Text = "OK"
+        Me.Button1.Text = "ok"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'LinkLabel1
@@ -149,7 +149,7 @@ Partial Class About
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "About"
+        Me.Text = "about"
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
