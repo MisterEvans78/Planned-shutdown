@@ -60,11 +60,10 @@ Public Class Main
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         'Verifie MAJ manuellement
         TranslateControl(LinkLabel1, "please_wait")
-        If Not NewUpdateAvailable() Then
-            MessageBox.Show(GetLangText("updated"), GetLangText("update"), MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            Me.Show()
+        If NewUpdateAvailable() Then
             UpdateDialog.ShowDialog()
+        Else
+            MessageBox.Show(GetLangText("updated"), GetLangText("update"), MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
         TranslateControl(LinkLabel1, "chkupdt_btn") 'Pour reafficher le texte "Verifier les mises à jours"
     End Sub
