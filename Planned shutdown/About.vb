@@ -3,12 +3,14 @@
     Dim easteregg1 As Integer
     Dim easteregg2 As Integer
 
+#Region "Traductions"
     Sub LanguageText()
         TranslateControl(Me, "about")
         TranslateControl(Label2, "title")
         TranslateControl(Label6, "dev_by")
         TranslateControl(Button1, "ok")
     End Sub
+#End Region
 
     Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
@@ -36,10 +38,6 @@
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         Process.Start("https://github.com/MisterEvans78")
-    End Sub
-
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Process.Start("https://twitter.com/MisterEvans78")
     End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click

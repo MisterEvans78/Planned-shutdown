@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Net
 Imports System.Reflection
 Imports System.Resources
 
@@ -242,7 +243,7 @@ Module Procedures
     End Sub
 
     Sub ShowAppSettings()
-        MsgBox(
+        MessageBox.Show(
             "Version: " & Version & vbNewLine &
             "VersionType: " & VersionType & vbNewLine &
             "AppDataFolder: " & AppDataFolder & vbNewLine &
@@ -255,7 +256,6 @@ Module Procedures
             "language: " & language & vbNewLine &
             "theme_value: " & theme_value & vbNewLine &
             "auto_update: " & auto_update & vbNewLine &
-            "dev_mode: " & dev_mode & vbNewLine &
             "AppsUseLightTheme: " & AppsUseLightTheme
         )
     End Sub
@@ -264,9 +264,9 @@ Module Procedures
         Dim apps_theme = My.Computer.Registry.GetValue(
             "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", Nothing)
         If apps_theme = "0" Then
-            MsgBox("Dark (" & apps_theme & ")")
+            MessageBox.Show("Dark (" & apps_theme & ")")
         Else
-            MsgBox("Light (" & apps_theme & ")")
+            MessageBox.Show("Light (" & apps_theme & ")")
         End If
     End Sub
 
@@ -289,8 +289,31 @@ Module Procedures
 
             Return If(text Is Nothing, default_LangRS.GetString(name), text)
         Catch
-            MsgBox("lang_" + language + " resource is missing!", MsgBoxStyle.Critical)
+            MessageBox.Show("lang_" + language + " resource is missing!", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' Vérifie si une mise à jour est disponible.
+    ''' </summary>
+    ''' <returns></returns>
+    Function NewUpdateAvailable() As Boolean
+        Try
+            Dim Updt As New WebClient
+            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
+
+            LastUpdt = LastUpdt.Replace(".", "")
+
+            If IsNumeric(LastUpdt) And LastUpdt <> "0" Then
+                If CInt(LastUpdt) > Version Then
+                    Return True
+                End If
+            End If
+
+            Return False
+        Catch
+            Return False
         End Try
     End Function
 End Module

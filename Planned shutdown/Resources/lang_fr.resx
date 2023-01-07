@@ -217,7 +217,7 @@
     <value>Arrêt planifié</value>
   </data>
   <data name="updated" xml:space="preserve">
-    <value>Le logiciel est à jour !</value>
+    <value>Aucune nouvelle mise à jour n'est disponible.</value>
   </data>
   <data name="update_available" xml:space="preserve">
     <value>Mise à jour disponible</value>

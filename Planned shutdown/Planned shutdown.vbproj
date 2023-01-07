@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.vb" />
+    <Compile Include="Classes\ShutdownProcess.vb" />
     <Compile Include="Resources\lang_pt.Designer.vb">
       <DependentUpon>lang_pt.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -228,7 +229,6 @@
     <Content Include="icon_shutdown.ico" />
     <None Include="Resources\GitHub-Mark-Light-120px-plus.png" />
     <None Include="Resources\GitHub-Mark-120px-plus.png" />
-    <None Include="Resources\Twitter_Logo_Blue.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

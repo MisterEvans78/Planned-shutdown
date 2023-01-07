@@ -14,7 +14,7 @@ Public Class Download
                 Me.Close()
             End If
         Catch ex As Exception
-            MsgBox("Une erreur s'est produite lors du téléchargement", vbCritical)
+            MessageBox.Show("Une erreur s'est produite lors du téléchargement", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End
         End Try
     End Sub

@@ -217,7 +217,7 @@
     <value>Planned shutdown</value>
   </data>
   <data name="updated" xml:space="preserve">
-    <value>The software is updated!</value>
+    <value>No new update is available.</value>
   </data>
   <data name="update_available" xml:space="preserve">
     <value>Update available</value>

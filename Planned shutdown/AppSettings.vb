@@ -6,9 +6,13 @@ Module AppSettings
     'Modifier également le numéro de version dans Informations de l'assembly !
     Public ReadOnly Version As String = "1.12.0"
 
-    Public ReadOnly VersionType As String = "beta"
+#If DEBUG Then
+    Public ReadOnly VersionType As String = "dev"
+#Else
+    Public ReadOnly VersionType As String = "stable"
+#End If
 
-    Public ReadOnly AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\planned_shutdown\"
+    Public ReadOnly AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\Planned shutdown\"
 
     Public ReadOnly LanguageFile As String = "lang.ini"
 
@@ -24,6 +28,8 @@ Module AppSettings
 
     Public ReadOnly default_LangRS As ResourceManager = New ResourceManager("Planned_shutdown.lang_" + default_language, Assembly.GetExecutingAssembly())
 
+    Public ReadOnly AppsUseLightTheme = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", Nothing)
+
     Public language As String
 
     Public theme_value As String
@@ -31,9 +37,5 @@ Module AppSettings
     Public auto_update As Boolean
 
     Public LangRS As ResourceManager
-
-    Public dev_mode As Boolean = False
-
-    Public ReadOnly AppsUseLightTheme = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", Nothing)
 
 End Module

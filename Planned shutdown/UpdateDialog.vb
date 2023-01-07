@@ -2,6 +2,7 @@
 
 Public Class UpdateDialog
 
+#Region "Traductions"
     Sub LanguageText()
         TranslateControl(Me, "update_available")
         TranslateControl(Label1, "new_update_title")
@@ -10,6 +11,7 @@ Public Class UpdateDialog
         TranslateControl(Button1, "download")
         TranslateControl(Button2, "cancel")
     End Sub
+#End Region
 
     Sub Changelog()
         Try
@@ -38,7 +40,7 @@ Public Class UpdateDialog
             Process.Start(DownloadLink)
             End
         Catch ex As Exception
-            MsgBox("Une erreur s'est produite lors de l'ouverture du lien !", vbCritical, "Mise à jour")
+            MessageBox.Show("Une erreur s'est produite lors de l'ouverture du lien !", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -48,7 +50,7 @@ Public Class UpdateDialog
         LanguageText()
         Changelog()
 
-        If dev_mode = True Then
+        If Version = "dev" Then
             CheckBox1.Visible = True
             LinkLabel1.Visible = True
         End If

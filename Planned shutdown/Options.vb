@@ -52,6 +52,7 @@ Public Class Options
             .Add(GetLangText("lang_portuguese"))
         End With
 
+#Region "Traductions"
         TranslateControl(Label2, "theme_text")
         TranslateControl(Label4, "language_text")
         TranslateControl(RadioButton1, "theme_system")
@@ -60,6 +61,7 @@ Public Class Options
         TranslateControl(CheckBox1, "theme_superdark")
         TranslateControl(CheckBox2, "update_chkbox")
         TranslateControl(Button1, "ok")
+#End Region
 
         'Check language value
         Select Case language
@@ -126,10 +128,10 @@ Public Class Options
                 UpdateWriter()
                 Application.Restart()
             Else
-                MsgBox("Please choose a language", vbExclamation, "Select language")
+                MessageBox.Show("Please choose a language", "Select language", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
         Catch ex As Exception
-            MsgBox("An error occurred! The program is going to stop!", vbCritical)
+            MessageBox.Show("An error occurred! The program is going to stop!", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End
         End Try
     End Sub

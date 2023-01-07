@@ -380,7 +380,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Recherche une chaîne localisée semblable à Le logiciel est à jour !.
+        '''  Recherche une chaîne localisée semblable à Aucune nouvelle mise à jour n&apos;est disponible..
         '''</summary>
         Friend Shared ReadOnly Property updated() As String
             Get

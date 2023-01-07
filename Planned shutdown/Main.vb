@@ -2,6 +2,18 @@
 
 Public Class Main
 
+#Region "Traductions"
+    Sub LanguageText()
+        TranslateControl(Me, "title")
+        TranslateControl(Label1, "main_question")
+        TranslateControl(Button1, "shutdown_btn")
+        TranslateControl(Button2, "cancel_shutdown_btn")
+        TranslateControl(LinkLabel1, "chkupdt_btn")
+        TranslateControl(Button3, "options")
+        TranslateControl(Button4, "about")
+    End Sub
+#End Region
+
     Sub ChkUpdt()
         'Verifie MAJ au démarrage
         Try
@@ -15,20 +27,10 @@ Public Class Main
         End Try
     End Sub
 
-    Sub LanguageText()
-        TranslateControl(Me, "title")
-        TranslateControl(Label1, "main_question")
-        TranslateControl(Button1, "shutdown_btn")
-        TranslateControl(Button2, "cancel_shutdown_btn")
-        TranslateControl(LinkLabel1, "chkupdt_btn")
-        TranslateControl(Button3, "options")
-        TranslateControl(Button4, "about")
-    End Sub
-
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AppStart()
 
-        If dev_mode Then
+        If Version = "dev" Then
             Me.ContextMenuStrip = ContextMenuStrip1
         End If
 
@@ -48,18 +50,12 @@ Public Class Main
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Try
-            Dim CancelBox As MsgBoxResult = MsgBox(GetLangText("shutdown_question"), vbYesNo + vbQuestion)
-            If CancelBox = vbYes Then
-                Dim CancelShutdown As New Process
-                With CancelShutdown
-                    .StartInfo.FileName = "cmd.exe"
-                    .StartInfo.Arguments = "/c shutdown -a"
-                    .StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-                    .Start()
-                End With
+            Dim CancelBox As DialogResult = MessageBox.Show(GetLangText("shutdown_question"), GetLangText("title"), MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If CancelBox = DialogResult.Yes Then
+                ShutdownProcess.CancelShutdown()
             End If
         Catch ex As Exception
-            MsgBox("An error occurred! The program is going to stop!", vbCritical)
+            MessageBox.Show("An error occurred! The program is going to stop!", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End
         End Try
     End Sub
@@ -68,23 +64,15 @@ Public Class Main
         'Verifie MAJ manuellement
         If VersionType = "stable" Then
             TranslateControl(LinkLabel1, "please_wait")
-            Try
-                Dim Updt As New WebClient
-                Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
-                If Version = LastUpdt Then
-                    MsgBox(GetLangText("updated"), vbInformation, "Update Checker")
-                ElseIf LastUpdt = "0" Then
-                    MsgBox(GetLangText("service_not_available"), vbExclamation, "Update Checker")
-                Else
-                    Me.Show()
-                    UpdateDialog.ShowDialog()
-                End If
-            Catch ex As Exception
-                MsgBox(GetLangText("cannot_connect"), vbCritical, "Update Checker")
-            End Try
+            If Not NewUpdateAvailable() Then
+                MessageBox.Show(GetLangText("updated"), "Update Checker", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                Me.Show()
+                UpdateDialog.ShowDialog()
+            End If
             TranslateControl(LinkLabel1, "chkupdt_btn") 'Pour reafficher le texte "Verifier les mises à jours"
         Else
-            MsgBox("Only available in stable version.", vbExclamation)
+            MessageBox.Show("Only available in stable version.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 
