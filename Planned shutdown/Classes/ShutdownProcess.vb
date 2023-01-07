@@ -27,7 +27,7 @@
                 ParamString = "-s"
         End Select
 
-        CmdProcess("shutdown " & ParamString & " -t " & Time)
+        CmdProcess($"shutdown {ParamString} -t {Time}")
     End Sub
 
     ''' <summary>
