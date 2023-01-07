@@ -17,7 +17,7 @@
         LanguageText()
 
         If Label7.Text <> "42" Then
-            Label7.Text = GetLangText("version") + " " + Version
+            Label7.Text = GetLangText("version") + " " + Version.ToString()
         End If
 
         If theme_value = "dark" Or theme_value = "dark_b" Then

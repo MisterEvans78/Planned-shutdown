@@ -50,7 +50,7 @@ Public Class UpdateDialog
         LanguageText()
         Changelog()
 
-        If Version = "dev" Then
+        If VersionType = "dev" Then
             CheckBox1.Visible = True
             LinkLabel1.Visible = True
         End If

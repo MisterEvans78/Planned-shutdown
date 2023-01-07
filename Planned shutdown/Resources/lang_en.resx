@@ -216,6 +216,9 @@
   <data name="title" xml:space="preserve">
     <value>Planned shutdown</value>
   </data>
+  <data name="update" xml:space="preserve">
+    <value>Update</value>
+  </data>
   <data name="updated" xml:space="preserve">
     <value>No new update is available.</value>
   </data>

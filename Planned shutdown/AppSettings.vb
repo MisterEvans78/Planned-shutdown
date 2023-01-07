@@ -4,7 +4,7 @@ Imports System.Resources
 Module AppSettings
 
     'Modifier également le numéro de version dans Informations de l'assembly !
-    Public ReadOnly Version As String = "1.12.0"
+    Public ReadOnly Version As New Version("1.12.0")
 
 #If DEBUG Then
     Public ReadOnly VersionType As String = "dev"

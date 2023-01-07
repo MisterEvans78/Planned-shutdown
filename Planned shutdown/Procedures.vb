@@ -244,7 +244,7 @@ Module Procedures
 
     Sub ShowAppSettings()
         MessageBox.Show(
-            "Version: " & Version & vbNewLine &
+            "Version: " & Version.ToString() & vbNewLine &
             "VersionType: " & VersionType & vbNewLine &
             "AppDataFolder: " & AppDataFolder & vbNewLine &
             "LanguageFile: " & LanguageFile & vbNewLine &
@@ -303,10 +303,10 @@ Module Procedures
             Dim Updt As New WebClient
             Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
 
-            LastUpdt = LastUpdt.Replace(".", "")
+            If LastUpdt <> "0" Then
+                Dim LastVersion As New Version(LastUpdt)
 
-            If IsNumeric(LastUpdt) And LastUpdt <> "0" Then
-                If CInt(LastUpdt) > Version Then
+                If LastVersion > Version And LastUpdt.ToString() <> "0" Then
                     Return True
                 End If
             End If

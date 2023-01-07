@@ -17,12 +17,10 @@ Public Class Main
     Sub ChkUpdt()
         'Verifie MAJ au démarrage
         Try
-            Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
-            If Version <> LastUpdt And LastUpdt <> "0" Then
+            If NewUpdateAvailable() Then
                 TranslateControl(LinkLabel1, "update_available")
             End If
-        Catch ex As Exception
+        Catch
 
         End Try
     End Sub
@@ -30,17 +28,16 @@ Public Class Main
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AppStart()
 
-        If Version = "dev" Then
+        If VersionType = "dev" Then
             Me.ContextMenuStrip = ContextMenuStrip1
         End If
 
         Theme(Me)
         LanguageText()
 
-        If VersionType = "stable" Then
-            If auto_update = True Then
-                ChkUpdt()
-            End If
+
+        If auto_update = True Then
+            ChkUpdt()
         End If
     End Sub
 
@@ -62,18 +59,14 @@ Public Class Main
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         'Verifie MAJ manuellement
-        If VersionType = "stable" Then
-            TranslateControl(LinkLabel1, "please_wait")
-            If Not NewUpdateAvailable() Then
-                MessageBox.Show(GetLangText("updated"), "Update Checker", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                Me.Show()
-                UpdateDialog.ShowDialog()
-            End If
-            TranslateControl(LinkLabel1, "chkupdt_btn") 'Pour reafficher le texte "Verifier les mises à jours"
+        TranslateControl(LinkLabel1, "please_wait")
+        If Not NewUpdateAvailable() Then
+            MessageBox.Show(GetLangText("updated"), GetLangText("update"), MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            MessageBox.Show("Only available in stable version.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Me.Show()
+            UpdateDialog.ShowDialog()
         End If
+        TranslateControl(LinkLabel1, "chkupdt_btn") 'Pour reafficher le texte "Verifier les mises à jours"
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click

@@ -362,6 +362,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Recherche une chaîne localisée semblable à Update.
+        '''</summary>
+        Friend Shared ReadOnly Property update() As String
+            Get
+                Return ResourceManager.GetString("update", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Recherche une chaîne localisée semblable à Update available.
         '''</summary>
         Friend Shared ReadOnly Property update_available() As String

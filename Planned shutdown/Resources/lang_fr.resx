@@ -216,6 +216,9 @@
   <data name="title" xml:space="preserve">
     <value>Arrêt planifié</value>
   </data>
+  <data name="update" xml:space="preserve">
+    <value>Mise à jour</value>
+  </data>
   <data name="updated" xml:space="preserve">
     <value>Aucune nouvelle mise à jour n'est disponible.</value>
   </data>
