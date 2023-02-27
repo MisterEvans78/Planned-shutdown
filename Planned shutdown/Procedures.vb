@@ -2,114 +2,58 @@
 Imports System.Net
 Imports System.Reflection
 Imports System.Resources
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Module Procedures
 
     ''' <summary>
-    ''' Obtenir le réglage de la langue. Ouvre le formulaire des options si aucun réglage trouvé (cas lors du premier démarrage de l'application).
+    ''' Obtenir les réglages. Ouvre le formulaire des options si aucun réglage trouvé (cas lors du premier démarrage de l'application).
     ''' </summary>
-    Sub CheckLanguageFile()
+    Sub GetConfig()
+        Dim config As JObject
+        Dim openOptions As Boolean = False
+
         Try
-            Dim language_opendialog As New OpenFileDialog
-            language_opendialog.FileName = AppDataFolder & LanguageFile
-            Dim language_reader As New StreamReader(language_opendialog.FileName)
-            language = language_reader.ReadLine
-            language_reader.Close()
+            Dim json As String = File.ReadAllText(AppDataFolder & "config.json")
+            config = JsonConvert.DeserializeObject(json)
         Catch
-            Dim language_savedialog As New SaveFileDialog
-            language_savedialog.FileName = AppDataFolder & LanguageFile
+            openOptions = True
+
             If Not Directory.Exists(AppDataFolder) Then
                 Directory.CreateDirectory(AppDataFolder)
             End If
-            Dim language_writer As New StreamWriter(language_savedialog.FileName)
-            language_writer.Write(default_language)
-            language_writer.Close()
-            language = default_language
 
+            config = New JObject(
+                New JProperty("language", default_language),
+                New JProperty("theme", default_theme),
+                New JProperty("update", default_update)
+            )
+
+            File.WriteAllText(AppDataFolder & "config.json", JsonConvert.SerializeObject(config, Formatting.Indented))
+        End Try
+
+        With config
+            language = .GetValue("language")
+            theme_value = .GetValue("theme")
+            auto_update = .GetValue("update")
+        End With
+
+        If openOptions Then
             Options.Show()
             Main.Close()
-        End Try
-    End Sub
-
-    ''' <summary>
-    ''' Obtenir le réglage du thème. Ouvre le formulaire des options si aucun réglage trouvé (cas lors du premier démarrage de l'application).
-    ''' </summary>
-    Sub CheckThemeFile()
-        Try
-            Dim theme_opendialog As New OpenFileDialog
-            theme_opendialog.FileName = AppDataFolder & ThemeFile
-            Dim theme_reader As New StreamReader(theme_opendialog.FileName)
-            theme_value = theme_reader.ReadLine
-            theme_reader.Close()
-            If theme_value <> "light" And theme_value <> "dark" And theme_value <> "dark_b" And theme_value <> "system" Then
-                Dim theme_savedialog As New SaveFileDialog
-                theme_savedialog.FileName = AppDataFolder & ThemeFile
-                Dim theme_writer As New StreamWriter(theme_savedialog.FileName)
-                theme_writer.Write(default_theme)
-                theme_writer.Close()
-                theme_value = default_theme
-            End If
-        Catch
-            Dim theme_savedialog As New SaveFileDialog
-            theme_savedialog.FileName = AppDataFolder & ThemeFile
-            If Not Directory.Exists(AppDataFolder) Then
-                Directory.CreateDirectory(AppDataFolder)
-            End If
-            Dim theme_writer As New StreamWriter(theme_savedialog.FileName)
-            theme_writer.Write(default_theme)
-            theme_writer.Close()
-            theme_value = default_theme
-        End Try
-    End Sub
-
-    ''' <summary>
-    ''' Obtenir le réglage des mises à jour. Ouvre le formulaire des options si aucun réglage trouvé (cas lors du premier démarrage de l'application).
-    ''' </summary>
-    Sub CheckUpdateFile()
-        Try
-            Dim update_value As String
-            Dim update_opendialog As New OpenFileDialog
-            update_opendialog.FileName = AppDataFolder & UpdateFile
-            Dim update_reader As New StreamReader(update_opendialog.FileName)
-            update_value = update_reader.ReadLine
-            update_reader.Close()
-            If update_value = "true" Then
-                auto_update = True
-            Else
-                auto_update = False
-            End If
-        Catch
-            Dim update_savedialog As New SaveFileDialog
-            update_savedialog.FileName = AppDataFolder & UpdateFile
-            If Not Directory.Exists(AppDataFolder) Then
-                Directory.CreateDirectory(AppDataFolder)
-            End If
-            Dim update_writer As New StreamWriter(update_savedialog.FileName)
-            If default_update = True Then
-                update_writer.Write("true")
-            Else
-                update_writer.Write("false")
-            End If
-            update_writer.Close()
-            auto_update = default_update
-        End Try
+        End If
     End Sub
 
     Sub LanguageResourceManager()
-        LangRS = New ResourceManager("Planned_shutdown.lang_" + language, Assembly.GetExecutingAssembly())
-    End Sub
-
-    Sub CheckSettingsFiles()
-        CheckUpdateFile()
-        CheckThemeFile()
-        CheckLanguageFile()
+        LangRS = New ResourceManager("Planned_shutdown.lang_" & language, Assembly.GetExecutingAssembly())
     End Sub
 
     ''' <summary>
     ''' Procédures à exécuter au démarrage de l'application.
     ''' </summary>
     Sub AppStart()
-        CheckSettingsFiles()
+        GetConfig()
         LanguageResourceManager()
     End Sub
 
@@ -247,9 +191,6 @@ Module Procedures
             "Version: " & Version.ToString() & vbNewLine &
             "VersionType: " & VersionType & vbNewLine &
             "AppDataFolder: " & AppDataFolder & vbNewLine &
-            "LanguageFile: " & LanguageFile & vbNewLine &
-            "ThemeFile: " & ThemeFile & vbNewLine &
-            "UpdateFile: " & UpdateFile & vbNewLine &
             "default_language: " & default_language & vbNewLine &
             "default_theme: " & default_theme & vbNewLine &
             "default_update: " & default_update & vbNewLine &
@@ -289,7 +230,7 @@ Module Procedures
 
             Return If(text Is Nothing, default_LangRS.GetString(name), text)
         Catch
-            MessageBox.Show("lang_" + language + " resource is missing!", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("lang_" & language & " resource is missing!", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End
         End Try
     End Function

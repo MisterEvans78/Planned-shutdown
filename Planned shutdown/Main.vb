@@ -35,7 +35,6 @@ Public Class Main
         Theme(Me)
         LanguageText()
 
-
         If auto_update = True Then
             ChkUpdt()
         End If

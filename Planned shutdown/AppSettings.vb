@@ -14,12 +14,6 @@ Module AppSettings
 
     Public ReadOnly AppDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\Planned shutdown\"
 
-    Public ReadOnly LanguageFile As String = "lang.ini"
-
-    Public ReadOnly ThemeFile As String = "theme.ini"
-
-    Public ReadOnly UpdateFile As String = "update.ini"
-
     Public ReadOnly default_language As String = "en"
 
     Public ReadOnly default_theme As String = "system"

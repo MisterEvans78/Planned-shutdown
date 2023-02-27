@@ -1,36 +1,45 @@
 ﻿Imports System.IO
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Public Class Options
 
-    Sub ThemeWriter()
-        Dim theme_savedialog As New SaveFileDialog
-        theme_savedialog.FileName = AppDataFolder & ThemeFile
-        Dim theme_writer As New StreamWriter(theme_savedialog.FileName)
-        If RadioButton1.Checked Then
-            theme_writer.Write("system")
-        ElseIf RadioButton2.Checked Then
-            theme_writer.Write("light")
-        ElseIf RadioButton3.Checked Then
-            If CheckBox1.Checked = True Then
-                theme_writer.Write("dark_b")
-            Else
-                theme_writer.Write("dark")
-            End If
-        End If
-        theme_writer.Close()
+    Sub WriteConfig()
+        Dim config As JObject
+
+        config = New JObject(
+            New JProperty("language", GetSelectedLanguage()),
+            New JProperty("theme", GetSelectedTheme),
+            New JProperty("update", CheckBox2.Checked)
+        )
+
+        File.WriteAllText(AppDataFolder & "config.json", JsonConvert.SerializeObject(config, Formatting.Indented))
     End Sub
 
-    Sub UpdateWriter()
-        Dim update_savedialog As New SaveFileDialog
-        update_savedialog.FileName = AppDataFolder & UpdateFile
-        Dim update_writer As New StreamWriter(update_savedialog.FileName)
-        If CheckBox2.Checked = True Then
-            update_writer.Write("true")
+    Function GetSelectedLanguage() As String
+        Select Case ComboBox1.SelectedItem
+            Case GetLangText("lang_french")
+                Return "fr"
+            Case GetLangText("lang_portuguese")
+                Return "pt"
+            Case Else
+                Return "en"
+        End Select
+    End Function
+
+    Function GetSelectedTheme() As String
+        If RadioButton2.Checked Then
+            Return "light"
+        ElseIf RadioButton3.Checked Then
+            If CheckBox1.Checked = True Then
+                Return "dark_b"
+            Else
+                Return "dark"
+            End If
         Else
-            update_writer.Write("false")
+            Return "system"
         End If
-        update_writer.Close()
-    End Sub
+    End Function
 
     Private Sub Options_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Premier lancement de l'application
@@ -106,26 +115,10 @@ Public Class Options
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
-            Dim language_savedialog As New SaveFileDialog
-            language_savedialog.FileName = AppDataFolder & LanguageFile
-
             If ComboBox1.Text <> "" Then
-                Dim language_writer As New StreamWriter(language_savedialog.FileName)
+                ' Enregistrement des réglages
+                WriteConfig()
 
-                ' Enregistrement de la langue choisie
-                Select Case ComboBox1.SelectedItem
-                    Case GetLangText("lang_french")
-                        language_writer.Write("fr")
-                    Case GetLangText("lang_portuguese")
-                        language_writer.Write("pt")
-                    Case Else
-                        language_writer.Write("en")
-                End Select
-
-                language_writer.Close()
-
-                ThemeWriter()
-                UpdateWriter()
                 Application.Restart()
             Else
                 MessageBox.Show("Please choose a language", "Select language", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
