@@ -239,10 +239,10 @@ Module Procedures
     ''' Vérifie si une mise à jour est disponible.
     ''' </summary>
     ''' <returns></returns>
-    Function NewUpdateAvailable() As Boolean
+    Async Function NewUpdateAvailable() As Task(Of Boolean)
         Try
             Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_last_version.txt")
+            Dim LastUpdt As String = Await Updt.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_last_version.txt")
 
             If LastUpdt <> "0" Then
                 Dim LastVersion As New Version(LastUpdt)

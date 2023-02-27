@@ -2,19 +2,22 @@
 
 Public Class ChangelogDialog
 
-    Sub ChangelogForm()
+    Async Function ChangelogForm() As Task
         Try
             Dim ChangelogFullList As New WebClient
-            Dim ChangelogList_Full As String = ChangelogFullList.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_full_changelog.txt")
+            Dim ChangelogList_Full As String = Await ChangelogFullList.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_full_changelog.txt")
             RichTextBox2.Text = ChangelogList_Full
         Catch ex As Exception
             RichTextBox2.Text = "Error"
         End Try
-    End Sub
+    End Function
 
     Private Sub ChangelogDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Theme(Me)
-        ChangelogForm()
+    End Sub
+
+    Private Async Sub ChangelogDialog_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Await ChangelogForm()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

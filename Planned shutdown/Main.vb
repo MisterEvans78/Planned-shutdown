@@ -14,10 +14,10 @@ Public Class Main
     End Sub
 #End Region
 
-    Sub ChkUpdt()
+    Async Sub ChkUpdt()
         'Verifie MAJ au démarrage
         Try
-            If NewUpdateAvailable() Then
+            If Await NewUpdateAvailable() Then
                 TranslateControl(LinkLabel1, "update_available")
             End If
         Catch
@@ -56,10 +56,10 @@ Public Class Main
         End Try
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+    Private Async Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         'Verifie MAJ manuellement
         TranslateControl(LinkLabel1, "please_wait")
-        If NewUpdateAvailable() Then
+        If Await NewUpdateAvailable() Then
             UpdateDialog.ShowDialog()
         Else
             MessageBox.Show(GetLangText("updated"), GetLangText("update"), MessageBoxButtons.OK, MessageBoxIcon.Information)

@@ -40,7 +40,7 @@ Partial Class UpdateDialog
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.Size = New System.Drawing.Size(399, 157)
         Me.RichTextBox1.TabIndex = 0
-        Me.RichTextBox1.Text = ""
+        Me.RichTextBox1.Text = "Loading..."
         '
         'Label1
         '

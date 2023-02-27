@@ -35,7 +35,7 @@ Partial Class ChangelogDialog
         Me.RichTextBox2.Name = "RichTextBox2"
         Me.RichTextBox2.Size = New System.Drawing.Size(398, 233)
         Me.RichTextBox2.TabIndex = 0
-        Me.RichTextBox2.Text = ""
+        Me.RichTextBox2.Text = "Loading..."
         '
         'Button1
         '
