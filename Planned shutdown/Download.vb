@@ -7,7 +7,7 @@ Public Class Download
     Private Sub Download_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Download = New WebClient
-            Dim DLink As String = Download.DownloadString("https://dl.dropboxusercontent.com/s/nwp685bkejkwhhc/shutdown_app_url_download.ini?dl=1")
+            Dim DLink As String = Download.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_url_download.txt")
             If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
                 Download.DownloadFileAsync(New Uri(DLink), (SaveFileDialog1.FileName))
             Else

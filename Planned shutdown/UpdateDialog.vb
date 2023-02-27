@@ -17,13 +17,13 @@ Public Class UpdateDialog
         Try
             Dim Changelog As New WebClient
             Dim UpdtForm3 As New WebClient
-            Dim LastUpdtForm3 As String = UpdtForm3.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
+            Dim LastUpdtForm3 As String = UpdtForm3.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_last_version.txt")
             Label4.Text = LastUpdtForm3
             If language = "1" Then
-                Dim UpdateChangelogFR As String = Changelog.DownloadString("https://dl.dropboxusercontent.com/s/i3anwikfs747cqf/shutdown_app_changelog_french.txt?dl=1")
+                Dim UpdateChangelogFR As String = Changelog.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_changelog_french.txt")
                 RichTextBox1.Text = UpdateChangelogFR
             Else
-                Dim UpdateChangelog As String = Changelog.DownloadString("https://dl.dropboxusercontent.com/s/bym4lg35ord2thy/shutdown_app_changelog_english.txt?dl=1")
+                Dim UpdateChangelog As String = Changelog.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_changelog_english.txt")
                 RichTextBox1.Text = UpdateChangelog
             End If
         Catch ex As Exception
@@ -36,7 +36,7 @@ Public Class UpdateDialog
         'Telechargement via navigateur
         Try
             Dim Download As New WebClient
-            Dim DownloadLink As String = Download.DownloadString("https://dl.dropboxusercontent.com/s/nwp685bkejkwhhc/shutdown_app_url_download.ini?dl=1")
+            Dim DownloadLink As String = Download.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_url_download.txt")
             Process.Start(DownloadLink)
             End
         Catch ex As Exception

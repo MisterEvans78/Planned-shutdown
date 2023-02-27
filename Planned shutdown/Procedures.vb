@@ -242,7 +242,7 @@ Module Procedures
     Function NewUpdateAvailable() As Boolean
         Try
             Dim Updt As New WebClient
-            Dim LastUpdt As String = Updt.DownloadString("https://dl.dropboxusercontent.com/s/hpdo6tff9oqghym/shutdown_app_last_version.ini?dl=1")
+            Dim LastUpdt As String = Updt.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_last_version.txt")
 
             If LastUpdt <> "0" Then
                 Dim LastVersion As New Version(LastUpdt)

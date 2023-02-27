@@ -5,7 +5,7 @@ Public Class ChangelogDialog
     Sub ChangelogForm()
         Try
             Dim ChangelogFullList As New WebClient
-            Dim ChangelogList_Full As String = ChangelogFullList.DownloadString("https://dl.dropboxusercontent.com/s/d1qi7kmrhylxs1k/shutdown_app_full_changelog.txt?dl=1")
+            Dim ChangelogList_Full As String = ChangelogFullList.DownloadString("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_full_changelog.txt")
             RichTextBox2.Text = ChangelogList_Full
         Catch ex As Exception
             RichTextBox2.Text = "Error"
