@@ -1,0 +1,5 @@
+v1.11.0
+
+- Possibilité de saisir en même temps le temps en seconde, en minute et en heure (ex : 1h 30m 45s).
+- Le logiciel s'adapte au thème système si le thème sélectionné dans les options est "Système" (Windows 10 seulement).
+- Le thème "Système" est désormais le thème par défaut lors de la première installation.

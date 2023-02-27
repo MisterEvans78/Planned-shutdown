@@ -1,0 +1,232 @@
+Version 1.11.0
+
+(Français)
+
+- Possibilité de saisir en même temps le temps en seconde, en minute et en heure (ex : 1h 30m 45s).
+- Le logiciel s'adapte au thème système si le thème sélectionné dans les options est "Système" (Windows 10 seulement).
+- Le thème "Système" est désormais le thème par défaut lors de la première installation.
+
+(English)
+
+- It's now possible to enter the time in seconds, minutes and hours (e.g. 1h 30m 45s).
+- The software can adapt to the system theme if the theme selected in the options is "System" (Windows 10 only).
+- The "System" theme is now the default theme.
+
+Version 1.10.0
+
+(Français)
+
+- Possibilité de planifier le redémarrage du PC.
+- Nouvelle interface pour la fenêtre qui s'affiche lorsqu'on clique sur "Planifier l'arrêt de l'ordinateur".
+- Le logiciel mémorise désormais les paramètres choisi pour la planification de l'arrêt.
+- Ajout d'une option pour vérifier les mises à jours au démarrage du logiciel.
+
+(English)
+
+- Possibility to schedule the restart of the PC.
+- New interface for the window that appears when you click on "Plan the computer shutdown".
+- The software now memorizes the settings chosen for the shutdown planning.
+- Added an option to check for updates when the software starting.
+
+Version 1.9.4
+
+(Français)
+
+- Correction de l'erreur qui se produisait lors du premier lancement du logiciel après l'installation
+
+(English)
+
+- Fixed the error that occurred when launching the software for the first time after installation
+
+Version 1.9.3
+
+(Français)
+
+- Optimisation du logiciel
+
+(English)
+
+- Software optimization
+
+Version 1.9.2
+
+(Français)
+
+- Optimisation du logiciel
+
+(English)
+
+- Software optimization
+
+Version 1.9.1
+
+(Français)
+
+- Le nom du logiciel est traduit dans la langue choisi lors de l'installation.
+- Optimisation du logiciel
+
+(English)
+
+- The name of the software is translated into the language chosen during installation.
+- Software optimization
+
+Version 1.9.0
+
+(Français)
+
+- Optimisation du logiciel
+- Ajout d'un lien vers GitHub dans la page "À propos"
+- Les liens vers Twitch et YouTube ont été supprimés
+
+(English)
+
+- Software optimization
+- Added a link to GitHub in the "About" page
+- Links to Twitch and YouTube have been removed
+
+Version 1.8.2
+
+(Français)
+
+- Vu que je ne publie plus de mise à jour du logiciel, la vérification de mise à jour au démarrage a été désactivé à partir de cette version pour accélérer le démarrage du logiciel. Il est toujours possible de vérifier manuellement la présence de mise à jour en cliquant sur "Vérifier les mises à jours".
+
+(English)
+
+- The update check at software startup has been disabled from this version to speed up the software startup. It's always possible to manually check for updates by clicking on "Check updates".
+
+Version 1.8.1
+
+(Français)
+
+- Ajout du thème noir
+- Améliorations mineures
+
+(English)
+
+- Adding the black theme
+- Minor improvements
+
+Version 1.8.0
+
+(Français)
+
+- Ajout du thème sombre
+- Améliorations mineures
+
+(English)
+
+- Adding the dark theme
+- Minor improvements
+
+Version 1.7.1
+
+(Français)
+
+- Correction de bugs
+
+(English)
+
+- Bug fixes
+
+Version 1.7.0
+
+(Français)
+
+- Pour planifier l'arrêt de l'ordinateur, vous pouvez désormais choisir le temps en secondes, en minutes ou en heures
+- Un message apparait lorsque qu'aucun temps n'a été saisi
+- Vous pouvez uniquement entrer des chiffres lors de la saisi du temps
+- La changelog est désormais uniquement affiché dans la langue du logiciel
+- Améliorations mineures
+
+(English)
+
+- To schedule the computer shutdown, you can now choose the time in seconds, minutes or hours
+- A message appears when no time has been entered
+- You can now only enter numbers when entering time
+- The changelog is now only displayed in the language of the software
+- Minor improvements
+
+Version 1.6.2
+
+(Français)
+
+- Ajout d'une page "A propos"
+- Le bouton "Langue" est désormais en bas à gauche
+
+(English)
+
+- Adding an "About" page
+- The "Language" button is now at the bottom left
+
+Version 1.6.1
+
+(Français)
+
+- Correction de bugs
+- Amélioration et optimisation
+
+(English)
+
+- Bug fixes
+- Improvement and optimization
+
+Version 1.6.0
+
+(Français)
+
+- Le changement de la langue du logiciel ne demande plus les droits d'administrateur
+- Correction de bugs
+
+(English)
+
+- Changing the software language no longer requires administrator rights
+- Bug fixes
+
+Version 1.5.0
+
+(Français)
+
+- Amélioration et optimisation du logiciel
+
+(English)
+
+- Improvement and optimization
+
+Version 1.4.0
+
+(Français)
+- Nouvelle icône
+- Amélioration et optimisation du logiciel
+
+(English)
+- New icon
+- Improvement and optimization
+
+Version 1.3.0
+
+(Français)
+- Vous pouvez désormais choisir la langue du logiciel entre le français et anglais
+
+(English)
+- You can choose the language of the software between French and English
+
+Version 1.2.0
+
+- Désormais le téléchargement d'une mise à jour se fait directement dans le logiciel, plus besoin d'ouvrir le navigateur pour télécharger le fichier
+
+Version 1.1.2
+
+- Amélioration du logiciel
+
+Version 1.1.1
+
+- Amélioration du logiciel
+
+Version 1.1.0
+
+- Possibilité de rechercher une nouvelle mise à jour du logiciel directement dans le logiciel
+- Ajout d'une îcone pour le logiciel
+
+Version 1.0.0
+
+- Première version du logiciel

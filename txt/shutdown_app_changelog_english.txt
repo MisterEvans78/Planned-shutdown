@@ -1,0 +1,5 @@
+v1.11.0
+
+- It's now possible to enter the time in seconds, minutes and hours (e.g. 1h 30m 45s).
+- The software can adapt to the system theme if the theme selected in the options is "System" (Windows 10 only).
+- The "System" theme is now the default theme.
