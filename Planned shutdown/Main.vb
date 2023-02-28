@@ -14,7 +14,7 @@ Public Class Main
     End Sub
 #End Region
 
-    Async Sub ChkUpdt()
+    Async Function ChkUpdt() As Task
         'Verifie MAJ au démarrage
         Try
             If Await NewUpdateAvailable() Then
@@ -23,7 +23,7 @@ Public Class Main
         Catch
 
         End Try
-    End Sub
+    End Function
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AppStart()
@@ -34,9 +34,11 @@ Public Class Main
 
         Theme(Me)
         LanguageText()
+    End Sub
 
+    Private Async Sub Main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         If auto_update = True Then
-            ChkUpdt()
+            Await ChkUpdt()
         End If
     End Sub
 
