@@ -26,14 +26,19 @@ Public Class Main
     End Function
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AppStart()
+        Try
+            AppStart()
 
-        If VersionType = "dev" Then
-            Me.ContextMenuStrip = ContextMenuStrip1
-        End If
+            If VersionType = "dev" Then
+                Me.ContextMenuStrip = ContextMenuStrip1
+            End If
 
-        Theme(Me)
-        LanguageText()
+            Theme(Me)
+            LanguageText()
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End
+        End Try
     End Sub
 
     Private Async Sub Main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
