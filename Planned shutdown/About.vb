@@ -20,9 +20,9 @@
             Label7.Text = GetLangText("version") + " " + Version.ToString()
         End If
 
-        If theme_value = "dark" Or theme_value = "dark_b" Then
+        If currentTheme = "dark" Or currentTheme = "dark_b" Then
             PictureBox2.Image = My.Resources.github_light
-        ElseIf theme_value = "system" Then
+        ElseIf currentTheme = "system" Then
             If AppsUseLightTheme = 0 Then
                 PictureBox2.Image = My.Resources.github_light
             End If

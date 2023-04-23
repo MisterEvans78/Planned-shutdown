@@ -96,22 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.vb" />
+    <Compile Include="Classes\Language.vb" />
     <Compile Include="Classes\ShutdownProcess.vb" />
-    <Compile Include="Resources\lang_pt.Designer.vb">
-      <DependentUpon>lang_pt.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\lang_fr.Designer.vb">
-      <DependentUpon>lang_fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\lang_en.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>lang_en.resx</DependentUpon>
-    </Compile>
     <Compile Include="Procedures.vb" />
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
@@ -174,21 +160,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\lang_pt.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>lang_pt.Designer.vb</LastGenOutput>
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\lang_fr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>lang_fr.Designer.vb</LastGenOutput>
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\lang_en.resx">
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>lang_en.Designer.vb</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +189,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Languages\lang_en.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\lang_fr.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

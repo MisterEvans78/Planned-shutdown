@@ -42,7 +42,7 @@ Public Class Main
     End Sub
 
     Private Async Sub Main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        If auto_update = True Then
+        If autoUpdate = True Then
             Await ChkUpdt()
         End If
     End Sub

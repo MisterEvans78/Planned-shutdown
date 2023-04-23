@@ -7,6 +7,8 @@ Imports Newtonsoft.Json.Linq
 
 Module Procedures
 
+    Private _languages As List(Of Language) = New List(Of Language)
+
     ''' <summary>
     ''' Obtenir les réglages. Ouvre le formulaire des options si aucun réglage trouvé (cas lors du premier démarrage de l'application).
     ''' </summary>
@@ -34,10 +36,12 @@ Module Procedures
         End Try
 
         With config
-            language = .GetValue("language")
-            theme_value = .GetValue("theme")
-            auto_update = .GetValue("update")
+            currentLanguage = .GetValue("language")
+            currentTheme = .GetValue("theme")
+            autoUpdate = .GetValue("update")
         End With
+
+        FeedLanguagesDictionary()
 
         If openOptions Then
             Options.Show()
@@ -45,8 +49,24 @@ Module Procedures
         End If
     End Sub
 
-    Sub LanguageResourceManager()
-        LangRS = New ResourceManager("Planned_shutdown.lang_" & language, Assembly.GetExecutingAssembly())
+    ''' <summary>
+    ''' Remplir le dictionnaire Languages avec les languages trouvées dans le dossier Languages.
+    ''' </summary>
+    Sub FeedLanguagesDictionary()
+        Dim folderName As String = "Languages"
+
+        For Each fileName As String In Directory.GetFiles(folderName).Where(Function(fn) Path.GetFileName(fn).StartsWith("lang_"))
+            Dim json As String = File.ReadAllText(fileName)
+            Dim languageObject As Language = JsonConvert.DeserializeObject(Of Language)(json)
+            languageObject.Id = Path.GetFileName(fileName).Replace("lang_", "").Replace(".json", "")
+
+            ' Si c'est pas la langue actuelle ou par défaut
+            If languageObject.Id <> currentLanguage AndAlso languageObject.Id <> default_language Then
+                ' On ne garde pas les traductions en mémoire
+                languageObject.Translations = Nothing
+            End If
+            _languages.Add(languageObject)
+        Next
     End Sub
 
     ''' <summary>
@@ -54,7 +74,6 @@ Module Procedures
     ''' </summary>
     Sub AppStart()
         GetConfig()
-        LanguageResourceManager()
     End Sub
 
     ''' <summary>
@@ -64,14 +83,14 @@ Module Procedures
     Sub Theme(ByVal form As Form)
         Dim theme_selected As String
 
-        If theme_value = "system" Then
+        If currentTheme = "system" Then
             If AppsUseLightTheme = "0" Then
                 theme_selected = "dark"
             Else
                 theme_selected = "light"
             End If
         Else
-            theme_selected = theme_value
+            theme_selected = currentTheme
         End If
 
         'Mode sombre
@@ -194,9 +213,9 @@ Module Procedures
             "default_language: " & default_language & vbNewLine &
             "default_theme: " & default_theme & vbNewLine &
             "default_update: " & default_update & vbNewLine &
-            "language: " & language & vbNewLine &
-            "theme_value: " & theme_value & vbNewLine &
-            "auto_update: " & auto_update & vbNewLine &
+            "currentLanguage: " & currentLanguage & vbNewLine &
+            "currentTheme: " & currentTheme & vbNewLine &
+            "autoUpdate: " & autoUpdate & vbNewLine &
             "AppsUseLightTheme: " & AppsUseLightTheme
         )
     End Sub
@@ -224,15 +243,58 @@ Module Procedures
         control.Text = GetLangText(name)
     End Sub
 
-    Function GetLangText(ByVal name As String) As String
-        Try
-            Dim text As String = LangRS.GetString(name)
+    ''' <summary>
+    ''' Obtenir la liste des langues.
+    ''' </summary>
+    ''' <returns></returns>
+    Function GetLanguages() As List(Of String)
+        Return (From lang In _languages
+                Where lang.Name IsNot Nothing
+                Select lang.Name).ToList()
+    End Function
 
-            Return If(text Is Nothing, default_LangRS.GetString(name), text)
-        Catch
-            MessageBox.Show("lang_" & language & " resource is missing!", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End
-        End Try
+    ''' <summary>
+    ''' Obtenir le nom de la langue via son ID.
+    ''' </summary>
+    ''' <param name="langId">ID de la langue.</param>
+    ''' <returns>Exemple : en</returns>
+    Function GetLanguageName(langId As String) As String
+        Return (From lang In _languages
+                Where lang.Id = langId
+                Select lang.Name).FirstOrDefault()
+    End Function
+
+    ''' <summary>
+    ''' Obtenir l'ID de la langue via son nom.
+    ''' </summary>
+    ''' <param name="langName">ID de la langue.</param>
+    ''' <returns>Exemple : English</returns>
+    Function GetLanguageIdByName(langName As String) As String
+        Return (From lang In _languages
+                Where lang.Name = langName
+                Select lang.Id).FirstOrDefault()
+    End Function
+
+    ''' <summary>
+    ''' Obtenir un texte dans la langue de l'application.<br/>
+    ''' Si la traduction n'existe pas dans la langue actuelle de l'application, cela retourne le texte dans langue par défaut.<br/>
+    ''' Si pour une quelconque raison le texte n'existe pas dans la langue par défaut, cela retourne une chaine de caractère vide. 
+    ''' </summary>
+    ''' <param name="name"></param>
+    ''' <returns></returns>
+    Function GetLangText(ByVal name As String) As String
+        Dim language As Language = (From lang In _languages
+                                    Where lang.Id = currentLanguage).FirstOrDefault()
+        Dim defaultLanguage As Language = (From lang In _languages
+                                           Where lang.Id = default_language).FirstOrDefault()
+
+        If language.Translations IsNot Nothing AndAlso language.Translations.ContainsKey(name) Then
+            Return language.Translations(name)
+        ElseIf defaultLanguage.Translations IsNot Nothing AndAlso defaultLanguage.Translations.ContainsKey(name) Then
+            Return defaultLanguage.Translations(name)
+        End If
+
+        Return String.Empty
     End Function
 
     ''' <summary>

@@ -19,7 +19,7 @@ Public Class UpdateDialog
             Dim UpdtForm3 As New WebClient
             Dim LastUpdtForm3 As String = Await UpdtForm3.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_last_version.txt")
             Label4.Text = LastUpdtForm3
-            If language = "1" Then
+            If currentLanguage = "fr" Then
                 Dim UpdateChangelogFR As String = Await Changelog.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_changelog_french.txt")
                 RichTextBox1.Text = UpdateChangelogFR
             Else
