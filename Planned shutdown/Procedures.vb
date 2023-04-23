@@ -53,7 +53,7 @@ Module Procedures
     Sub FeedLanguagesDictionary()
         Dim folderName As String = "Languages"
 
-        For Each fileName As String In Directory.GetFiles(folderName).Where(Function(fn) Path.GetFileName(fn).StartsWith("lang_"))
+        For Each fileName As String In Directory.GetFiles(folderName, "*.json").Where(Function(fn) Path.GetFileName(fn).StartsWith("lang_"))
             Dim json As String = File.ReadAllText(fileName)
             Dim languageObject As Language = JsonConvert.DeserializeObject(Of Language)(json)
             languageObject.Id = Path.GetFileName(fileName).Replace("lang_", "").Replace(".json", "")
