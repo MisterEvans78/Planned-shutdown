@@ -9,7 +9,7 @@ Public Class Download
         Try
             If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
                 DownloadClient = New WebClient
-                Dim DLink As String = Await DownloadClient.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_url_download.txt")
+                Dim DLink As String = Await DownloadClient.DownloadStringTaskAsync(System.Configuration.ConfigurationManager.AppSettings("lastVersionDownloadURL"))
                 Await DownloadClient.DownloadFileTaskAsync(New Uri(DLink), SaveFileDialog1.FileName)
             Else
                 Me.Close()

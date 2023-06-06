@@ -17,7 +17,7 @@
         LanguageText()
 
         If Label7.Text <> "42" Then
-            Label7.Text = GetLangText("version") + " " + Version.ToString()
+            Label7.Text = GetLangText("version") + " " + My.Application.Info.Version.ToString()
         End If
 
         If currentTheme = "dark" Or currentTheme = "dark_b" Then
@@ -37,7 +37,7 @@
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        Process.Start("https://github.com/MisterEvans78")
+        Process.Start(System.Configuration.ConfigurationManager.AppSettings("githubURL"))
     End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click

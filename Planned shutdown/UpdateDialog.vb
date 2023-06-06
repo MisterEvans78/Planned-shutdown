@@ -17,13 +17,13 @@ Public Class UpdateDialog
         Try
             Dim Changelog As New WebClient
             Dim UpdtForm3 As New WebClient
-            Dim LastUpdtForm3 As String = Await UpdtForm3.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_last_version.txt")
+            Dim LastUpdtForm3 As String = Await UpdtForm3.DownloadStringTaskAsync(System.Configuration.ConfigurationManager.AppSettings("lastVersionStringURL"))
             Label4.Text = LastUpdtForm3
             If currentLanguage = "fr" Then
-                Dim UpdateChangelogFR As String = Await Changelog.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_changelog_french.txt")
+                Dim UpdateChangelogFR As String = Await Changelog.DownloadStringTaskAsync(System.Configuration.ConfigurationManager.AppSettings("changelogFrenchURL"))
                 RichTextBox1.Text = UpdateChangelogFR
             Else
-                Dim UpdateChangelog As String = Await Changelog.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_changelog_english.txt")
+                Dim UpdateChangelog As String = Await Changelog.DownloadStringTaskAsync(System.Configuration.ConfigurationManager.AppSettings("changelogURL"))
                 RichTextBox1.Text = UpdateChangelog
             End If
         Catch ex As Exception
@@ -36,7 +36,7 @@ Public Class UpdateDialog
         'Telechargement via navigateur
         Try
             Dim Download As New WebClient
-            Dim DownloadLink As String = Await Download.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_url_download.txt")
+            Dim DownloadLink As String = Await Download.DownloadStringTaskAsync(System.Configuration.ConfigurationManager.AppSettings("lastVersionDownloadURL"))
             Process.Start(DownloadLink)
             End
         Catch ex As Exception

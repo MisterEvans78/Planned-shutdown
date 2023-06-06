@@ -205,7 +205,7 @@ Module Procedures
 
     Sub ShowAppSettings()
         MessageBox.Show(
-            "Version: " & Version.ToString() & vbNewLine &
+            "Version: " & My.Application.Info.Version.ToString() & vbNewLine &
             "VersionType: " & VersionType & vbNewLine &
             "AppDataFolder: " & AppDataFolder & vbNewLine &
             "default_language: " & default_language & vbNewLine &
@@ -302,12 +302,12 @@ Module Procedures
     Async Function NewUpdateAvailable() As Task(Of Boolean)
         Try
             Dim Updt As New WebClient
-            Dim LastUpdt As String = Await Updt.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_last_version.txt")
+            Dim LastUpdt As String = Await Updt.DownloadStringTaskAsync(System.Configuration.ConfigurationManager.AppSettings("lastVersionStringURL"))
 
             If LastUpdt <> "0" Then
                 Dim LastVersion As New Version(LastUpdt)
 
-                If LastVersion > Version And LastUpdt.ToString() <> "0" Then
+                If LastVersion > My.Application.Info.Version And LastUpdt.ToString() <> "0" Then
                     Return True
                 End If
             End If

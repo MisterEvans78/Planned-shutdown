@@ -5,7 +5,7 @@ Public Class ChangelogDialog
     Async Function ChangelogForm() As Task
         Try
             Dim ChangelogFullList As New WebClient
-            Dim ChangelogList_Full As String = Await ChangelogFullList.DownloadStringTaskAsync("https://raw.githubusercontent.com/MisterEvans78/Planned-shutdown/main/txt/shutdown_app_full_changelog.txt")
+            Dim ChangelogList_Full As String = Await ChangelogFullList.DownloadStringTaskAsync(System.Configuration.ConfigurationManager.AppSettings("fullChangelogURL"))
             RichTextBox2.Text = ChangelogList_Full
         Catch ex As Exception
             RichTextBox2.Text = "Error"
